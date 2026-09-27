@@ -37,7 +37,7 @@ graded THEOREM whose content is finite algebra and checks each one in Lean.
 | B75 | Extremal bands' pair terms share a sign; the middle band's have opposite signs | `middle_cancels` |
 
 The file is [`RelationalAtlas/Basic.lean`](RelationalAtlas/Basic.lean). Bridges proved in the
-other repositories: B12 and B38 in [foft-lean](https://github.com/dicipler-pixel/foft-lean), B16
+other repositories: B1 in [iqgt-grassmannian-lean](https://github.com/dicipler-pixel/iqgt-grassmannian-lean), B12 and B38 in [foft-lean](https://github.com/dicipler-pixel/foft-lean), B16
 in [price-of-a-direction-lean](https://github.com/dicipler-pixel/price-of-a-direction-lean), B45
 and B82 in [spectral-stress-lean](https://github.com/dicipler-pixel/spectral-stress-lean), B61 in
 [matter-at-a-scale-lean](https://github.com/dicipler-pixel/matter-at-a-scale-lean). What is not
