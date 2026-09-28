@@ -9,4 +9,4 @@ rev = "v4.34.1"
 
 [[lean_lib]]
 name = "RelationalAtlas"
-roots = ["RelationalAtlas.Basic"]
+roots = ["RelationalAtlas.Basic", "RelationalAtlas.AtlasFormalCore"]

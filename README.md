@@ -4,7 +4,7 @@
 
 [![Lean proof check](https://github.com/dicipler-pixel/relational-atlas-lean/actions/workflows/build.yml/badge.svg)](https://github.com/dicipler-pixel/relational-atlas-lean/actions/workflows/build.yml)
 ![Lean](https://img.shields.io/badge/Lean-v4.34.1-blue)
-![Theorems](https://img.shields.io/badge/theorems-16-2EA043)
+![Theorems](https://img.shields.io/badge/theorems-37-2EA043)
 ![sorry](https://img.shields.io/badge/sorry-0-2EA043)
 ![Code: MIT](https://img.shields.io/badge/code-MIT-lightgrey)
 ![Text: CC BY 4.0](https://img.shields.io/badge/text-CC%20BY%204.0-lightgrey)
@@ -36,7 +36,33 @@ graded THEOREM whose content is finite algebra and checks each one in Lean.
 | B74 | `g sin²θ = C`, `g ≥ 0` force `g ≥ C`: a degenerate stratum repels | `stratum_repels` |
 | B75 | Extremal bands' pair terms share a sign; the middle band's have opposite signs | `middle_cancels` |
 
-The file is [`RelationalAtlas/Basic.lean`](RelationalAtlas/Basic.lean). Bridges proved in the
+The file is [`RelationalAtlas/Basic.lean`](RelationalAtlas/Basic.lean).
+
+### The Atlas card core
+
+[`RelationalAtlas/AtlasFormalCore.lean`](RelationalAtlas/AtlasFormalCore.lean) holds the finite
+kernels of the Atlas cards, 21 theorems, kept byte-for-byte as they were first checked. Some
+restate bridges above in a second form; these are new here:
+
+| Bridge | Result | Theorem |
+| :--- | :--- | :--- |
+| B2/B64 | `(S+K)(S−K) − (S−K)(S+K) = −2[S,K]` in any ring; zero when `S`, `K` commute | `symmetric_skew_commutator_identity`, `symmetric_skew_commute_gives_zero` |
+| B31 | A tangent `D` to `P² = P` has zero diagonal blocks and splits as `PD(1−P) + (1−P)DP` | `tangent_occupied_block`, `tangent_empty_block`, `tangent_split` |
+| B16 | For unit vectors, half the squared distance of `uuᵀ` and `vvᵀ` is `1 − ⟨u,v⟩²` | `rankOne_projector_distance` |
+| B32 | Lagrange's identity in the metric/curvature normalization | `gram2_saturation` |
+| B48 | One-channel Schur complement `ad − bc = d(a − b d⁻¹ c)` | `scalar_schur_complement` |
+| B51 | Reciprocal quartic reduction in `u = t + 1/t` | `reciprocal_quartic_reduction` |
+| B56 | A linear map `ℝ² → ℝ³` is never surjective: a wall meeting the coalescence locus is nontransverse | `b56_combined_derivative_not_surjective` |
+| B57 | An indefinite form has a nonzero null direction | `indefinite_null_direction_exists` |
+| B60 | `k(n−k) = 1` forces both factors to be one | `tangent_dimension_one_factors` |
+| B61 | `(ħ/(α m c))·m = ħ/(α c)` | `bohr_rod` |
+| B66 | `det(XᵀX) = (det X)²` | `gram_det_is_square` |
+| B68 | An operator anticommuting with a chirality sends a `λ`-eigenvector to a `−λ`-eigenvector | `chiral_eigenvalue_pair` |
+| B74 | `g sin²θ = C`, `g ≥ 0`, `sin²θ ≤ 1` give `C ≤ g` | `refraction_turning_barrier` |
+| B85 | `(x²−y²)(s²−t²) − (xs−yt)² = −(xt−ys)² ≤ 0` | `rank_one_complex_realpart_det`, `rank_one_complex_realpart_not_definite` |
+| B90 | The normal forms `√(t²) = |t|`, `(√|t|)² = |t|`, and a simple crossing changes sign | `hermitian_soft_lapse`, `open_soft_crosses`, `open_lapse_square` |
+
+Bridges proved in the
 other repositories: B1 in [iqgt-grassmannian-lean](https://github.com/dicipler-pixel/iqgt-grassmannian-lean), B12 and B38 in [foft-lean](https://github.com/dicipler-pixel/foft-lean), B16
 in [price-of-a-direction-lean](https://github.com/dicipler-pixel/price-of-a-direction-lean), B45
 and B82 in [spectral-stress-lean](https://github.com/dicipler-pixel/spectral-stress-lean), B61 in
@@ -47,7 +73,7 @@ proved is in [`LIMITATIONS.md`](LIMITATIONS.md).
 
 Every push runs [the proof check](.github/workflows/build.yml): build against Lean v4.34.1 and
 Mathlib v4.34.1, independent replay in Lean's kernel checker, an axiom audit (only `propext`,
-`Classical.choice`, `Quot.sound`), and three deliberately false statements that must fail.
+`Classical.choice`, `Quot.sound`), and seven deliberately false statements that must fail.
 
 ## The paper
 
