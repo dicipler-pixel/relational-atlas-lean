@@ -117,7 +117,7 @@ theorem critical_angle (κ s : ℝ) (hκ : 0 < κ) (hs : 0 ≤ s) : 1 < κ * s ^
     rw [Real.sqrt_lt' hs', div_lt_iff₀ hκ] at h
     linarith
 
-/-- **B39, the complex angle.** At `θ₂ = π/2 + iy` the sine is `cosh y ≥ 1`. -/
+/-- **B39, the complex angle.** At `θ₂ = π/2 + iy` the sine is `cosh y`. -/
 theorem complex_angle_sin (y : ℝ) :
     Complex.sin (π / 2 + y * Complex.I) = (Real.cosh y : ℂ) := by
   rw [add_comm, Complex.sin_add_pi_div_two, Complex.cos_mul_I, Complex.ofReal_cosh]
