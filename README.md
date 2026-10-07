@@ -60,7 +60,7 @@ restate bridges above in a second form; these are new here:
 | B68 | If `DΓ = −ΓD` and `Dv = λv`, then `D(Γv) = −λ Γv`; this form does not assume `Γ² = 1` and does not prove `Γv ≠ 0` (B68 above does) | `chiral_eigenvalue_pair` |
 | B74 | `g sin²θ = C`, `g ≥ 0`, `sin²θ ≤ 1` give `C ≤ g` | `refraction_turning_barrier` |
 | B85 | `(x²−y²)(s²−t²) − (xs−yt)² = −(xt−ys)² ≤ 0` | `rank_one_complex_realpart_det`, `rank_one_complex_realpart_not_definite` |
-| B90 | The normal forms `√(t²) = |t|`, `(√|t|)² = |t|`, and a simple crossing changes sign | `hermitian_soft_lapse`, `open_soft_crosses`, `open_lapse_square` |
+| B90 | The normal forms `√(t²) = \|t\|`, `(√\|t\|)² = \|t\|`, and a simple crossing changes sign | `hermitian_soft_lapse`, `open_soft_crosses`, `open_lapse_square` |
 
 Bridges proved in the
 other repositories: B1 in [iqgt-grassmannian-lean](https://github.com/dicipler-pixel/iqgt-grassmannian-lean), B12 and B38 in [foft-lean](https://github.com/dicipler-pixel/foft-lean), B16
