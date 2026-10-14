@@ -1,5 +1,5 @@
 {
-  "edition": "2026-09-07",
+  "edition": "2026-10-14",
   "card_count": 93,
   "cards": [
     1,
@@ -126,10 +126,15 @@
       "uploaded_name": "SOFIC-NEW-ROUTES-01.py",
       "archive_path": "cards/sources/2026-09-06/SOFIC-NEW-ROUTES-01.py",
       "sha256": "b6c97de54a92a24d782c07d7f37f6109137d14f2bb54a369d0d2b21e33986348"
+    },
+    {
+      "uploaded_name": "B56.html (edition 2026-09-07)",
+      "archive_path": "cards/sources/2026-10-14/B56-original.html",
+      "sha256": "2adb7e15e0e9a685da2ff75175c404e97dada6f2a50db342c1652976a486247b"
     }
   ],
   "original_archive_sha256": "11183b06ae97895cc8a7edc9af5001f90085e1901d809a2f305dec02d19599e9",
-  "old_cards_unchanged": true,
+  "old_cards_unchanged": false,
   "new_lean_proofs": false,
   "verification_checks": 12,
   "diagram_logic_checked": true,
@@ -138,6 +143,9 @@
   "corrections": {
     "B94": "Fixed-block padding scope and regulator dependence.",
     "B95": "Gram/2 normalization; spectral count distinguished from packing; exact step diagram.",
-    "B96": "Conceptual grade retained; phase/count maps and physical calibration specified as open."
-  }
+    "B96": "Conceptual grade retained; phase/count maps and physical calibration specified as open.",
+    "B56": "Caption \"A curve and a point do not meet\" withdrawn (false without hypotheses); replaced by the nontransversality kernel proved in Lean (b56_combined_derivative_not_surjective, AtlasFormalCore.lean). No disjointness or genericity claim."
+  },
+  "previous_edition": "2026-09-07",
+  "old_cards_note": "B1-B90 are byte-identical to the 2026-09-07 edition except B56, which is a reviewed card; the original B56 is preserved unchanged at cards/sources/2026-10-14/B56-original.html. png/B56.png is the render of the original card, not of the reviewed one."
 }

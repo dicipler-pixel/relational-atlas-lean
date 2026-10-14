@@ -1,5 +1,5 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8">
-<title>B56 &mdash; A curve and a point do not meet.</title>
+<title>B56 &mdash; Any meeting is nontransverse.</title>
 <style>
 :root{
   --ground:#0C161C;
@@ -236,7 +236,7 @@ a{color:inherit}
  .bridge,.bridge.flip{break-inside:avoid}
  .stamp{margin-top:26px;color:#4E6470;font-family:ui-monospace,Menlo,monospace;
          font-size:11px;letter-spacing:.08em}
-</style></head><body><div class="cardwrap">
+</style><meta content="width=device-width, initial-scale=1" name="viewport"/><style>.review-note{border-top:1px solid #22333D;padding-top:16px;margin-top:24px;font:13px/1.6 Helvetica,Arial,sans-serif;color:#A5B8C1}.review-note a{color:#79BEDC}.beq .e{overflow-wrap:anywhere}.bart{min-width:0}@media(max-width:760px){.bbody{display:flex!important;flex-direction:column!important;gap:22px!important}.btext,.bart{width:100%!important;max-width:100%!important}.cardwrap{padding:28px 20px!important}.bhero{font-size:28px!important}.beq .e{font-size:20px!important}.bart svg{width:100%;height:auto}.bsay{font-size:17px!important}}</style></head><body><div class="cardwrap">
 <section class="bridge flip" style="color:var(--L1)">
   <div class="bhead">
     <span class="bnum">B56</span><span class="broute">L1 → L3</span>
@@ -244,12 +244,12 @@ a{color:inherit}
   </div>
   <div class="bbody">
     <div class="btext">
-      <p class="bhero">A curve and a point do not meet.</p>
-      <div class="beq"><div class="e">det g = 0 : one real equation &ensp;&ensp; coalescence : two</div><div class="c">codimension one against codimension two — settled before any model</div></div>
-      <p class="bsay">In two real parameters the vanishing of the determinant is a single equation and cuts a curve, while an eigenvalue coalescence is two equations and cuts isolated points. They do not generically intersect. Only the geometric locus has two sides, which is what “wall” was always reaching for — and it is codimension one only once the form can go indefinite, which a Hermitian system cannot do.</p>
-    </div>
-    <figure class="bart"><svg viewBox="0 0 560 320" xmlns="http://www.w3.org/2000/svg"><path d="M74,236 C170,196 280,140 500,86" stroke="#9B7FD4" stroke-width="3" fill="none"/><circle cx="340" cy="200" r="8" fill="#D8534F"/><circle cx="196" cy="104" r="8" fill="#D8534F"/><text x="430" y="64" text-anchor="middle" fill="#9B7FD4" font-family="Georgia,serif" font-size="15" font-style="italic">one equation</text><text x="340" y="236" text-anchor="middle" fill="#D8534F" font-family="Georgia,serif" font-size="15" font-style="italic">two equations</text><text x="280" y="290" text-anchor="middle" fill="currentColor" font-family="Georgia,serif" font-size="16" font-style="italic">they miss each other</text></svg></figure>
+      <p class="bhero">Any meeting is nontransverse.</p>
+      <div class="beq"><div class="e">det g = 0 : one real equation &ensp;&ensp; coalescence : two &ensp;&ensp; ℝ<sup>2</sup> → ℝ<sup>3</sup> is never onto</div><div class="c">codimension one and codimension two in two real parameters — if the loci meet, they cannot meet transversely</div></div>
+      <p class="bsay">In two real parameters the vanishing of the determinant is a single equation and cuts a curve, while an eigenvalue coalescence is two equations and cuts isolated points. Where both loci are regular, their combined derivative is a linear map from the two parameters to three equations, and such a map is never surjective. So a wall and a coalescence can meet, but never transversely: at a common point the wall is tangent to the constraint, not crossed by it. Nothing here says the loci are disjoint; that was the earlier caption, and it is false without hypotheses. Only the geometric locus has two sides, which is what “wall” was always reaching for — and it is codimension one only once the form can go indefinite, which a Hermitian system cannot do.</p>
+      <p class="review-note">Corrected on 12 September 2026 and issued in the card edition of 14 October 2026. The earlier caption “A curve and a point do not meet” was withdrawn as false without hypotheses; the kernel that survives is the rank obstruction, checked in Lean as <code>b56_combined_derivative_not_surjective</code> (<a href="https://github.com/dicipler-pixel/relational-atlas-lean/blob/main/RelationalAtlas/AtlasFormalCore.lean">AtlasFormalCore.lean</a>, with the false control “3 ≤ 2” that must fail). Transversality, genericity and disjointness are not asserted. <a href="../sources/2026-10-14/B56-original.html">Original card</a>.</p></div>
+    <figure class="bart"><svg viewBox="0 0 560 320" xmlns="http://www.w3.org/2000/svg"><path d="M74,236 C170,196 280,140 500,86" stroke="#9B7FD4" stroke-width="3" fill="none"/><path d="M196,236 C260,180 340,150 470,150" stroke="#D8534F" stroke-width="1.6" fill="none" stroke-dasharray="6 5"/><circle cx="318" cy="151" r="8" fill="#D8534F"/><circle cx="430" cy="105" r="8" fill="#D8534F"/><text x="430" y="64" text-anchor="middle" fill="#9B7FD4" font-family="Georgia,serif" font-size="15" font-style="italic">one equation: a curve</text><text x="318" y="190" text-anchor="middle" fill="#D8534F" font-family="Georgia,serif" font-size="15" font-style="italic">two equations: points</text><text x="280" y="290" text-anchor="middle" fill="currentColor" font-family="Georgia,serif" font-size="16" font-style="italic">if they meet, they touch — they do not cross</text></svg></figure>
   </div>
 </section>
-<div class="stamp">B56 &middot; L1-L3 &middot; THE OPERATOR-FIRST ATLAS &middot; Jeromie Beasley</div>
+<div class="stamp">B56 &middot; L1-L3 &middot; THE OPERATOR-FIRST ATLAS &middot; Jeromie Beasley &middot; corrected 2026-10-14</div>
 </div></body></html>

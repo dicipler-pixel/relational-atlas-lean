@@ -2,10 +2,10 @@
 
 Open `index.html` locally. No server or GitHub account is needed.
 
-This edition contains **93 cards: B1–B90 and B94–B96**. B91–B93 were not present in the supplied archive or additions; the numbering is left open.
+This edition (2026-10-14) contains **93 cards: B1–B90 and B94–B96**. B91–B93 were not present in the supplied archive or additions; the numbering is left open. It differs from the 2026-09-07 edition in one card: **B56** is a reviewed card whose withdrawn caption is replaced by the Lean-proved nontransversality kernel; the original B56 is preserved unchanged under `sources/2026-10-14/`.
 
-- `html/`: standalone cards. B1–B90 are byte-for-byte unchanged.
-- `png/`: the original 90 rendered card images. The three additions are supplied as standalone HTML cards with embedded SVG artwork.
+- `html/`: standalone cards. B1–B90 are byte-for-byte unchanged except B56 (reviewed; see `sources/2026-10-14/B56-original.html`).
+- `png/`: the original 90 rendered card images (B56.png shows the original card, not the corrected one). The three additions are supplied as standalone HTML cards with embedded SVG artwork.
 - `sources/2026-09-06/`: all five new submissions, unchanged, including both B95 versions and the original sofic script.
 - `calculus/atlas_calculus.html`: offline interactive demonstration of exact elimination with retained determinant weight.
 - `calculus/ATLAS_CALCULUS.md`: proposed language, exact finite rules, card corrections, proofs, limitations and a bounded next target.
