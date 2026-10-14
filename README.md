@@ -69,6 +69,14 @@ and B82 in [spectral-stress-lean](https://github.com/dicipler-pixel/spectral-str
 [matter-at-a-scale-lean](https://github.com/dicipler-pixel/matter-at-a-scale-lean). What is not
 proved is in [`LIMITATIONS.md`](LIMITATIONS.md).
 
+## The Atlas itself
+
+The cards, the moves and the version audit live in [`atlas/`](atlas/README.md): the 93-card
+edition of 7 September 2026 (open `atlas/cards/index.html` locally), the method and standing-rule
+plates transcribed from the volume, and the audit of 14 October 2026 that locates every edition
+and tells the three things called "Atlas" apart. The 37 theorems here are the 16 bridge proofs in
+`Basic.lean` plus the 21 card kernels in `AtlasFormalCore.lean`.
+
 ## How it is checked
 
 Every push runs [the proof check](.github/workflows/build.yml): build against Lean v4.34.1 and
