@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "author": "Jeromie Beasley",
+  "audited_date": "2026-10-23",
+  "publication_doi": "10.5281/zenodo.23590925",
+  "publication_url": "https://doi.org/10.5281/zenodo.23590925",
+  "publication_title": "Continuous edition v4 · card set v7 (B1–B207)",
+  "concept_doi": "10.5281/zenodo.23590924",
+  "source_files": [
+    {
+      "key": "atlas_cards_v7_html.zip",
+      "checksum": "md5:0adae1e0cf28dd26d76397330eceef09",
+      "size": 2681787
+    },
+    {
+      "key": "operator_first_atlas_continuous_v4.html",
+      "checksum": "md5:08954c4d723300e31de0e63384576158",
+      "size": 3101901
+    }
+  ],
+  "source_archive_sha256": "cdc604b12db54f1ad1f37e0cb2677bd3aa5965b745f2cb0100d42dfe771a6753",
+  "audit_scope": "The 37 local declarations and explicitly listed kernels in sixteen external repositories. Not a search of every repository or Mathlib theorem. A missing mapping is an open audit item, not proof of absence."
+}

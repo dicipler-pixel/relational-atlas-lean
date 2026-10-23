@@ -16,3 +16,14 @@ Lean proves exactly the statements written, under exactly the hypotheses written
 * The Atlas card core formalizes only each card's finite algebraic kernel, as its own comments
   say: not the physical readings, measured exponents, continuum limits or genericity claims.
   B56 proves the rank obstruction only; B90 proves the normal forms, not that they are generic.
+
+## Published 207-card edition
+
+The [coverage ledger](atlas/coverage/README.md) links the edition at
+https://doi.org/10.5281/zenodo.23590925 to exact local and external declarations.
+Its coverage statuses do not certify a whole card or raise its source grade. External
+snapshots are not imported by this Lake build; their recorded CI or committed verification
+reports retain their own scope. A missing mapping means open audit work in the inspected
+scope, not proof that no formalization exists elsewhere. The ledger integrity validator
+checks IDs, declarations, source hashes and provenance, not mathematical equivalence of
+English prose to Lean statements.

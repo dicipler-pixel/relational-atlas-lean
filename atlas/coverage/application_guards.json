@@ -1,0 +1,288 @@
+[
+  {
+    "cards": [
+      "B75"
+    ],
+    "status": "Correction confirmed",
+    "note": "The sentence identifying the sign of the squared growth rate misses a minus sign. For rotation about b: λ² = −Ω²(I_b−I_a)(I_b−I_c)/(I_a I_c). Moments (1,2,3), middle axis, give λ²=1/3. The middle-axis instability remains correct."
+  },
+  {
+    "cards": [
+      "B77"
+    ],
+    "status": "Counterexample confirmed",
+    "note": "The kissing-code condition is dot ≤ 1/2; the projector/line condition is |dot| ≤ 1/2. Antipodal vectors pass the first and have identical projectors. The hexagon and E8 root counts cannot be transferred unchanged to a projector census."
+  },
+  {
+    "cards": [
+      "B90"
+    ],
+    "status": "Correction confirmed",
+    "note": "If a soft metric coefficient is proportional to x^n, local speed scales as |x|^(n/2), whereas distance integrated from the wall along that coordinate scales as |x|^(1+n/2). The card calls both arc length. Determinant fits also require the remaining eigenvalues and direction to be controlled. The exponent alone is not a universal open/closed-system classifier."
+  },
+  {
+    "cards": [
+      "B91"
+    ],
+    "status": "Boundary case missing",
+    "note": "For a Hermitian 2×2 Q, PSD requires both diagonal principal minors and the determinant nonnegative. The card’s first-diagonal-plus-determinant criterion is sufficient when the first diagonal is strictly positive, but diag(0,−1) disproves the unrestricted version. The reported positive-pivot threshold example need not change."
+  },
+  {
+    "cards": [
+      "B87",
+      "B156"
+    ],
+    "status": "Internal inconsistency",
+    "note": "B87 correctly distinguishes SO(2) from Z3 and explicitly constructs a linear term allowed by Z3. B156 still credits Z3 alone for forbidding that term. Use the actual continuous symmetry/action when explaining the equal-mass quadratic crossing. The line-field index calculation is a separate statement."
+  },
+  {
+    "cards": [
+      "B23"
+    ],
+    "status": "Universal wording fails",
+    "note": "A constant nonunitary similarity of a Hermitian projector family preserves Tr(P ∂P ∂P) by similarity invariance while making H non-Hermitian and P oblique. Our explicit 2×2 example has non-Hermiticity norm 1.36659 and unchanged positive real metric. Non-Hermiticity removes a general guarantee; it need not force a violation in every family."
+  },
+  {
+    "cards": [
+      "B20",
+      "B169"
+    ],
+    "status": "Identifiability qualification",
+    "note": "Near collinearity is not exact rank loss. The example Fisher correlation 0.999475 leaves eigenvalues 0.000525 and 1.999475 in a unit-diagonal model. More independent counts retain the condition ratio but reduce parameter errors. Exact invisibility belongs to a null space or an explicitly confounded model."
+  },
+  {
+    "cards": [
+      "B139"
+    ],
+    "status": "Numerical check confirmed",
+    "note": "The displayed integral (2/π)∫ log(1+x²) atan(1/x) dx/x equals π²/6 numerically at 40-digit precision. This was independently checked; it is not an identified error."
+  },
+  {
+    "cards": [
+      "B199"
+    ],
+    "status": "Separation confirmed",
+    "note": "Moments (3,5,6) at Ω=1 give a=b=−1/3. The wobble block is symmetric and normal, with eigenvalues ±1/3. Instability does not require non-normality."
+  },
+  {
+    "cards": [
+      "B8"
+    ],
+    "status": "Normalization guard",
+    "note": "The stated 2π times lattice distance is the square root of the flat Laplacian eigenvalue; the eigenvalue itself is 4π² times distance squared. Keep the operator and units declared."
+  },
+  {
+    "cards": [
+      "B9",
+      "B79"
+    ],
+    "status": "Phase guard",
+    "note": "Overall eigenvector phase is gauge-dependent. A relative phase needs fixed components and a nonvanishing patch. Winding counts enclosed zeros without poles only under the corresponding holomorphic hypotheses; for a general real-parameter map it is a degree."
+  },
+  {
+    "cards": [
+      "B13",
+      "B172",
+      "B178"
+    ],
+    "status": "Monodromy guard",
+    "note": "Eigenvalue labels, eigenvector sign, Berry phase, orientation cover and braid are different records. Two circuits restoring an eigenvalue label need not restore every state phase."
+  },
+  {
+    "cards": [
+      "B15",
+      "B34"
+    ],
+    "status": "Metric naming review",
+    "note": "Do not identify a Bures angle, a Bures–Wasserstein chord distance, an affine-invariant metric and a log-det divergence just because each uses SPD matrices. B15’s global “not a squared metric” wording needs a dedicated source/theorem check; its finite witness establishes a narrower nonadditivity claim."
+  },
+  {
+    "cards": [
+      "B24",
+      "B25",
+      "B72",
+      "B113",
+      "B130"
+    ],
+    "status": "Gap and positivity guard",
+    "note": "Inverse-gap formulas require the active matrix elements and the declared norm. A vanishing gap with zero coupling need not cause the claimed divergence. Below-gap positive weights preserve kernels; between poles cancellations can produce zero response without zero geometric motion."
+  },
+  {
+    "cards": [
+      "B27",
+      "B111",
+      "I02",
+      "X04"
+    ],
+    "status": "Work is conditional",
+    "note": "A leading slow-driving friction bound needs a bath, positive weights, temperature and approximation order. It is not an exact universal finite-time inequality or an entropy coefficient supplied by geometry alone."
+  },
+  {
+    "cards": [
+      "B28",
+      "I06"
+    ],
+    "status": "Mixed-state convention review",
+    "note": "Keep the SLD kernel-support condition, the imaginary-part sign convention and the distinction between a scalar traced curvature and the full non-Abelian curvature. The scalar trace does not retain the traceless matrix sector."
+  },
+  {
+    "cards": [
+      "B36",
+      "B124",
+      "B171",
+      "B177",
+      "B179"
+    ],
+    "status": "Different walls",
+    "note": "The Gram-chart fold can be removable on an orientation cover; the metric may degenerate with an open spectral gap; a genuine nonzero nilpotent radial block is defective. An interior metric that normalizes one operator does not make a defective Jordan block normal in a positive-definite metric."
+  },
+  {
+    "cards": [
+      "B43",
+      "B148"
+    ],
+    "status": "Trivial exceptions",
+    "note": "A scalar T removes the coupling that would identify its coefficient in B43. A zero tensor factor is an exception to an unrestricted “normal iff both factors normal” statement in B148. State nontriviality hypotheses."
+  },
+  {
+    "cards": [
+      "B46",
+      "B125",
+      "B150"
+    ],
+    "status": "Mechanism versus identity",
+    "note": "An idempotency-defect identity alone does not derive a feedback dynamics. Matching a trace-log coefficient does not independently derive gravity or G. Trace-free field equations can recover an integration constant without predicting its measured value."
+  },
+  {
+    "cards": [
+      "B54",
+      "B55",
+      "B56"
+    ],
+    "status": "Global certification guard",
+    "note": "Positive determinant alone does not establish a positive metric. A finite grid with nonzero discriminant does not exclude a zero between samples without an analytic or rigorous covering bound."
+  },
+  {
+    "cards": [
+      "B65",
+      "B140",
+      "B144"
+    ],
+    "status": "Contour and norm guard",
+    "note": "Projector and resolvent diagnostics differ, but always obey ||P|| ≤ length(Γ) supΓ||R||/(2π) for a fixed contour and compatible norm. Do not discard contour geometry when interpreting an absence of universal bounds."
+  },
+  {
+    "cards": [
+      "B68"
+    ],
+    "status": "Symmetry scope",
+    "note": "Anticommuting grading forces ± pairing and supplies the stated chiral index. It does not mean all indices, signatures and windings elsewhere require this particular grading."
+  },
+  {
+    "cards": [
+      "B74",
+      "I03",
+      "I04"
+    ],
+    "status": "Interface guard",
+    "note": "Clairaut reflection requires the appropriate tangential collapse and conserved momentum. A transverse fold has a different continuation problem. An open-gap guide does not prove traversal of an exact gap closure."
+  },
+  {
+    "cards": [
+      "B107"
+    ],
+    "status": "Topological evolution guard",
+    "note": "A denominator knot does not determine Hopf charge. Changing an integer Hopf invariant requires leaving the admissible smooth homotopy class; a smooth nonsingular relaxation cannot simply change it."
+  },
+  {
+    "cards": [
+      "B120",
+      "B136"
+    ],
+    "status": "Input-data guard",
+    "note": "Stable PCA subspaces need gaps and a sampling model. Curvature formulas need operator derivatives/parameter data in addition to eigenvalues; an eigenvalue list alone does not determine an eigenbundle’s geometry."
+  },
+  {
+    "cards": [
+      "B141"
+    ],
+    "status": "Dimensional scope review",
+    "note": "The supplied 1D gapless comparison does not establish failure of an area law for every gapless model in every dimension. A Dirac point and an extended Fermi surface require separate treatment; this broader wording has not been source-audited here."
+  },
+  {
+    "cards": [
+      "B165",
+      "B166",
+      "B167",
+      "B168"
+    ],
+    "status": "Measured versus imported",
+    "note": "The shear-lane rerun uses a supplied cache; it is not a fresh full MHD scan. λ/d=13.963 depends on the declared lane profile and velocity interpretation. Dynamo wave birth precedes instability. The yield model openly differs from the quoted experimental numbers."
+  },
+  {
+    "cards": [
+      "B183",
+      "B184",
+      "B185",
+      "B191"
+    ],
+    "status": "Budget and centering",
+    "note": "The two product halves belong to X=DA. Their sum is an algebraic fixed-field budget, not automatically a conserved physical energy. Equal books mean a vanishing declared cross-moment, not statistical independence. Centering changes the balance point."
+  },
+  {
+    "cards": [
+      "B187",
+      "B195"
+    ],
+    "status": "Representation and reversal",
+    "note": "−Ad(U) is a sign-twisted transport, whereas Ad(−U)=Ad(U). Bass’s determinant identity needs inverse reversal; the positive edge-norm interpretation additionally uses unitary transport in the chosen inner product. Do not transfer the energy interpretation to arbitrary nonunitary matrices."
+  },
+  {
+    "cards": [
+      "B194"
+    ],
+    "status": "Optimization evidence",
+    "note": "The holonomy criterion for a zero-energy projector field is exact. Random-start minimization corroborates the printed bow-tie floors but does not by itself prove global optimality; the full analytic derivation remains a separate proof check."
+  },
+  {
+    "cards": [
+      "B196"
+    ],
+    "status": "Critical recurrence nuance",
+    "note": "At |c|=2 the repeated-root recurrence has constant/(±1)^n and n(±1)^n solutions: the former is minimal relative to the latter in the usual ratio definition. “Geometrically minimal iff |c|>2” is safe; the unqualified headline “minimal iff” needs this boundary qualification. Continued-fraction convergence at c=2 is algebraic, as the card already reports."
+  },
+  {
+    "cards": [
+      "B198"
+    ],
+    "status": "Arithmetic guard",
+    "note": "For a rational elliptic curve at a good prime, the integral trace a_p makes equality a_p²=2p impossible at odd p. The finite sample fraction 0.1497 is not the Sato–Tate limiting probability 0.1817. A chosen unitary representative of Frobenius is not a derived physical evolution."
+  },
+  {
+    "cards": [
+      "B199",
+      "B200"
+    ],
+    "status": "Selection remains open",
+    "note": "Fastest asymptotic exponential rate for fixed natural frequency and this oscillator family occurs at critical damping. Finite-tolerance settling depends on initial state, observable and metric. Koide’s encoded oscillator has no derived physical resource or mass-selection dynamics here."
+  },
+  {
+    "cards": [
+      "B201",
+      "B202",
+      "B203"
+    ],
+    "status": "Evolution and missing direction",
+    "note": "The double-bracket flow is a specified mathematical dynamics and leaves the original unitary-edge graph class. Its monotone defects do not select equal books. Transpose preserves both books but reverses directional response; absolute rapidity increments fix route length but not signed endpoint."
+  },
+  {
+    "cards": [
+      "B204",
+      "B205",
+      "B206",
+      "B207"
+    ],
+    "status": "Last-card guards",
+    "note": "The Schur offset reduction needs protected interior and 0<C<I. A Nambu offset is a doubled quantity. Mean overlap does not determine fidelity, determinant or a three-ray Bargmann phase. Schwarzschild conformal-factor identities do not imply a graph Penrose inequality."
+  }
+]
