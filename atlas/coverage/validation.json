@@ -1,0 +1,75 @@
+{
+  "cards": 207,
+  "coverage": {
+    "external_kernel_mapped": 21,
+    "local_kernel_mapped": 19,
+    "not_mapped_in_audited_scope": 167
+  },
+  "source_grades": {
+    "theorem": 149,
+    "measured": 34,
+    "conjecture": 10,
+    "reading": 8,
+    "derived": 6
+  },
+  "local_theorems": 37,
+  "external_source_snapshots": 12,
+  "archive_verified": true,
+  "local_inventory": [
+    {
+      "path": "RelationalAtlas/Basic.lean",
+      "sha256": "931fa03d1b653f194a8512e845b6108b88a0fe757ace25a5bbf1211298ee90dd",
+      "theorems": [
+        "binary_entropy",
+        "complex_angle_cos",
+        "complex_angle_sin",
+        "critical_angle",
+        "gram_det",
+        "middle_cancels",
+        "normal_commutator",
+        "normal_iff_commute",
+        "offBlock_eq_zero_iff",
+        "offBlock_trace",
+        "paired_spectrum",
+        "reciprocal_reduction",
+        "seam_schur",
+        "stratum_repels",
+        "u_from_unit_circle",
+        "unit_circle_u"
+      ]
+    },
+    {
+      "path": "RelationalAtlas/AtlasFormalCore.lean",
+      "sha256": "7e6c433b0c0e1fcfc0bec2a2c3244db4c43b62e1b8465d0b3c2cde6c1ad13e1a",
+      "theorems": [
+        "b56_combined_derivative_not_surjective",
+        "bohr_rod",
+        "chiral_eigenvalue_pair",
+        "gram2_saturation",
+        "gram_det_is_square",
+        "hermitian_soft_lapse",
+        "indefinite_null_direction_exists",
+        "open_lapse_square",
+        "open_soft_crosses",
+        "rankOne_projector_distance",
+        "rank_one_complex_realpart_det",
+        "rank_one_complex_realpart_not_definite",
+        "reciprocal_quartic_reduction",
+        "refraction_turning_barrier",
+        "scalar_schur_complement",
+        "symmetric_skew_commutator_identity",
+        "symmetric_skew_commute_gives_zero",
+        "tangent_dimension_one_factors",
+        "tangent_empty_block",
+        "tangent_occupied_block",
+        "tangent_split"
+      ]
+    }
+  ],
+  "rejected_metadata_controls": [
+    "missing_card",
+    "nonexistent_proof",
+    "unsupported_whole_card_upgrade",
+    "wrong_edition"
+  ]
+}

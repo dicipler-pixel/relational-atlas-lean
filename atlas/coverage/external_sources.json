@@ -1,0 +1,170 @@
+[
+  {
+    "repo": "dicipler-pixel/iqgt-grassmannian-lean",
+    "head": "5dec0804848af62dc3c910da83ce3e90e2466b73",
+    "head_date": "2026-10-07T00:20:59Z",
+    "run": {
+      "id": 37551495897,
+      "head_sha": "5dec0804848af62dc3c910da83ce3e90e2466b73",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/dicipler-pixel/iqgt-grassmannian-lean/actions/runs/37551495897"
+    },
+    "path": "IqgtGrassmannian/Basic.lean",
+    "blob_sha": "9092ff5cce65f828257fb58630bbc104e02381ff",
+    "snapshot_path": "atlas/coverage/external/iqgt-grassmannian-lean/IqgtGrassmannian/Basic.lean"
+  },
+  {
+    "repo": "dicipler-pixel/foft-lean",
+    "head": "85777212c98492eb77f428fa4265e927cb62d6b6",
+    "head_date": "2026-10-07T00:21:24Z",
+    "run": {
+      "id": 37551532632,
+      "head_sha": "85777212c98492eb77f428fa4265e927cb62d6b6",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/dicipler-pixel/foft-lean/actions/runs/37551532632"
+    },
+    "path": "FOFT/Basic.lean",
+    "blob_sha": "9216bed8e416c45d2ffcba1b7f326f6d59e2fc1a",
+    "snapshot_path": "atlas/coverage/external/foft-lean/FOFT/Basic.lean"
+  },
+  {
+    "repo": "dicipler-pixel/price-of-a-direction-lean",
+    "head": "97bdcd2e57b7c92470bf53a76b67450462d5419b",
+    "head_date": "2026-10-07T00:18:08Z",
+    "run": {
+      "id": 37551247605,
+      "head_sha": "97bdcd2e57b7c92470bf53a76b67450462d5419b",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/dicipler-pixel/price-of-a-direction-lean/actions/runs/37551247605"
+    },
+    "path": "PriceOfDirection/Basic.lean",
+    "blob_sha": "cf37b715959f7b18fdf5d79b93c27a157d13431c",
+    "snapshot_path": "atlas/coverage/external/price-of-a-direction-lean/PriceOfDirection/Basic.lean"
+  },
+  {
+    "repo": "dicipler-pixel/spectral-stress-lean",
+    "head": "67a738495ecf112e9e63623cb679803e86243e0d",
+    "head_date": "2026-10-07T00:18:09Z",
+    "run": {
+      "id": 37551248331,
+      "head_sha": "67a738495ecf112e9e63623cb679803e86243e0d",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/dicipler-pixel/spectral-stress-lean/actions/runs/37551248331"
+    },
+    "path": "SpectralStress/Basic.lean",
+    "blob_sha": "818beaa0bdb5da363cbce5cbd0e9ef3e139871ca",
+    "snapshot_path": "atlas/coverage/external/spectral-stress-lean/SpectralStress/Basic.lean"
+  },
+  {
+    "repo": "dicipler-pixel/matter-at-a-scale-lean",
+    "head": "56a637a6805154f26554505a610bdca9775330c5",
+    "head_date": "2026-09-27T08:12:38Z",
+    "run": {
+      "id": 36305481704,
+      "head_sha": "56a637a6805154f26554505a610bdca9775330c5",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/dicipler-pixel/matter-at-a-scale-lean/actions/runs/36305481704"
+    },
+    "path": "MatterAtAScale/Basic.lean",
+    "blob_sha": "6bf5caf0e780be685f1cc545af99c044b38e4470",
+    "snapshot_path": "atlas/coverage/external/matter-at-a-scale-lean/MatterAtAScale/Basic.lean"
+  },
+  {
+    "repo": "dicipler-pixel/votkp-lean",
+    "head": "adf018fbe3267507f5166d151fac352d0c097092",
+    "head_date": "2026-10-07T00:23:50Z",
+    "run": {
+      "id": 37551750060,
+      "head_sha": "adf018fbe3267507f5166d151fac352d0c097092",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/dicipler-pixel/votkp-lean/actions/runs/37551750060"
+    },
+    "path": "VOTKP/Smith.lean",
+    "blob_sha": "cb8751084198f506cf81d2ff1a456ec8a5aebcb0",
+    "snapshot_path": "atlas/coverage/external/votkp-lean/VOTKP/Smith.lean"
+  },
+  {
+    "repo": "dicipler-pixel/votkp-lean",
+    "head": "adf018fbe3267507f5166d151fac352d0c097092",
+    "head_date": "2026-10-07T00:23:50Z",
+    "run": {
+      "id": 37551750060,
+      "head_sha": "adf018fbe3267507f5166d151fac352d0c097092",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/dicipler-pixel/votkp-lean/actions/runs/37551750060"
+    },
+    "path": "VOTKP/Peel.lean",
+    "blob_sha": "54e19ac0d49c043997dda4a634a2f275ab6abfdf",
+    "snapshot_path": "atlas/coverage/external/votkp-lean/VOTKP/Peel.lean"
+  },
+  {
+    "repo": "dicipler-pixel/votkp-lean",
+    "head": "adf018fbe3267507f5166d151fac352d0c097092",
+    "head_date": "2026-10-07T00:23:50Z",
+    "run": {
+      "id": 37551750060,
+      "head_sha": "adf018fbe3267507f5166d151fac352d0c097092",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/dicipler-pixel/votkp-lean/actions/runs/37551750060"
+    },
+    "path": "VOTKP/Film.lean",
+    "blob_sha": "f623be537e814dae94b00a10c63083128450a266",
+    "snapshot_path": "atlas/coverage/external/votkp-lean/VOTKP/Film.lean"
+  },
+  {
+    "repo": "dicipler-pixel/votkp-lean",
+    "head": "adf018fbe3267507f5166d151fac352d0c097092",
+    "head_date": "2026-10-07T00:23:50Z",
+    "run": {
+      "id": 37551750060,
+      "head_sha": "adf018fbe3267507f5166d151fac352d0c097092",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/dicipler-pixel/votkp-lean/actions/runs/37551750060"
+    },
+    "path": "VOTKP/Knot.lean",
+    "blob_sha": "f30bb96b927374018a61a2cd38d3c13289fc8d78",
+    "snapshot_path": "atlas/coverage/external/votkp-lean/VOTKP/Knot.lean"
+  },
+  {
+    "repo": "dicipler-pixel/votkp-lean",
+    "head": "adf018fbe3267507f5166d151fac352d0c097092",
+    "head_date": "2026-10-07T00:23:50Z",
+    "run": {
+      "id": 37551750060,
+      "head_sha": "adf018fbe3267507f5166d151fac352d0c097092",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/dicipler-pixel/votkp-lean/actions/runs/37551750060"
+    },
+    "path": "VOTKP/Ordinal.lean",
+    "blob_sha": "1b4dd56daa640913e1f3ce8063f923bbd5354ced",
+    "snapshot_path": "atlas/coverage/external/votkp-lean/VOTKP/Ordinal.lean"
+  },
+  {
+    "repo": "dicipler-pixel/nonnormality-connection-energy-lean",
+    "head": "dccb784be618b07e8717de83092f3b0ad4cabb8e",
+    "head_date": "2026-10-18T12:54:32Z",
+    "run": null,
+    "path": "NonNormality/SelfCommutator.lean",
+    "blob_sha": "14f9729aa575457bd0685f07a553642214c7e3f9",
+    "snapshot_path": "atlas/coverage/external/nonnormality-connection-energy-lean/NonNormality/SelfCommutator.lean"
+  },
+  {
+    "repo": "dicipler-pixel/nonnormality-connection-energy-lean",
+    "head": "dccb784be618b07e8717de83092f3b0ad4cabb8e",
+    "head_date": "2026-10-18T12:54:32Z",
+    "run": null,
+    "path": "NonNormality/Holonomy.lean",
+    "blob_sha": "2c2d883bfe10faada1c1a570784b166f1c93c7be",
+    "snapshot_path": "atlas/coverage/external/nonnormality-connection-energy-lean/NonNormality/Holonomy.lean"
+  }
+]

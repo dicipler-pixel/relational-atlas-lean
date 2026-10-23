@@ -20,6 +20,9 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Validate all 207 coverage records and metadata controls
+        run: python3 scripts/verify_coverage.py --self-test --output verification/coverage-report.json
+
       - name: Free disk space (the full Mathlib cache is several GB)
         run: |
           set -euo pipefail
