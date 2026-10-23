@@ -23,8 +23,8 @@ has a [complete card-by-card Lean coverage ledger](atlas/coverage/README.md), wi
 [machine-readable claims, hypotheses and proof links](atlas/coverage/coverage.json).
 The source archive and continuous HTML were matched to the Zenodo checksums on 23 October 2026.
 
-The ledger maps kernels for 19 cards to this repository and 21 additional cards to seven
-companion repositories. The remaining 167 cards are not yet mapped within that audited scope.
+The ledger maps kernels for 19 cards to this repository and 52 additional cards to sixteen
+companion repositories. The remaining 136 cards are not yet mapped within that audited scope.
 These are card counts, not theorem counts or full-card certifications. The local library remains
 37 declarations. Proved kernels, empirical witnesses, interpretations and remaining obligations
 are recorded separately. The historical 93-card files below remain preserved.

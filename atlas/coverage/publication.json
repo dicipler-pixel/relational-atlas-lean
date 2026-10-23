@@ -19,5 +19,5 @@
     }
   ],
   "source_archive_sha256": "cdc604b12db54f1ad1f37e0cb2677bd3aa5965b745f2cb0100d42dfe771a6753",
-  "audit_scope": "The 37 local declarations and explicitly listed kernels in seven external repositories. Not a search of every repository or Mathlib theorem. A missing mapping is an open audit item, not proof of absence."
+  "audit_scope": "The 37 local declarations and explicitly listed kernels in sixteen external repositories. Not a search of every repository or Mathlib theorem. A missing mapping is an open audit item, not proof of absence."
 }

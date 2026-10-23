@@ -1,9 +1,9 @@
 {
   "cards": 207,
   "coverage": {
-    "external_kernel_mapped": 21,
+    "external_kernel_mapped": 52,
     "local_kernel_mapped": 19,
-    "not_mapped_in_audited_scope": 167
+    "not_mapped_in_audited_scope": 136
   },
   "source_grades": {
     "theorem": 149,
@@ -13,7 +13,7 @@
     "derived": 6
   },
   "local_theorems": 37,
-  "external_source_snapshots": 12,
+  "external_source_snapshots": 41,
   "archive_verified": true,
   "local_inventory": [
     {

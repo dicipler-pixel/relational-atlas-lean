@@ -19,7 +19,7 @@
     }
   ],
   "source_archive_sha256": "cdc604b12db54f1ad1f37e0cb2677bd3aa5965b745f2cb0100d42dfe771a6753",
-  "audit_scope": "The 37 local declarations and explicitly listed kernels in seven external repositories. Not a search of every repository or Mathlib theorem. A missing mapping is an open audit item, not proof of absence.",
+  "audit_scope": "The 37 local declarations and explicitly listed kernels in sixteen external repositories. Not a search of every repository or Mathlib theorem. A missing mapping is an open audit item, not proof of absence.",
   "cards": [
     {
       "id": "B1",
@@ -645,11 +645,26 @@
       },
       "closed_when": "Closed whenFor non-Hermitian E the order matters: Tr(Π E Q E†) is a different number.",
       "source_reference": "Universal Projector Geometry v3.2 · UPG v3.2 Theorems 1.2–1.3, Corollary 1.4 · random channels",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "external_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/upg-lean",
+          "path": "UPGAlgebra.lean",
+          "declarations": [
+            "commutatorC_eq_blocks",
+            "commutatorC_gram",
+            "commutatorC_energy",
+            "feedbackC_equivalences"
+          ],
+          "scope": "Adapted complex block commutator Gram, factor-of-two energy and feedback equivalences; no analytic dissipation/dynamics theorem.",
+          "commit": "79cd730e3189c9109c490ced75ebec126dc8fd67",
+          "snapshot_path": "atlas/coverage/external/upg-lean/UPGAlgebra.lean",
+          "url": "https://github.com/dicipler-pixel/upg-lean/blob/79cd730e3189c9109c490ced75ebec126dc8fd67/UPGAlgebra.lean"
+        }
+      ],
       "audit_notes": [],
-      "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
+      "next_obligation": "Check all remaining headline, geometric, analytic and physical clauses against the exact mapped theorem statements; formalize any missing clauses.",
       "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
     },
     {
@@ -839,11 +854,26 @@
       },
       "closed_when": "Closed whenPast the critical angle the law has no real solution and the path is returned (B39).",
       "source_reference": "Four-Body Problem · UPG v3.2 · Four-Body Problem Theorem 2 · UPG v3.2 Proposition 6.2 · Light Ed. 7.2 Proposition 5.3 · ODE integration",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "external_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/upg-lean",
+          "path": "UPGDiracRefraction.lean",
+          "declarations": [
+            "refraction_law",
+            "refraction_equal_potentials",
+            "turning_barrier",
+            "regularized_refraction"
+          ],
+          "scope": "Conditional scalar refraction/turning algebra from conserved quantities; the Lagrangian origin is supplied separately.",
+          "commit": "79cd730e3189c9109c490ced75ebec126dc8fd67",
+          "snapshot_path": "atlas/coverage/external/upg-lean/UPGDiracRefraction.lean",
+          "url": "https://github.com/dicipler-pixel/upg-lean/blob/79cd730e3189c9109c490ced75ebec126dc8fd67/UPGDiracRefraction.lean"
+        }
+      ],
       "audit_notes": [],
-      "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
+      "next_obligation": "Check all remaining headline, geometric, analytic and physical clauses against the exact mapped theorem statements; formalize any missing clauses.",
       "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
     },
     {
@@ -889,6 +919,20 @@
           "commit": "172175e410ce7cbbf277c84d95e5d625d8cf7586",
           "snapshot_path": "RelationalAtlas/AtlasFormalCore.lean",
           "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/172175e410ce7cbbf277c84d95e5d625d8cf7586/RelationalAtlas/AtlasFormalCore.lean"
+        },
+        {
+          "repository": "dicipler-pixel/upg-lean",
+          "path": "UPGAlgebra.lean",
+          "declarations": [
+            "commutatorC_eq_blocks",
+            "commutatorC_gram",
+            "commutatorC_energy",
+            "feedbackC_equivalences"
+          ],
+          "scope": "Adapted complex block commutator Gram, factor-of-two energy and feedback equivalences; no analytic dissipation/dynamics theorem.",
+          "commit": "79cd730e3189c9109c490ced75ebec126dc8fd67",
+          "snapshot_path": "atlas/coverage/external/upg-lean/UPGAlgebra.lean",
+          "url": "https://github.com/dicipler-pixel/upg-lean/blob/79cd730e3189c9109c490ced75ebec126dc8fd67/UPGAlgebra.lean"
         }
       ],
       "audit_notes": [],
@@ -1198,11 +1242,27 @@
       },
       "closed_when": "Closed whenOn the divisor some gi → 0 and the interlacing pins break (B86).",
       "source_reference": "Ladder v4 · Ladder v4 Theorems 5.6, 6.1, 6.2 · random matrices",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "external_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/square-case-lean",
+          "path": "SquareCase/Secular.lean",
+          "declarations": [
+            "eigenvalue_secular",
+            "secular_strict",
+            "eigenvalues_separated",
+            "secular_root_in_gap",
+            "eigenvalue_in_gap"
+          ],
+          "scope": "Distinct-pole positive-residue secular equation has exactly one root per consecutive gap under the stated hypotheses; not all non-Hermitian transports.",
+          "commit": "6769949325649c3971b489b726534580962cefe8",
+          "snapshot_path": "atlas/coverage/external/square-case-lean/SquareCase/Secular.lean",
+          "url": "https://github.com/dicipler-pixel/square-case-lean/blob/6769949325649c3971b489b726534580962cefe8/SquareCase/Secular.lean"
+        }
+      ],
       "audit_notes": [],
-      "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
+      "next_obligation": "Check all remaining headline, geometric, analytic and physical clauses against the exact mapped theorem statements; formalize any missing clauses.",
       "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
     },
     {
@@ -1221,13 +1281,26 @@
       },
       "closed_when": "Closed whenThe choice of T itself is fixed only by the canonical closure T = G; any other T needs its own derivation.",
       "source_reference": "Ladder v4 · Ladder v4 Lemma 5.2, Proposition 5.5, Theorems 11.2, 11.8 · sympy, basis change",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "external_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/square-case-lean",
+          "path": "SquareCase/Transport.lean",
+          "declarations": [
+            "trace_transport",
+            "coefficient_forced"
+          ],
+          "scope": "Trace-one Gram matrix and nonzero Tr(TH) force coefficient two; the nonzero condition is essential.",
+          "commit": "6769949325649c3971b489b726534580962cefe8",
+          "snapshot_path": "atlas/coverage/external/square-case-lean/SquareCase/Transport.lean",
+          "url": "https://github.com/dicipler-pixel/square-case-lean/blob/6769949325649c3971b489b726534580962cefe8/SquareCase/Transport.lean"
+        }
+      ],
       "audit_notes": [
         "A scalar T removes the coupling that would identify its coefficient in B43. A zero tensor factor is an exception to an unrestricted “normal iff both factors normal” statement in B148. State nontriviality hypotheses."
       ],
-      "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
+      "next_obligation": "Check all remaining headline, geometric, analytic and physical clauses against the exact mapped theorem statements; formalize any missing clauses.",
       "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
     },
     {
@@ -1377,6 +1450,23 @@
           "commit": "172175e410ce7cbbf277c84d95e5d625d8cf7586",
           "snapshot_path": "RelationalAtlas/AtlasFormalCore.lean",
           "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/172175e410ce7cbbf277c84d95e5d625d8cf7586/RelationalAtlas/AtlasFormalCore.lean"
+        },
+        {
+          "repository": "dicipler-pixel/light-ledger-lean",
+          "path": "LightBridges/Boundary.lean",
+          "declarations": [
+            "schur_interior_residual",
+            "schur_boundary_residual",
+            "boundary_lift_identity",
+            "boundary_hermitian_identity",
+            "cayley_defect_identity",
+            "boundary_loss_pullback",
+            "passive_boundary_chain"
+          ],
+          "scope": "Finite boundary elimination and passivity/Cayley loss identities under explicit inverse equations; no horizon or general-relativistic boundary realization.",
+          "commit": "885794f58355a6b035b52f0b0d851f3f1933692f",
+          "snapshot_path": "atlas/coverage/external/light-ledger-lean/LightBridges/Boundary.lean",
+          "url": "https://github.com/dicipler-pixel/light-ledger-lean/blob/885794f58355a6b035b52f0b0d851f3f1933692f/LightBridges/Boundary.lean"
         }
       ],
       "audit_notes": [],
@@ -2156,6 +2246,20 @@
           "commit": "172175e410ce7cbbf277c84d95e5d625d8cf7586",
           "snapshot_path": "RelationalAtlas/AtlasFormalCore.lean",
           "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/172175e410ce7cbbf277c84d95e5d625d8cf7586/RelationalAtlas/AtlasFormalCore.lean"
+        },
+        {
+          "repository": "dicipler-pixel/upg-lean",
+          "path": "UPGDiracRefraction.lean",
+          "declarations": [
+            "refraction_law",
+            "refraction_equal_potentials",
+            "turning_barrier",
+            "regularized_refraction"
+          ],
+          "scope": "Conditional scalar refraction/turning algebra from conserved quantities; the Lagrangian origin is supplied separately.",
+          "commit": "79cd730e3189c9109c490ced75ebec126dc8fd67",
+          "snapshot_path": "atlas/coverage/external/upg-lean/UPGDiracRefraction.lean",
+          "url": "https://github.com/dicipler-pixel/upg-lean/blob/79cd730e3189c9109c490ced75ebec126dc8fd67/UPGDiracRefraction.lean"
         }
       ],
       "audit_notes": [
@@ -2708,11 +2812,27 @@
       },
       "closed_when": "Closed whenThe profile is blind to placement; the per-cell demand reads placement and is blind to cycle type.",
       "source_reference": "k/3 permutation paper · §5, Theorem 7 and Corollary 9 · n = 96, 24 moved points: twelve transpositions hold 12 at every ε from 0.02 to 0.90; longer cycles swing 12–18 · no two cycle types share a Gram spectrum up to 40 moved points",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "external_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/light-ledger-lean",
+          "path": "LightBridges/Census.lean",
+          "declarations": [
+            "transition_weight_lower",
+            "transition_census_budget",
+            "transition_window_iff_weight",
+            "census_equals_coupling_count",
+            "projector_block_coupling"
+          ],
+          "scope": "Finite transition-window weight bounds and C-C^2=B B^adjoint for a block projector; physical channel and thermodynamic readings remain additional.",
+          "commit": "885794f58355a6b035b52f0b0d851f3f1933692f",
+          "snapshot_path": "atlas/coverage/external/light-ledger-lean/LightBridges/Census.lean",
+          "url": "https://github.com/dicipler-pixel/light-ledger-lean/blob/885794f58355a6b035b52f0b0d851f3f1933692f/LightBridges/Census.lean"
+        }
+      ],
       "audit_notes": [],
-      "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
+      "next_obligation": "Check all remaining headline, geometric, analytic and physical clauses against the exact mapped theorem statements; formalize any missing clauses.",
       "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
     },
     {
@@ -3012,11 +3132,24 @@
       },
       "closed_when": "Closed whenSilence is relative to these input and output maps; it does not say the hidden state is absent.",
       "source_reference": "VOTKP v2.9 · §5.5 · resolvent expansion and Cayley–Hamilton · q = 5 nilpotent shift first speaks at j = 4",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "external_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/dirac-time-lean",
+          "path": "DiracTime/FiniteReturn.lean",
+          "declarations": [
+            "silent_forever_iff",
+            "finite_return_iff"
+          ],
+          "scope": "Finite-dimensional discrete-observation return: some nonzero future moment iff one before dim V. B104 still needs the resolvent-transfer identification; B161 still needs its commutator realization.",
+          "commit": "e8a4c86240c777f3c999d7f0582799827ea75042",
+          "snapshot_path": "atlas/coverage/external/dirac-time-lean/DiracTime/FiniteReturn.lean",
+          "url": "https://github.com/dicipler-pixel/dirac-time-lean/blob/e8a4c86240c777f3c999d7f0582799827ea75042/DiracTime/FiniteReturn.lean"
+        }
+      ],
       "audit_notes": [],
-      "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
+      "next_obligation": "Check all remaining headline, geometric, analytic and physical clauses against the exact mapped theorem statements; formalize any missing clauses.",
       "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
     },
     {
@@ -3118,11 +3251,26 @@
       },
       "closed_when": "Closed whenDephasing changes the global state; it is not a cost-free intervention.",
       "source_reference": "VOTKP v2.9 · §§20.5.2–20.5.3, collective-phase witnesses · g = 0.7, t = 0.4: sin(0.56) = 0.531186",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "external_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/dirac-time-lean",
+          "path": "DiracTime/EqualEndpointWitness.lean",
+          "declarations": [
+            "present_populations_equal",
+            "expectation_Z",
+            "later_readout",
+            "probe_blind_to_supplement"
+          ],
+          "scope": "Exact equal-present/opposite-future witness and probe symmetry; not a universal reconstruction theorem.",
+          "commit": "e8a4c86240c777f3c999d7f0582799827ea75042",
+          "snapshot_path": "atlas/coverage/external/dirac-time-lean/DiracTime/EqualEndpointWitness.lean",
+          "url": "https://github.com/dicipler-pixel/dirac-time-lean/blob/e8a4c86240c777f3c999d7f0582799827ea75042/DiracTime/EqualEndpointWitness.lean"
+        }
+      ],
       "audit_notes": [],
-      "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
+      "next_obligation": "Check all remaining headline, geometric, analytic and physical clauses against the exact mapped theorem statements; formalize any missing clauses.",
       "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
     },
     {
@@ -3164,11 +3312,24 @@
       },
       "closed_when": "Closed whenFreezing the eigenbasis can erase the three-state terms that carry the effect.",
       "source_reference": "IQGT v7.3.1 · §§4.2–4.3 and 7.1 · s4_checks_v2.py 11/11 · silent witness ∂bg₀₀ ≈ 0.1130",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "external_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/dirac-time-lean",
+          "path": "DiracTime/FiniteReturn.lean",
+          "declarations": [
+            "silent_forever_iff",
+            "finite_return_iff"
+          ],
+          "scope": "Finite-dimensional discrete-observation return: some nonzero future moment iff one before dim V. B104 still needs the resolvent-transfer identification; B161 still needs its commutator realization.",
+          "commit": "e8a4c86240c777f3c999d7f0582799827ea75042",
+          "snapshot_path": "atlas/coverage/external/dirac-time-lean/DiracTime/FiniteReturn.lean",
+          "url": "https://github.com/dicipler-pixel/dirac-time-lean/blob/e8a4c86240c777f3c999d7f0582799827ea75042/DiracTime/FiniteReturn.lean"
+        }
+      ],
       "audit_notes": [],
-      "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
+      "next_obligation": "Check all remaining headline, geometric, analytic and physical clauses against the exact mapped theorem statements; formalize any missing clauses.",
       "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
     },
     {
@@ -3187,13 +3348,28 @@
       },
       "closed_when": "Closed whenOther baths need their own weights; no finite-rate exact work equality is asserted.",
       "source_reference": "IQGT v7.3.1 · §§5.3 and 7.2 · s7_checks_v2.py 9/9 · identity error 1.16×10⁻¹³ · Lean: friction_response_pair",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "external_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/dirac-time-lean",
+          "path": "DiracTime/FrictionMetric.lean",
+          "declarations": [
+            "pair_friction_eq_weighted_metric",
+            "gibbs_pair_weight_nonneg",
+            "two_level_population_gap",
+            "weighted_sum_band"
+          ],
+          "scope": "Pairwise reweighted-metric identities and Gibbs weights; the Davies bath and dynamical derivation are not formalized.",
+          "commit": "e8a4c86240c777f3c999d7f0582799827ea75042",
+          "snapshot_path": "atlas/coverage/external/dirac-time-lean/DiracTime/FrictionMetric.lean",
+          "url": "https://github.com/dicipler-pixel/dirac-time-lean/blob/e8a4c86240c777f3c999d7f0582799827ea75042/DiracTime/FrictionMetric.lean"
+        }
+      ],
       "audit_notes": [
         "A leading slow-driving friction bound needs a bath, positive weights, temperature and approximation order. It is not an exact universal finite-time inequality or an entropy coefficient supplied by geometry alone."
       ],
-      "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
+      "next_obligation": "Check all remaining headline, geometric, analytic and physical clauses against the exact mapped theorem statements; formalize any missing clauses.",
       "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
     },
     {
@@ -3320,11 +3496,25 @@
       },
       "closed_when": "Closed whenThe two vanish together, so the bridge gives no obstruction to soficity.",
       "source_reference": "IQGT v7.3.1 · §12.4, equations (12.2)–(12.3) · sofic_bridge.py 6/6 · Lean: angle sandwich",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "external_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/coboundary-k3-lean",
+          "path": "CoboundaryK3/Basic.lean",
+          "declarations": [
+            "delta_prod",
+            "disp_gram",
+            "cycle_laplacian_eigen"
+          ],
+          "scope": "Permutation displacement Gram and trigonometric identity; cycle eigenvalues and the full projector census are additional identifications.",
+          "commit": "0898d1a9daf31360da8c080155852370d1bacc5e",
+          "snapshot_path": "atlas/coverage/external/coboundary-k3-lean/CoboundaryK3/Basic.lean",
+          "url": "https://github.com/dicipler-pixel/coboundary-k3-lean/blob/0898d1a9daf31360da8c080155852370d1bacc5e/CoboundaryK3/Basic.lean"
+        }
+      ],
       "audit_notes": [],
-      "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
+      "next_obligation": "Check all remaining headline, geometric, analytic and physical clauses against the exact mapped theorem statements; formalize any missing clauses.",
       "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
     },
     {
@@ -3483,11 +3673,39 @@
       },
       "closed_when": "Closed whenOn orthogonal projectors (P = P†) q is positive and the cap holds; a restricted family carries its own inertia.",
       "source_reference": "Gravity Ledger ed. 6 · Theorems 1, 6 and 8, Corollaries 7 and 9 · signature counted by eigenvalues of the form on a real basis",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "external_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/light-ledger-lean",
+          "path": "LightBridges/Examples.lean",
+          "declarations": [
+            "obliqueP0_idempotent",
+            "obliqueP1_idempotent",
+            "oblique_trace_two"
+          ],
+          "scope": "Explicit oblique rank-one idempotents with overlap trace two; does not classify all non-Hermitian overlaps.",
+          "commit": "885794f58355a6b035b52f0b0d851f3f1933692f",
+          "snapshot_path": "atlas/coverage/external/light-ledger-lean/LightBridges/Examples.lean",
+          "url": "https://github.com/dicipler-pixel/light-ledger-lean/blob/885794f58355a6b035b52f0b0d851f3f1933692f/LightBridges/Examples.lean"
+        },
+        {
+          "repository": "dicipler-pixel/gravity-ledger-lean",
+          "path": "GravityOverlap.lean",
+          "declarations": [
+            "overlap_exact",
+            "overlap_quadratic_limit",
+            "negative_direction_exceeds_cap",
+            "local_cap_requires_nonnegative"
+          ],
+          "scope": "Equal-trace idempotent overlap identity, differentiability-based Taylor limit and local cap implications under stated assumptions.",
+          "commit": "885932f0afc78daf4daad993ba475b24812b39f1",
+          "snapshot_path": "atlas/coverage/external/gravity-ledger-lean/GravityOverlap.lean",
+          "url": "https://github.com/dicipler-pixel/gravity-ledger-lean/blob/885932f0afc78daf4daad993ba475b24812b39f1/GravityOverlap.lean"
+        }
+      ],
       "audit_notes": [],
-      "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
+      "next_obligation": "Check all remaining headline, geometric, analytic and physical clauses against the exact mapped theorem statements; formalize any missing clauses.",
       "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
     },
     {
@@ -3506,13 +3724,30 @@
       },
       "closed_when": "Closed whenThis is an oblique family; for orthogonal projectors the form cannot change sign.",
       "source_reference": "Gravity Ledger ed. 6 · Theorem 16, Corollary 16A · idempotency, metric and overlaps verified symbolically",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "external_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/gravity-ledger-lean",
+          "path": "Gravity.lean",
+          "declarations": [
+            "moving_metric_determinant",
+            "moving_metric_positive_side",
+            "moving_metric_indefinite_side",
+            "chart_idempotent",
+            "chart_trace_one",
+            "chart_overlap"
+          ],
+          "scope": "Explicit moving-wall chart algebra and determinant signs; no universal coincidence/separation theorem for all exceptional points.",
+          "commit": "885932f0afc78daf4daad993ba475b24812b39f1",
+          "snapshot_path": "atlas/coverage/external/gravity-ledger-lean/Gravity.lean",
+          "url": "https://github.com/dicipler-pixel/gravity-ledger-lean/blob/885932f0afc78daf4daad993ba475b24812b39f1/Gravity.lean"
+        }
+      ],
       "audit_notes": [
         "The Gram-chart fold can be removable on an orientation cover; the metric may degenerate with an open spectral gap; a genuine nonzero nilpotent radial block is defective. An interior metric that normalizes one operator does not make a defective Jordan block normal in a positive-definite metric."
       ],
-      "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
+      "next_obligation": "Check all remaining headline, geometric, analytic and physical clauses against the exact mapped theorem statements; formalize any missing clauses.",
       "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
     },
     {
@@ -3579,11 +3814,27 @@
       },
       "closed_when": "Closed whenAs η → 0 the bound becomes poorly conditioned; the specified field-Jacobian identification is excluded.",
       "source_reference": "Light ed. 7.2 · Proposition 2.1, Propositions 5.4–5.4a · bounds and monotonicity checked numerically",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "external_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/light-ledger-lean",
+          "path": "Rigidity.lean",
+          "declarations": [
+            "regularized_pos",
+            "regulator_cap",
+            "null_direction",
+            "inverse_identity",
+            "antitone_in_singular_value"
+          ],
+          "scope": "Regularized scalar singular-value response and cap with positive regulator; operator-model identification remains separate.",
+          "commit": "885794f58355a6b035b52f0b0d851f3f1933692f",
+          "snapshot_path": "atlas/coverage/external/light-ledger-lean/Rigidity.lean",
+          "url": "https://github.com/dicipler-pixel/light-ledger-lean/blob/885794f58355a6b035b52f0b0d851f3f1933692f/Rigidity.lean"
+        }
+      ],
       "audit_notes": [],
-      "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
+      "next_obligation": "Check all remaining headline, geometric, analytic and physical clauses against the exact mapped theorem statements; formalize any missing clauses.",
       "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
     },
     {
@@ -3602,11 +3853,27 @@
       },
       "closed_when": "Closed whenAt g = 0 (R has −1 in its spectrum, as at δ = 4) the principal branch selects nothing.",
       "source_reference": "UPG v3.2 · Light ed. 7.2 · UPG Theorems 4.5, 4.6, 4.8, Proposition 4.9 · Light Proposition 3.1 · random unitaries and clock–shift families checked",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "external_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/upg-lean",
+          "path": "UPGTorusAnchor.lean",
+          "declarations": [
+            "unit_defect_add_guard",
+            "admissible_domain",
+            "forced_refusal",
+            "amplitude_floor",
+            "nonzero_winding_forces_defect"
+          ],
+          "scope": "Unitary relator defect/branch-guard budget and winding floor under the branch hypotheses; not a general physical calibration.",
+          "commit": "79cd730e3189c9109c490ced75ebec126dc8fd67",
+          "snapshot_path": "atlas/coverage/external/upg-lean/UPGTorusAnchor.lean",
+          "url": "https://github.com/dicipler-pixel/upg-lean/blob/79cd730e3189c9109c490ced75ebec126dc8fd67/UPGTorusAnchor.lean"
+        }
+      ],
       "audit_notes": [],
-      "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
+      "next_obligation": "Check all remaining headline, geometric, analytic and physical clauses against the exact mapped theorem statements; formalize any missing clauses.",
       "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
     },
     {
@@ -3648,13 +3915,29 @@
       },
       "closed_when": "Closed whenBetween poles: H₀ = diag(0, 1, 2) with couplings 1 and 2 has α = 0 at y = x² = 4/3 while g = 2.",
       "source_reference": "Light ed. 7.2 · Theorem 4.3, Corollary 4.4, Theorem 4.6 · bounds checked; control exact",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "external_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/light-ledger-lean",
+          "path": "OpticalMetric.lean",
+          "declarations": [
+            "response_is_weighted_metric",
+            "response_weight_positive",
+            "matching_null_directions",
+            "response_lower_bound",
+            "response_upper_bound"
+          ],
+          "scope": "Finite positive-weight optical metric, bounds and common null directions with spectral/gap hypotheses; not a continuum dielectric derivation.",
+          "commit": "885794f58355a6b035b52f0b0d851f3f1933692f",
+          "snapshot_path": "atlas/coverage/external/light-ledger-lean/OpticalMetric.lean",
+          "url": "https://github.com/dicipler-pixel/light-ledger-lean/blob/885794f58355a6b035b52f0b0d851f3f1933692f/OpticalMetric.lean"
+        }
+      ],
       "audit_notes": [
         "Inverse-gap formulas require the active matrix elements and the declared norm. A vanishing gap with zero coupling need not cause the claimed divergence. Below-gap positive weights preserve kernels; between poles cancellations can produce zero response without zero geometric motion."
       ],
-      "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
+      "next_obligation": "Check all remaining headline, geometric, analytic and physical clauses against the exact mapped theorem statements; formalize any missing clauses.",
       "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
     },
     {
@@ -3673,11 +3956,26 @@
       },
       "closed_when": "Closed whenWithout the budget F only the lower bound survives; an empty interval means the hypotheses fail.",
       "source_reference": "Light ed. 7.2 · Proposition 4.5a, Corollaries 4.7–4.8 · bounds checked on random spectral measures",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "external_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/light-ledger-lean",
+          "path": "LightSpectral.lean",
+          "declarations": [
+            "secant_div_le_metric",
+            "static_lower",
+            "static_sq_le_budget_secant",
+            "response_bracket"
+          ],
+          "scope": "Finite-spectrum subgap secant/static/budget bounds with nonnegative weights and a positive gap; no full continuum spectral-measure extension.",
+          "commit": "885794f58355a6b035b52f0b0d851f3f1933692f",
+          "snapshot_path": "atlas/coverage/external/light-ledger-lean/LightSpectral.lean",
+          "url": "https://github.com/dicipler-pixel/light-ledger-lean/blob/885794f58355a6b035b52f0b0d851f3f1933692f/LightSpectral.lean"
+        }
+      ],
       "audit_notes": [],
-      "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
+      "next_obligation": "Check all remaining headline, geometric, analytic and physical clauses against the exact mapped theorem statements; formalize any missing clauses.",
       "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
     },
     {
@@ -3719,11 +4017,27 @@
       },
       "closed_when": "Closed whenFor an oblique (Riesz) projector or a generic thermal correlation matrix the identity needs modification.",
       "source_reference": "Light ed. 7.2 · Theorem 5.1, Corollary 5.2 · identity and bound checked on random projectors",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "external_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/light-ledger-lean",
+          "path": "LightBridges/Census.lean",
+          "declarations": [
+            "transition_weight_lower",
+            "transition_census_budget",
+            "transition_window_iff_weight",
+            "census_equals_coupling_count",
+            "projector_block_coupling"
+          ],
+          "scope": "Finite transition-window weight bounds and C-C^2=B B^adjoint for a block projector; physical channel and thermodynamic readings remain additional.",
+          "commit": "885794f58355a6b035b52f0b0d851f3f1933692f",
+          "snapshot_path": "atlas/coverage/external/light-ledger-lean/LightBridges/Census.lean",
+          "url": "https://github.com/dicipler-pixel/light-ledger-lean/blob/885794f58355a6b035b52f0b0d851f3f1933692f/LightBridges/Census.lean"
+        }
+      ],
       "audit_notes": [],
-      "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
+      "next_obligation": "Check all remaining headline, geometric, analytic and physical clauses against the exact mapped theorem statements; formalize any missing clauses.",
       "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
     },
     {
@@ -3742,11 +4056,26 @@
       },
       "closed_when": "Closed whenWithout a gap the top line need not be unique; a line is selected, not an arbitrary subspace.",
       "source_reference": "What Transport Keeps · Projector calibration · WTK Theorems 1–2 · calibration Theorem 1, Proposition 4 · bound and recurrence checked numerically",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "external_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/what-transport-keeps-lean",
+          "path": "WTK/Transport.lean",
+          "declarations": [
+            "gram_selection_step",
+            "tied_fixed_gram",
+            "tied_fixed_normalized",
+            "tied_block_gram"
+          ],
+          "scope": "Finite combining inequality and explicit tied-growth examples; the general convergence theorem and identification with a recurrence minimal solution are not formalized here.",
+          "commit": "4754fdadd0d470b57844c22b260782f08a856bbc",
+          "snapshot_path": "atlas/coverage/external/what-transport-keeps-lean/WTK/Transport.lean",
+          "url": "https://github.com/dicipler-pixel/what-transport-keeps-lean/blob/4754fdadd0d470b57844c22b260782f08a856bbc/WTK/Transport.lean"
+        }
+      ],
       "audit_notes": [],
-      "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
+      "next_obligation": "Check all remaining headline, geometric, analytic and physical clauses against the exact mapped theorem statements; formalize any missing clauses.",
       "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
     },
     {
@@ -3765,11 +4094,25 @@
       },
       "closed_when": "Closed whenA coordinate change with an untransformed Euclidean metric changes the instrument; conservation alone does not identify a number.",
       "source_reference": "What Transport Keeps · Projector calibration · WTK Theorems 3–4 · calibration Proposition 1 · exact rational arithmetic; readout bound checked",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "external_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/what-transport-keeps-lean",
+          "path": "WTK/Transport.lean",
+          "declarations": [
+            "pairing_conserved",
+            "pairing_frame_invariant",
+            "readout_error"
+          ],
+          "scope": "Exact inverse-dual and moving-frame pairing conservation and scalar error bound; not a Hermitian-metric identification.",
+          "commit": "4754fdadd0d470b57844c22b260782f08a856bbc",
+          "snapshot_path": "atlas/coverage/external/what-transport-keeps-lean/WTK/Transport.lean",
+          "url": "https://github.com/dicipler-pixel/what-transport-keeps-lean/blob/4754fdadd0d470b57844c22b260782f08a856bbc/WTK/Transport.lean"
+        }
+      ],
       "audit_notes": [],
-      "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
+      "next_obligation": "Check all remaining headline, geometric, analytic and physical clauses against the exact mapped theorem statements; formalize any missing clauses.",
       "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
     },
     {
@@ -4082,11 +4425,30 @@
       },
       "closed_when": "Closed whenFor F₂ coefficients the constant is larger at k = 4 (2) and 8 (20/7); whether F₂ reaches k/3 at larger powers of two is open.",
       "source_reference": "Coboundary v7 · Theorems 4 and 8, Proposition 5, Lemma 6 · lower bound Chapman–Lubotzky · independent exhaustive gauge search",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "external_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/coboundary-k3-lean",
+          "path": "CoboundaryK3/Basic.lean",
+          "declarations": [
+            "witness_k4",
+            "witness_k5",
+            "witness_k6",
+            "witness_k7",
+            "witness_k8",
+            "gauge_lower",
+            "gauge_lower_bb",
+            "search_sound"
+          ],
+          "scope": "Exact finite witnesses and sound lower-bound searches for k=4 through 8; not the general all-k equality theorem by itself.",
+          "commit": "0898d1a9daf31360da8c080155852370d1bacc5e",
+          "snapshot_path": "atlas/coverage/external/coboundary-k3-lean/CoboundaryK3/Basic.lean",
+          "url": "https://github.com/dicipler-pixel/coboundary-k3-lean/blob/0898d1a9daf31360da8c080155852370d1bacc5e/CoboundaryK3/Basic.lean"
+        }
+      ],
       "audit_notes": [],
-      "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
+      "next_obligation": "Check all remaining headline, geometric, analytic and physical clauses against the exact mapped theorem statements; formalize any missing clauses.",
       "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
     },
     {
@@ -4128,13 +4490,27 @@
       },
       "closed_when": "Closed whenThis is not a finite-depth composition law for arbitrary full-rank commutator stress.",
       "source_reference": "Projector calibration · What Transport Keeps · Calibration Proposition 3 · WTK Proposition 7 · closed forms and random tensor products checked",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "external_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/what-transport-keeps-lean",
+          "path": "WTK/Response.lean",
+          "declarations": [
+            "rank_one_stress",
+            "tensor_overlap",
+            "stress_composition"
+          ],
+          "scope": "Finite rank-one stress/tensor product law; no generic tensor-product spectral-selection theorem.",
+          "commit": "4754fdadd0d470b57844c22b260782f08a856bbc",
+          "snapshot_path": "atlas/coverage/external/what-transport-keeps-lean/WTK/Response.lean",
+          "url": "https://github.com/dicipler-pixel/what-transport-keeps-lean/blob/4754fdadd0d470b57844c22b260782f08a856bbc/WTK/Response.lean"
+        }
+      ],
       "audit_notes": [
         "A scalar T removes the coupling that would identify its coefficient in B43. A zero tensor factor is an exception to an unrestricted “normal iff both factors normal” statement in B148. State nontriviality hypotheses."
       ],
-      "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
+      "next_obligation": "Check all remaining headline, geometric, analytic and physical clauses against the exact mapped theorem statements; formalize any missing clauses.",
       "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
     },
     {
@@ -4153,11 +4529,25 @@
       },
       "closed_when": "Closed whenThis is an observation about spectra; whether it reflects a relation between the constructions is not settled.",
       "source_reference": "Projector calibration · Observation 3 · Catalan polynomial from the official proof (Lemma 17 there) · Apéry side recomputed exactly",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "external_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/what-transport-keeps-lean",
+          "path": "WTK/Field.lean",
+          "declarations": [
+            "B0_charpoly",
+            "rail_root",
+            "rail_roots_product"
+          ],
+          "scope": "Exact characteristic polynomial and reciprocal roots for the reconstructed matrix; no new Apéry irrationality or challenge submission proof.",
+          "commit": "4754fdadd0d470b57844c22b260782f08a856bbc",
+          "snapshot_path": "atlas/coverage/external/what-transport-keeps-lean/WTK/Field.lean",
+          "url": "https://github.com/dicipler-pixel/what-transport-keeps-lean/blob/4754fdadd0d470b57844c22b260782f08a856bbc/WTK/Field.lean"
+        }
+      ],
       "audit_notes": [],
-      "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
+      "next_obligation": "Check all remaining headline, geometric, analytic and physical clauses against the exact mapped theorem statements; formalize any missing clauses.",
       "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
     },
     {
@@ -4306,11 +4696,30 @@
       },
       "closed_when": "Closed whenAt the poles the gap closes: invertibility (det M → 1) does not supply a projector.",
       "source_reference": "Three-Body v3 · Theorem 1, Propositions 3–4, Theorem 5, Proposition 8 · spectrum recomputed on a grid",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "external_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/three-body-lean",
+          "path": "ThreeBody/Basic.lean",
+          "declarations": [
+            "dPhi_theta₁",
+            "dPhi_theta₂",
+            "dPhi_phi₁",
+            "dPhi_phi₂",
+            "gram_eq",
+            "gram_det_trace",
+            "syzygy_rank_drop",
+            "gap_quadratic"
+          ],
+          "scope": "Declared shape-sphere differential and Gram spectrum, rank drop and pole-gap asymptotic; not all three-body dynamics.",
+          "commit": "fc538a07bb98a72d7b7f8be4594760502ec9194a",
+          "snapshot_path": "atlas/coverage/external/three-body-lean/ThreeBody/Basic.lean",
+          "url": "https://github.com/dicipler-pixel/three-body-lean/blob/fc538a07bb98a72d7b7f8be4594760502ec9194a/ThreeBody/Basic.lean"
+        }
+      ],
       "audit_notes": [],
-      "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
+      "next_obligation": "Check all remaining headline, geometric, analytic and physical clauses against the exact mapped theorem statements; formalize any missing clauses.",
       "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
     },
     {
@@ -4377,11 +4786,24 @@
       },
       "closed_when": "Closed whenThe bound concerns the weak value itself; whether a finite-strength pointer reads it is a separate question.",
       "source_reference": "Dirac Time v3 · Dirac Time v3 Theorem P2 · random and one-parameter family",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "external_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/dirac-time-lean",
+          "path": "DiracTime/WeakValue.lean",
+          "declarations": [
+            "postselected_weak_value_sq",
+            "weak_value_bound"
+          ],
+          "scope": "Weak-value probability bound under the written inner-product and nonzero-overlap hypotheses; no postselection dynamics is derived.",
+          "commit": "e8a4c86240c777f3c999d7f0582799827ea75042",
+          "snapshot_path": "atlas/coverage/external/dirac-time-lean/DiracTime/WeakValue.lean",
+          "url": "https://github.com/dicipler-pixel/dirac-time-lean/blob/e8a4c86240c777f3c999d7f0582799827ea75042/DiracTime/WeakValue.lean"
+        }
+      ],
       "audit_notes": [],
-      "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
+      "next_obligation": "Check all remaining headline, geometric, analytic and physical clauses against the exact mapped theorem statements; formalize any missing clauses.",
       "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
     },
     {
@@ -4400,11 +4822,24 @@
       },
       "closed_when": "Closed whenSilence on loops gives a label, not an orientation; antisymmetry of reachability needs separate hypotheses.",
       "source_reference": "Dirac Time v3 · Dirac Time v3 Theorem P3 · graph, exact integers",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "external_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/dirac-time-lean",
+          "path": "DiracTime/PathLedger.lean",
+          "declarations": [
+            "descent_iff",
+            "reverse_path_ledger"
+          ],
+          "scope": "Endpoint-potential descent equivalent to silent loops in the declared path system; reachability/connectedness assumptions remain explicit.",
+          "commit": "e8a4c86240c777f3c999d7f0582799827ea75042",
+          "snapshot_path": "atlas/coverage/external/dirac-time-lean/DiracTime/PathLedger.lean",
+          "url": "https://github.com/dicipler-pixel/dirac-time-lean/blob/e8a4c86240c777f3c999d7f0582799827ea75042/DiracTime/PathLedger.lean"
+        }
+      ],
       "audit_notes": [],
-      "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
+      "next_obligation": "Check all remaining headline, geometric, analytic and physical clauses against the exact mapped theorem statements; formalize any missing clauses.",
       "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
     },
     {
@@ -4423,11 +4858,38 @@
       },
       "closed_when": "Closed whenThe criterion is relative to the chosen frame; without a frame any two generators can be related.",
       "source_reference": "Dirac Time v3 · Dirac Time v3 Theorem P4, Corollaries P4.1–P4.3 · ODE solve; eigenvalues",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "external_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/dirac-time-lean",
+          "path": "DiracTime/CommonClock.lean",
+          "declarations": [
+            "common_gap_scaling",
+            "rate_shift_unique",
+            "rescale_same_eigenvectors",
+            "rescale_scales_gaps"
+          ],
+          "scope": "Conditional generator/gap equivalence, rate uniqueness and rescaling; a physical time calibration is not supplied.",
+          "commit": "e8a4c86240c777f3c999d7f0582799827ea75042",
+          "snapshot_path": "atlas/coverage/external/dirac-time-lean/DiracTime/CommonClock.lean",
+          "url": "https://github.com/dicipler-pixel/dirac-time-lean/blob/e8a4c86240c777f3c999d7f0582799827ea75042/DiracTime/CommonClock.lean"
+        },
+        {
+          "repository": "dicipler-pixel/dirac-time-lean",
+          "path": "DiracTime/MovingFrame.lean",
+          "declarations": [
+            "moving_frame_identity",
+            "common_clock"
+          ],
+          "scope": "Instantaneous moving-frame algebra with derivatives and equations supplied; not a global Schrodinger evolution construction.",
+          "commit": "e8a4c86240c777f3c999d7f0582799827ea75042",
+          "snapshot_path": "atlas/coverage/external/dirac-time-lean/DiracTime/MovingFrame.lean",
+          "url": "https://github.com/dicipler-pixel/dirac-time-lean/blob/e8a4c86240c777f3c999d7f0582799827ea75042/DiracTime/MovingFrame.lean"
+        }
+      ],
       "audit_notes": [],
-      "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
+      "next_obligation": "Check all remaining headline, geometric, analytic and physical clauses against the exact mapped theorem statements; formalize any missing clauses.",
       "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
     },
     {
@@ -4446,11 +4908,35 @@
       },
       "closed_when": "Closed whenA nonzero kernel is not enough; only a nonzero 𝓡𝓛jΔ counts.",
       "source_reference": "Dirac Time v3 · Dirac Time v3 Theorem P5, P5a · exact evolution, 4×4",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "external_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/dirac-time-lean",
+          "path": "DiracTime/FiniteReturn.lean",
+          "declarations": [
+            "silent_forever_iff",
+            "finite_return_iff"
+          ],
+          "scope": "Finite-dimensional discrete-observation return: some nonzero future moment iff one before dim V. B104 still needs the resolvent-transfer identification; B161 still needs its commutator realization.",
+          "commit": "e8a4c86240c777f3c999d7f0582799827ea75042",
+          "snapshot_path": "atlas/coverage/external/dirac-time-lean/DiracTime/FiniteReturn.lean",
+          "url": "https://github.com/dicipler-pixel/dirac-time-lean/blob/e8a4c86240c777f3c999d7f0582799827ea75042/DiracTime/FiniteReturn.lean"
+        },
+        {
+          "repository": "dicipler-pixel/dirac-time-lean",
+          "path": "DiracTime/ContinuousReturn.lean",
+          "declarations": [
+            "hidden_forever_iff"
+          ],
+          "scope": "Zero exponential observation for every real time iff all power moments vanish. The stated theorem quantifies over past and future together; a future-only version is not separately stated.",
+          "commit": "e8a4c86240c777f3c999d7f0582799827ea75042",
+          "snapshot_path": "atlas/coverage/external/dirac-time-lean/DiracTime/ContinuousReturn.lean",
+          "url": "https://github.com/dicipler-pixel/dirac-time-lean/blob/e8a4c86240c777f3c999d7f0582799827ea75042/DiracTime/ContinuousReturn.lean"
+        }
+      ],
       "audit_notes": [],
-      "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
+      "next_obligation": "Check all remaining headline, geometric, analytic and physical clauses against the exact mapped theorem statements; formalize any missing clauses.",
       "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
     },
     {
@@ -4469,11 +4955,25 @@
       },
       "closed_when": "Closed whenIt is an integrated statement; it does not assert a nonnegative instantaneous rate in a finite recurrent model.",
       "source_reference": "Dirac Time v3 · Dirac Time v3 Theorem P6, Corollary P6.1 · exact density matrices",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "external_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/dirac-time-lean",
+          "path": "DiracTime/EntropyLedger.lean",
+          "declarations": [
+            "delta_relative_entropy",
+            "entropy_correlation_identity",
+            "integrated_second_law"
+          ],
+          "scope": "Entropy/correlation algebra and second law under supplied operator/entropy/nonnegativity facts; subsystem entropies are parameters here, not a full reservoir construction.",
+          "commit": "e8a4c86240c777f3c999d7f0582799827ea75042",
+          "snapshot_path": "atlas/coverage/external/dirac-time-lean/DiracTime/EntropyLedger.lean",
+          "url": "https://github.com/dicipler-pixel/dirac-time-lean/blob/e8a4c86240c777f3c999d7f0582799827ea75042/DiracTime/EntropyLedger.lean"
+        }
+      ],
       "audit_notes": [],
-      "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
+      "next_obligation": "Check all remaining headline, geometric, analytic and physical clauses against the exact mapped theorem statements; formalize any missing clauses.",
       "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
     },
     {
@@ -4492,11 +4992,25 @@
       },
       "closed_when": "Closed whenThe link to ρ uses three cited results (Burde–de Rham–Klassen, Lin–Herald, Atiyah–Patodi–Singer) on their own hypotheses; non-torus knots need their own computation.",
       "source_reference": "Dirac Time v3 · Dirac Time v3 Theorems 13.1–13.2; Klassen 1991, Herald 1997, APS 1975, Litherland 1979 · SU(2) sweep vs independent signature",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "external_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/dirac-time-lean",
+          "path": "DiracTime/PhaseSilence.lean",
+          "declarations": [
+            "silent_sector_iff",
+            "end_index_mod_p",
+            "end_index_mod_q"
+          ],
+          "scope": "Torus-knot endpoint congruences and the stated silence criterion; not the APS/eta/signature identification or full arc census.",
+          "commit": "e8a4c86240c777f3c999d7f0582799827ea75042",
+          "snapshot_path": "atlas/coverage/external/dirac-time-lean/DiracTime/PhaseSilence.lean",
+          "url": "https://github.com/dicipler-pixel/dirac-time-lean/blob/e8a4c86240c777f3c999d7f0582799827ea75042/DiracTime/PhaseSilence.lean"
+        }
+      ],
       "audit_notes": [],
-      "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
+      "next_obligation": "Check all remaining headline, geometric, analytic and physical clauses against the exact mapped theorem statements; formalize any missing clauses.",
       "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
     },
     {
@@ -4613,13 +5127,26 @@
       },
       "closed_when": "Closed whenThe size of the bias depends on the evolution law and the acquisition order. It does not by itself explain the elevenfold ZrD₂ disagreement.",
       "source_reference": "SCREEN-PROG-03 · SCREEN-PROG-03 §6.2–6.3 · synthetic campaign, least squares",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "external_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/electron-screening-lean",
+          "path": "ElectronScreening/Basic.lean",
+          "declarations": [
+            "fit_above_mean",
+            "fit_below_max"
+          ],
+          "scope": "Conditional convex-yield fit bounds (Jensen) under the specified model; measured overshoot and experimental calibration need data.",
+          "commit": "7e53d04a347cb4a8e3961a8fa3e874e9dcd93676",
+          "snapshot_path": "atlas/coverage/external/electron-screening-lean/ElectronScreening/Basic.lean",
+          "url": "https://github.com/dicipler-pixel/electron-screening-lean/blob/7e53d04a347cb4a8e3961a8fa3e874e9dcd93676/ElectronScreening/Basic.lean"
+        }
+      ],
       "audit_notes": [
         "The shear-lane rerun uses a supplied cache; it is not a fresh full MHD scan. λ/d=13.963 depends on the declared lane profile and velocity interpretation. Dynamo wave birth precedes instability. The yield model openly differs from the quoted experimental numbers."
       ],
-      "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
+      "next_obligation": "Check all remaining headline, geometric, analytic and physical clauses against the exact mapped theorem statements; formalize any missing clauses.",
       "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
     },
     {
@@ -4782,11 +5309,29 @@
       },
       "closed_when": "Closed whenNo reflection is not full absorption, and an impedance says nothing about causality; the horizon reading is structural.",
       "source_reference": "Black Hole v8.4 · §4.2, Proposition 13 · membrane resistivity from Damour; Thorne, Price and Macdonald · BH-SPINE-09, BH-MATCHED-12",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "external_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/light-ledger-lean",
+          "path": "LightBridges/Boundary.lean",
+          "declarations": [
+            "schur_interior_residual",
+            "schur_boundary_residual",
+            "boundary_lift_identity",
+            "boundary_hermitian_identity",
+            "cayley_defect_identity",
+            "boundary_loss_pullback",
+            "passive_boundary_chain"
+          ],
+          "scope": "Finite boundary elimination and passivity/Cayley loss identities under explicit inverse equations; no horizon or general-relativistic boundary realization.",
+          "commit": "885794f58355a6b035b52f0b0d851f3f1933692f",
+          "snapshot_path": "atlas/coverage/external/light-ledger-lean/LightBridges/Boundary.lean",
+          "url": "https://github.com/dicipler-pixel/light-ledger-lean/blob/885794f58355a6b035b52f0b0d851f3f1933692f/LightBridges/Boundary.lean"
+        }
+      ],
       "audit_notes": [],
-      "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
+      "next_obligation": "Check all remaining headline, geometric, analytic and physical clauses against the exact mapped theorem statements; formalize any missing clauses.",
       "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
     },
     {
