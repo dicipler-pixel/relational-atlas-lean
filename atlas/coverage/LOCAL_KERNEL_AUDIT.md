@@ -145,20 +145,21 @@ statement against that claim, not a judgement of the card's physics.
   limits of any card; a Lean kernel is a finite statement and the ledger's
   scopes say which one.
 * It does not audit the **52 external card mappings** statement by statement, and the pinned
-  snapshots are not all independently compilable. Of the 41 snapshots, 32 elaborate standalone on
-  Lean 4.35.0. Four cannot elaborate from this repository at all because they import a sibling
-  module that was never pinned — `DiracTime/FiniteReturn.lean` needs `DiracTime.PredictiveQuotient`,
-  `LightBridges/Census.lean` needs `LightBridges.Algebra`,
+  snapshots are not all independently compilable. On the final run, 34 of the 41 snapshots
+  elaborate standalone on Lean 4.35.0; `CoboundaryK3/Basic.lean` needs about fourteen minutes and
+  7.5 GB resident under this VM's load, so an earlier run with a 900 s cap timed it out even though
+  it passes when given the time. Four cannot elaborate from this repository at all because they
+  import a sibling module that was never pinned — `DiracTime/FiniteReturn.lean` needs
+  `DiracTime.PredictiveQuotient`, `LightBridges/Census.lean` needs `LightBridges.Algebra`,
   `NonNormality/SelfCommutator.lean` needs `NonNormality.Frobenius`, and
   `NonNormality/Holonomy.lean` needs `NonNormality.SelfCommutator`. Three more need only module
   resolution, because their sibling *is* pinned (`LightSpectral.lean` ← `Rigidity.lean`,
   `SquareCase/Secular.lean` ← `SquareCase/Transport.lean`, `VOTKP/Film.lean` ← `VOTKP/Smith.lean`);
-  I built the sibling object in the right module path and put it on `LEAN_PATH`, and all three then
-  elaborate cleanly (`Rigidity` 29 s, `Transport` → `Secular` 4 min under load, `Smith` → `Film`
-  2 min), which raises the count of snapshots that can be checked from 32 to 35. Two timed out at 900 s under this VM's load
-  (`CoboundaryK3/Basic.lean`, which takes 96 s and peaks at 7.5 GB resident when run alone, and
-  `DiracTime/MovingFrame.lean`). Every card that depends on one of those nine snapshots therefore
-  rests on a citation and a pinned hash, not on a fresh elaboration.
+  I built each sibling's object in the right module path and put it on `LEAN_PATH`, and all three
+  then elaborate cleanly (`Rigidity` 29 s, `Transport` → `Secular` 4 min, `Smith` → `Film` 2 min).
+  That raises the checkable count from 34 to 37, leaving the four unpinned-sibling snapshots as the
+  only ones that cannot be re-elaborated here. Every card mapped only to one of those four rests on
+  a citation and a pinned hash, not on a fresh elaboration.
 * It does not certify the 136 cards the ledger lists as unmapped, nor the card
   count "37 theorems" against anything but `scripts/config.json`.
 
