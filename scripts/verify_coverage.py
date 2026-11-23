@@ -43,7 +43,7 @@ def validate(d,archive=None):
   s=strip_comments(p.read_text())
   require(not re.search(r'\b(?:sorry|axiom)\b',s),'Local source placeholder/axiom')
   inventory.append(dict(path=m['path'],sha256=hashlib.sha256(p.read_bytes()).hexdigest(),theorems=sorted(ns)))
- require(len(all_local)==config['expected_theorems']==37,'Local theorem inventory changed; review coverage')
+ require(len(all_local)==config['expected_theorems'],'Local theorem inventory changed; review coverage')
  mapped=set()
  for c in cards:
   require(c['source_grade']in {'theorem','derived','measured','conjecture','reading'},'Unrecognized source grade')

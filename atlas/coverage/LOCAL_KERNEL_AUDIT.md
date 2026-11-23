@@ -203,11 +203,11 @@ is 18, not 36, and any text saying otherwise should be checked before it is publ
 
 The module ends with `#print axioms` for every declaration; all of them rest on a subset of
 `{propext, Classical.choice, Quot.sound}`. `scripts/verify_local.py` elaborates it as a third
-library module, so it is covered by the same checks as the other two. It is committed as `8fb0e1a`
-(together with this audit and `scripts/verify_local.py`), but it is **not** yet a record in
-`atlas/coverage/coverage.json`: that ledger requires every declaration of every configured module
-to be mapped to a card, so registering the module means writing 178 card mappings at once. That is
-a mechanical but separate change; until it is made, the ledger still covers the original 37.
+library module, so it is covered by the same checks as the other two. Both extension modules are now records in
+`atlas/coverage/coverage.json`: every one of their declarations is mapped to its card (178 for
+`Extended.lean`, 229 for `Extended2.lean`, 444 in total with the original 37), the ledger's
+summary now reads 49 locally mapped cards and 116 still unmapped, and
+`python3 scripts/verify_coverage.py --self-test` passes before and after the change.
 
 ## Independent checks against external databases (23 November 2026)
 
