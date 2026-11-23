@@ -174,6 +174,8 @@ def main() -> int:
             out, code = 'TIMEOUT', -1
         (OUT / f'{p.stem}_axioms.log').write_text(out)
         found = {}
+        # Lean wraps long axiom lists onto continuation lines with a leading space.
+        out = re.sub(r'\n (?=\S)', ' ', out)
         for line in out.splitlines():
             mt = re.match(r"'([^']+)' (?:does not depend on any axioms|depends on axioms: \[(.*)\])",
                           line.strip())

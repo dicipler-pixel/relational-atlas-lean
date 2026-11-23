@@ -2417,3 +2417,1407 @@ end RelationalAtlas.B202
 #print axioms RelationalAtlas.B202.rounded_decimal_not_exact
 #print axioms RelationalAtlas.B202.oneWay_resolvents_differ
 #print axioms RelationalAtlas.B202.B202_concrete_kernel
+
+/-! ## B78 — the finite spectral calculus behind the contour
+
+Integrated from `.ultramath/smwtkiqjq/m8/B78.lean`.
+-/
+/-
+B78: finite spectral/Lagrange calculus for a diagonalizable matrix.
+
+The labels `ι` index distinct eigenvalues, while `e : n → ι` groups diagonal
+coordinates into sectors.  Thus repeated eigenvalues are allowed.  The two
+matrices `S`, `T` are assumed to be two-sided inverses.
+
+This file proves the finite algebraic kernel, not the complex contour integral
+or the defective/Jordan case of the displayed card.
+-/
+
+namespace RelationalAtlas.B78
+
+open Matrix Polynomial
+open scoped BigOperators
+
+noncomputable section
+
+set_option autoImplicit false
+
+variable {n ι : Type*} [Fintype n] [DecidableEq n] [Fintype ι] [DecidableEq ι]
+
+/-- Indicator of the coordinates in one eigenvalue sector. -/
+def sectorIndicator (e : n → ι) (i : ι) (k : n) : ℂ :=
+  if e k = i then 1 else 0
+
+/-- The diagonal projector onto one eigenvalue sector. -/
+def sectorProjector (e : n → ι) (i : ι) : Matrix n n ℂ :=
+  diagonal (sectorIndicator e i)
+
+/-- The sector projector in the original basis. -/
+def spectralProjector (S T : Matrix n n ℂ) (e : n → ι) (i : ι) : Matrix n n ℂ :=
+  S * sectorProjector e i * T
+
+@[simp] theorem sectorProjector_mul_self (e : n → ι) (i : ι) :
+    sectorProjector e i * sectorProjector e i = sectorProjector e i := by
+  rw [sectorProjector, diagonal_mul_diagonal]
+  congr 1
+  funext k
+  by_cases h : e k = i <;> simp [sectorIndicator, h]
+
+#print axioms RelationalAtlas.B78.sectorProjector_mul_self
+
+theorem sectorProjector_mul_of_ne (e : n → ι) {i j : ι} (hij : i ≠ j) :
+    sectorProjector e i * sectorProjector e j = 0 := by
+  rw [sectorProjector, sectorProjector, diagonal_mul_diagonal]
+  have hzero : (fun k => sectorIndicator e i k * sectorIndicator e j k) = 0 := by
+    funext k
+    by_cases hki : e k = i
+    · by_cases hkj : e k = j
+      · exact (hij (hki.symm.trans hkj)).elim
+      · simp [sectorIndicator, hki, hkj, hij]
+    · simp [sectorIndicator, hki]
+  rw [hzero, diagonal_zero']
+
+#print axioms RelationalAtlas.B78.sectorProjector_mul_of_ne
+
+@[simp] theorem spectralProjector_mul_self (S T : Matrix n n ℂ) (hTS : T * S = 1)
+    (e : n → ι) (i : ι) :
+    spectralProjector S T e i * spectralProjector S T e i = spectralProjector S T e i := by
+  simp only [spectralProjector, mul_assoc]
+  rw [← mul_assoc T S (sectorProjector e i * T), hTS, one_mul]
+  rw [← mul_assoc (sectorProjector e i) (sectorProjector e i) T,
+    sectorProjector_mul_self]
+
+#print axioms RelationalAtlas.B78.spectralProjector_mul_self
+
+theorem spectralProjector_mul_of_ne (S T : Matrix n n ℂ) (hTS : T * S = 1)
+    (e : n → ι) {i j : ι} (hij : i ≠ j) :
+    spectralProjector S T e i * spectralProjector S T e j = 0 := by
+  simp only [spectralProjector, mul_assoc]
+  rw [← mul_assoc T S (sectorProjector e j * T), hTS, one_mul]
+  rw [← mul_assoc (sectorProjector e i) (sectorProjector e j) T,
+    sectorProjector_mul_of_ne e hij, zero_mul, mul_zero]
+
+#print axioms RelationalAtlas.B78.spectralProjector_mul_of_ne
+
+@[simp] theorem sum_sectorProjector (e : n → ι) : ∑ i, sectorProjector e i = 1 := by
+  ext k l
+  by_cases hkl : k = l
+  · subst l
+    simp [Matrix.sum_apply, sectorProjector, sectorIndicator]
+  · simp [Matrix.sum_apply, sectorProjector, diagonal_apply, hkl]
+
+#print axioms RelationalAtlas.B78.sum_sectorProjector
+
+@[simp] theorem sum_spectralProjector (S T : Matrix n n ℂ) (hST : S * T = 1) (e : n → ι) :
+    ∑ i, spectralProjector S T e i = 1 := by
+  calc
+    ∑ i, spectralProjector S T e i = S * (∑ i, sectorProjector e i) * T := by
+      simp only [spectralProjector, Finset.mul_sum, Finset.sum_mul]
+    _ = 1 := by rw [sum_sectorProjector, mul_one, hST]
+
+#print axioms RelationalAtlas.B78.sum_spectralProjector
+
+/-- Conjugation respects natural powers; both inverse identities are explicit. -/
+theorem conjugate_pow (S T D : Matrix n n ℂ) (hST : S * T = 1) (hTS : T * S = 1) (k : ℕ) :
+    (S * D * T) ^ k = S * D ^ k * T := by
+  induction k with
+  | zero => simp [hST]
+  | succ k ih =>
+      rw [pow_succ, ih, pow_succ]
+      simp only [mul_assoc]
+      rw [← mul_assoc T S (D * T), hTS, one_mul]
+
+#print axioms RelationalAtlas.B78.conjugate_pow
+
+/-- Polynomial evaluation is compatible with the diagonalizing conjugation. -/
+theorem aeval_conjugate (S T D : Matrix n n ℂ) (hST : S * T = 1) (hTS : T * S = 1)
+    (p : ℂ[X]) : aeval (S * D * T) p = S * aeval D p * T := by
+  induction p using Polynomial.induction_on' with
+  | add p q hp hq => simp only [map_add, hp, hq, mul_add, add_mul]
+  | monomial k a =>
+      rw [aeval_monomial, aeval_monomial, conjugate_pow S T D hST hTS]
+      simp only [Algebra.algebraMap_eq_smul_one, smul_mul_assoc, mul_smul_comm, mul_assoc,
+        one_mul]
+
+#print axioms RelationalAtlas.B78.aeval_conjugate
+
+/-- Polynomial evaluation of a diagonal matrix is entrywise scalar evaluation. -/
+theorem aeval_diagonal (v : n → ℂ) (p : ℂ[X]) :
+    aeval (diagonal v) p = diagonal (fun k => p.eval (v k)) := by
+  induction p using Polynomial.induction_on' with
+  | add p q hp hq =>
+      rw [map_add, hp, hq]
+      ext k l
+      by_cases hkl : k = l <;> simp [diagonal_apply, hkl]
+  | monomial k a =>
+      rw [aeval_monomial, Matrix.algebraMap_eq_diagonal, diagonal_pow, diagonal_mul_diagonal]
+      congr 1
+      funext j
+      simp [Polynomial.eval_monomial]
+
+#print axioms RelationalAtlas.B78.aeval_diagonal
+
+/-- A diagonal matrix is the sum of its sector values times the sector projectors. -/
+theorem diagonal_comp_eq_sum_smul_sectorProjector (e : n → ι) (r : ι → ℂ) :
+    diagonal (fun k => r (e k)) = ∑ i, r i • sectorProjector e i := by
+  ext k l
+  by_cases hkl : k = l
+  · subst l
+    simp [Matrix.sum_apply, sectorProjector, sectorIndicator]
+  · simp [Matrix.sum_apply, sectorProjector, diagonal_apply, hkl]
+
+#print axioms RelationalAtlas.B78.diagonal_comp_eq_sum_smul_sectorProjector
+
+/-- **B78 (polynomial spectral decomposition).**  No simplicity of the spectrum is
+needed for this identity: `e` can assign many diagonal coordinates to one label. -/
+theorem aeval_spectral_decomposition (S T : Matrix n n ℂ) (hST : S * T = 1) (hTS : T * S = 1)
+    (lam : ι → ℂ) (e : n → ι) (p : ℂ[X]) :
+    aeval (S * diagonal (fun k => lam (e k)) * T) p =
+      ∑ i, p.eval (lam i) • spectralProjector S T e i := by
+  rw [aeval_conjugate S T _ hST hTS, aeval_diagonal]
+  rw [diagonal_comp_eq_sum_smul_sectorProjector (n := n) e (fun i => p.eval (lam i))]
+  simp only [spectralProjector, Finset.mul_sum, Finset.sum_mul, smul_mul_assoc, mul_smul_comm]
+
+#print axioms RelationalAtlas.B78.aeval_spectral_decomposition
+
+/-- The Lagrange interpolant of an arbitrary function on a finite, distinctly
+labelled spectrum.  Nothing holomorphic is needed for this finite algebraic step. -/
+def spectralInterpolant (lam : ι → ℂ) (f : ℂ → ℂ) : ℂ[X] :=
+  Lagrange.interpolate Finset.univ lam (fun i => f (lam i))
+
+@[simp] theorem eval_spectralInterpolant (lam : ι → ℂ) (hlam : Function.Injective lam)
+    (f : ℂ → ℂ) (i : ι) : (spectralInterpolant lam f).eval (lam i) = f (lam i) := by
+  apply Lagrange.eval_interpolate_at_node
+  · exact hlam.injOn
+  · exact Finset.mem_univ i
+
+#print axioms RelationalAtlas.B78.eval_spectralInterpolant
+
+/-- **B78 (any function on the spectrum).**  For every `f : ℂ → ℂ`, an explicit
+polynomial agrees with `f` at every spectral value and its matrix evaluation is
+the advertised sum over spectral projectors. -/
+theorem arbitrary_function_spectral_calculus (S T : Matrix n n ℂ) (hST : S * T = 1)
+    (hTS : T * S = 1) (lam : ι → ℂ) (hlam : Function.Injective lam) (e : n → ι) (f : ℂ → ℂ) :
+    ∃ p : ℂ[X], (∀ i, p.eval (lam i) = f (lam i)) ∧
+      aeval (S * diagonal (fun k => lam (e k)) * T) p =
+        ∑ i, f (lam i) • spectralProjector S T e i := by
+  refine ⟨spectralInterpolant lam f, eval_spectralInterpolant lam hlam f, ?_⟩
+  rw [aeval_spectral_decomposition S T hST hTS]
+  apply Finset.sum_congr rfl
+  intro i hi
+  rw [eval_spectralInterpolant lam hlam]
+
+#print axioms RelationalAtlas.B78.arbitrary_function_spectral_calculus
+
+/-- **The block-projector case.**  The spectral projector itself is obtained by a
+polynomial equal to one on its own sector and zero on every other sector. -/
+theorem spectralProjector_is_polynomial (S T : Matrix n n ℂ) (hST : S * T = 1)
+    (hTS : T * S = 1) (lam : ι → ℂ) (hlam : Function.Injective lam) (e : n → ι) (j : ι) :
+    ∃ p : ℂ[X], (∀ i, p.eval (lam i) = if lam i = lam j then 1 else 0) ∧
+      aeval (S * diagonal (fun k => lam (e k)) * T) p = spectralProjector S T e j := by
+  obtain ⟨p, hp, hsp⟩ := arbitrary_function_spectral_calculus S T hST hTS lam hlam e
+    (fun z => if z = lam j then 1 else 0)
+  refine ⟨p, hp, ?_⟩
+  rw [hsp]
+  have hsum :
+      (∑ i, (if lam i = lam j then (1 : ℂ) else 0) • spectralProjector S T e i) =
+        ∑ i, (if i = j then (1 : ℂ) else 0) • spectralProjector S T e i := by
+    apply Finset.sum_congr rfl
+    intro i hi
+    by_cases hij : i = j
+    · subst i
+      simp
+    · have hl : lam i ≠ lam j := fun h => hij (hlam h)
+      simp [hij, hl]
+  rw [hsum]
+  simp
+
+#print axioms RelationalAtlas.B78.spectralProjector_is_polynomial
+
+/-- The `f(z) = z` case: the diagonalized operator is its eigenvalue-weighted sum
+of spectral projectors. -/
+theorem diagonalized_eq_eigenvalue_sum (S T : Matrix n n ℂ) (hST : S * T = 1)
+    (hTS : T * S = 1) (lam : ι → ℂ) (e : n → ι) :
+    S * diagonal (fun k => lam (e k)) * T = ∑ i, lam i • spectralProjector S T e i := by
+  simpa using aeval_spectral_decomposition S T hST hTS lam e X
+
+#print axioms RelationalAtlas.B78.diagonalized_eq_eigenvalue_sum
+
+/-! ## A concrete, non-diagonal two-spectrum instance -/
+
+def exampleS : Matrix (Fin 2) (Fin 2) ℂ := !![1, 1; 0, 1]
+def exampleT : Matrix (Fin 2) (Fin 2) ℂ := !![1, -1; 0, 1]
+def exampleLam : Fin 2 → ℂ := ![1, 2]
+def exampleE : Fin 2 → Fin 2 := id
+def exampleA : Matrix (Fin 2) (Fin 2) ℂ := !![1, 1; 0, 2]
+
+@[simp] theorem exampleS_mul_exampleT : exampleS * exampleT = 1 := by
+  rw [Matrix.one_fin_two]
+  norm_num [exampleS, exampleT, Matrix.mul_fin_two]
+
+#print axioms RelationalAtlas.B78.exampleS_mul_exampleT
+
+@[simp] theorem exampleT_mul_exampleS : exampleT * exampleS = 1 := by
+  rw [Matrix.one_fin_two]
+  norm_num [exampleS, exampleT, Matrix.mul_fin_two]
+
+#print axioms RelationalAtlas.B78.exampleT_mul_exampleS
+
+theorem exampleLam_injective : Function.Injective exampleLam := by
+  intro i j hij
+  fin_cases i <;> fin_cases j <;> simp_all [exampleLam]
+
+#print axioms RelationalAtlas.B78.exampleLam_injective
+
+/-- The explicit matrix really has the diagonalization assumed in the general theorem. -/
+theorem exampleA_factorization :
+    exampleA = exampleS * diagonal (fun k => exampleLam (exampleE k)) * exampleT := by
+  norm_num [exampleA, exampleS, exampleT, exampleLam, exampleE,
+    Matrix.diagonal_fin_two, Matrix.mul_fin_two]
+
+#print axioms RelationalAtlas.B78.exampleA_factorization
+
+theorem exampleA_offdiagonal_ne_zero : exampleA 0 1 ≠ 0 := by
+  norm_num [exampleA]
+
+#print axioms RelationalAtlas.B78.exampleA_offdiagonal_ne_zero
+
+@[simp] theorem example_spectralProjector_zero :
+    spectralProjector exampleS exampleT exampleE 0 = !![1, -1; 0, 0] := by
+  ext i j
+  fin_cases i <;> fin_cases j <;>
+    norm_num [spectralProjector, sectorProjector, sectorIndicator, exampleS, exampleT, exampleE,
+      Matrix.diagonal_fin_two, Matrix.mul_fin_two]
+
+#print axioms RelationalAtlas.B78.example_spectralProjector_zero
+
+@[simp] theorem example_spectralProjector_one :
+    spectralProjector exampleS exampleT exampleE 1 = !![0, 1; 0, 1] := by
+  ext i j
+  fin_cases i <;> fin_cases j <;>
+    norm_num [spectralProjector, sectorProjector, sectorIndicator, exampleS, exampleT, exampleE,
+      Matrix.diagonal_fin_two, Matrix.mul_fin_two]
+
+#print axioms RelationalAtlas.B78.example_spectralProjector_one
+
+/-- This instance uses the general spectral decomposition, rather than just checking it by hand. -/
+theorem example_square_calculus :
+    aeval exampleA ((X : ℂ[X]) ^ 2) =
+      (1 : ℂ) ^ 2 • spectralProjector exampleS exampleT exampleE 0 +
+      (2 : ℂ) ^ 2 • spectralProjector exampleS exampleT exampleE 1 := by
+  rw [exampleA_factorization]
+  rw [aeval_spectral_decomposition exampleS exampleT exampleS_mul_exampleT exampleT_mul_exampleS]
+  simp [Fin.sum_univ_two, exampleLam]
+
+#print axioms RelationalAtlas.B78.example_square_calculus
+
+/-- Numerically, the square is `!![1,3;0,4]`, exactly the weighted sum above. -/
+theorem example_square_entries : aeval exampleA ((X : ℂ[X]) ^ 2) = !![1, 3; 0, 4] := by
+  rw [map_pow, aeval_X, pow_two, exampleA, Matrix.mul_fin_two]
+  norm_num
+
+#print axioms RelationalAtlas.B78.example_square_entries
+
+end
+end RelationalAtlas.B78
+
+/-! ## B72 — the projector derivative is the off-block resolvent
+
+Integrated from `.ultramath/smwtkiqjq/m3/B72.lean`.
+-/
+/-
+B72 — The gap is a stiffness.
+
+Finite spectral-basis kernel. A Boolean function labels the inside of the
+projector, `eig` is the real diagonal Hermitian operator, and `response` is
+its off-block linear response. We prove the differentiated projector and
+commutation equations, identify the two real Hermitian directions attached to
+every complex off-block entry, and prove the exact reciprocal-gap Frobenius
+norm estimate. The last section gives a two-dimensional witness.
+
+No contour integral or global smooth dependence of a spectral projector is
+used. The word `response` therefore denotes the algebraic differential in a
+fixed eigenbasis; the analytic theorem that the contour-defined projector has
+this differential is outside this finite algebraic kernel.
+-/
+
+set_option autoImplicit false
+noncomputable section
+
+namespace RelationalAtlas.B72
+
+open Matrix
+
+variable {n : Type*} [Fintype n] [DecidableEq n]
+
+/-- The signed gap `λinside - λoutside`; its value on diagonal blocks is
+irrelevant. -/
+def signedGap (inside : n → Bool) (eig : n → ℝ) (i j : n) : ℝ :=
+  if inside i = true then eig i - eig j else eig j - eig i
+
+/-- The displayed off-block response in the eigenbasis. -/
+def response (inside : n → Bool) (eig : n → ℝ) (H : Matrix n n ℂ) :
+    Matrix n n ℂ := fun i j =>
+  if inside i = inside j then 0 else H i j / (signedGap inside eig i j : ℂ)
+
+/-- The diagonal projector onto the indices labelled `true`. -/
+def blockProjector (inside : n → Bool) : Matrix n n ℂ :=
+  diagonal (fun i => if inside i = true then 1 else 0)
+
+/-- The diagonal Hermitian operator whose inside/outside gaps are used. -/
+def baseOperator (eig : n → ℝ) : Matrix n n ℂ :=
+  diagonal (fun i => (eig i : ℂ))
+
+/-- Every off-block gap is nonzero when all inside/outside eigenvalues differ. -/
+theorem signedGap_ne_zero (inside : n → Bool) (eig : n → ℝ)
+    (hgap : ∀ i j, inside i ≠ inside j → eig i ≠ eig j)
+    {i j : n} (hij : inside i ≠ inside j) :
+    signedGap inside eig i j ≠ 0 := by
+  cases hi : inside i <;> cases hj : inside j <;>
+    simp_all [signedGap, sub_ne_zero]
+
+/-- Reversing an off-block pair does not change the inside-minus-outside sign. -/
+theorem signedGap_swap (inside : n → Bool) (eig : n → ℝ) {i j : n}
+    (hij : inside i ≠ inside j) :
+    signedGap inside eig j i = signedGap inside eig i j := by
+  cases hi : inside i <;> cases hj : inside j <;> simp_all [signedGap]
+
+/-- The response is supported exactly on the off-diagonal blocks. -/
+theorem response_apply_of_same (inside : n → Bool) (eig : n → ℝ)
+    (H : Matrix n n ℂ) {i j : n} (hij : inside i = inside j) :
+    response inside eig H i j = 0 := by
+  simp [response, hij]
+
+/-- The response preserves the Hermitian tangent space. -/
+theorem response_isHermitian (inside : n → Bool) (eig : n → ℝ)
+    (H : Matrix n n ℂ) (hH : H.IsHermitian) :
+    (response inside eig H).IsHermitian := by
+  apply Matrix.IsHermitian.ext
+  intro i j
+  by_cases hij : inside i = inside j
+  · change star (if inside j = inside i then 0
+      else H j i / (signedGap inside eig j i : ℂ)) =
+        if inside i = inside j then 0
+        else H i j / (signedGap inside eig i j : ℂ)
+    rw [if_pos hij.symm, if_pos hij, star_zero]
+  · have hji : inside j ≠ inside i := Ne.symm hij
+    change star (if inside j = inside i then 0
+      else H j i / (signedGap inside eig j i : ℂ)) =
+        if inside i = inside j then 0
+        else H i j / (signedGap inside eig i j : ℂ)
+    rw [if_neg hji, if_neg hij, signedGap_swap inside eig hij]
+    rw [show star (H j i / (signedGap inside eig i j : ℂ)) =
+      star (H j i) / (signedGap inside eig i j : ℂ) by simp]
+    rw [hH.apply]
+
+/-- The real submodule of Hermitian complex matrices. -/
+def hermitianSubmodule (n : Type*) [DecidableEq n] :
+    Submodule ℝ (Matrix n n ℂ) where
+  carrier := {H | H.IsHermitian}
+  zero_mem' := by
+    change (0 : Matrix n n ℂ).IsHermitian
+    exact Matrix.isHermitian_zero
+  add_mem' := by
+    intro H K hH hK
+    change H.IsHermitian at hH
+    change K.IsHermitian at hK
+    change (H + K).IsHermitian
+    exact hH.add hK
+  smul_mem' := by
+    intro r H hH
+    change H.IsHermitian at hH
+    change (r • H).IsHermitian
+    apply Matrix.IsHermitian.ext
+    intro i j
+    simp [hH.apply]
+
+/-- The algebraic response as a complex-linear map on matrices. -/
+def responseLinearMap (inside : n → Bool) (eig : n → ℝ) :
+    Matrix n n ℂ →ₗ[ℂ] Matrix n n ℂ where
+  toFun := response inside eig
+  map_add' := by
+    intro H K
+    ext i j
+    by_cases hij : inside i = inside j <;>
+      simp [response, hij, add_div]
+  map_smul' := by
+    intro z H
+    ext i j
+    by_cases hij : inside i = inside j <;>
+      simp [response, hij, mul_div_assoc]
+
+/-- The response restricted to the real Hermitian tangent space. -/
+def hermitianResponse (inside : n → Bool) (eig : n → ℝ) :
+    hermitianSubmodule n →ₗ[ℝ] hermitianSubmodule n where
+  toFun H := ⟨response inside eig H.1, by
+    have hH : H.1.IsHermitian := by
+      simpa [hermitianSubmodule] using H.2
+    simpa [hermitianSubmodule] using response_isHermitian inside eig H.1 hH⟩
+  map_add' := by
+    intro H K
+    apply Subtype.ext
+    exact (responseLinearMap inside eig).map_add H.1 K.1
+  map_smul' := by
+    intro r H
+    apply Subtype.ext
+    change response inside eig (r • H.1) = r • response inside eig H.1
+    ext i j
+    by_cases hij : inside i = inside j <;>
+      simp [response, hij, mul_div_assoc]
+
+/-- A Hermitian matrix with one complex off-block parameter `z`; the opposite
+entry is `star z`. These are the two real directions for each unordered pair. -/
+def pairTangent (a b : n) (z : ℂ) : Matrix n n ℂ :=
+  single a b z + single b a (star z)
+
+theorem pairTangent_isHermitian (a b : n) (z : ℂ) :
+    (pairTangent a b z).IsHermitian := by
+  rw [Matrix.IsHermitian, pairTangent, conjTranspose_add,
+    conjTranspose_single, conjTranspose_single, star_star, add_comm]
+
+/-- The real two-dimensional family of Hermitian tangents at `(a,b)`. -/
+def pairDirections (a b : n) : ℂ →ₗ[ℝ] hermitianSubmodule n where
+  toFun z := ⟨pairTangent a b z, by
+    simpa [hermitianSubmodule] using pairTangent_isHermitian a b z⟩
+  map_add' := by
+    intro z w
+    apply Subtype.ext
+    simp [pairTangent, single_add, add_assoc, add_left_comm, add_comm]
+  map_smul' := by
+    intro r z
+    apply Subtype.ext
+    simp [pairTangent, Matrix.smul_apply, smul_add]
+
+/-- Different off-block parameters give different Hermitian tangents. -/
+theorem pairDirections_injective {a b : n} (hab : a ≠ b) :
+    Function.Injective (pairDirections a b) := by
+  intro z w hzw
+  have h := congrArg (fun M : hermitianSubmodule n => M.1 a b) hzw
+  simpa [pairDirections, pairTangent, Matrix.single_apply, hab, Ne.symm hab] using h
+
+/-- The two real directions are genuinely nonzero when `a ≠ b`. -/
+theorem pairDirections_one_ne_zero {a b : n} (hab : a ≠ b) :
+    pairDirections a b 1 ≠ 0 := by
+  intro h
+  have hz : (1 : ℂ) = 0 := by
+    apply pairDirections_injective hab
+    simpa using h
+  exact one_ne_zero hz
+
+/-- Every complex off-block tangent is an eigenvector of the response, with
+signed eigenvalue `(λinside - λoutside)⁻¹`. Taking `z = 1` and `z = I`
+exhibits its two real dimensions; the singular value is the absolute value. -/
+theorem hermitianResponse_pairDirections (inside : n → Bool) (eig : n → ℝ)
+    {a b : n} (ha : inside a = true) (hb : inside b = false) (z : ℂ) :
+    hermitianResponse inside eig (pairDirections a b z) =
+      (signedGap inside eig a b)⁻¹ • pairDirections a b z := by
+  apply Subtype.ext
+  ext i j
+  have hab : a ≠ b := by
+    intro h
+    subst b
+    simp [ha] at hb
+  have hcross : inside a ≠ inside b := by simp [ha, hb]
+  have hswap : signedGap inside eig b a = signedGap inside eig a b :=
+    signedGap_swap inside eig hcross
+  by_cases habij : a = i ∧ b = j
+  · rcases habij with ⟨hi, hj⟩
+    subst i
+    subst j
+    simp [hermitianResponse, pairDirections, response, pairTangent,
+      Matrix.single_apply, ha, hb, hab, Ne.symm hab, signedGap,
+      div_eq_mul_inv, mul_comm]
+  · by_cases hbaij : b = i ∧ a = j
+    · rcases hbaij with ⟨hi, hj⟩
+      subst i
+      subst j
+      simp [hermitianResponse, pairDirections, response, pairTangent,
+        Matrix.single_apply, ha, hb, hab, Ne.symm hab, hswap,
+        div_eq_mul_inv, mul_comm]
+    · simp [hermitianResponse, pairDirections, response, pairTangent,
+        Matrix.single_apply, habij, hbaij]
+
+/-- The selected diagonal block is idempotent. -/
+theorem blockProjector_idempotent (inside : n → Bool) :
+    blockProjector inside * blockProjector inside = blockProjector inside := by
+  simp only [blockProjector, diagonal_mul_diagonal]
+  congr 1
+  funext i
+  cases hi : inside i <;> simp [hi]
+
+/-- The selected diagonal block is an orthogonal (Hermitian) projector. -/
+theorem blockProjector_isHermitian (inside : n → Bool) :
+    (blockProjector inside).IsHermitian := by
+  rw [Matrix.IsHermitian, blockProjector, diagonal_conjTranspose]
+  congr 1
+  funext i
+  cases hi : inside i <;> simp [hi]
+
+/-- The real diagonal base operator is Hermitian. -/
+theorem baseOperator_isHermitian (eig : n → ℝ) :
+    (baseOperator eig).IsHermitian := by
+  rw [Matrix.IsHermitian, baseOperator, diagonal_conjTranspose]
+  simp
+
+/-- The kernel is exactly the two diagonal blocks: every nonzero singular
+value is therefore accounted for by `hermitianResponse_pairDirections`. -/
+theorem response_eq_zero_iff (inside : n → Bool) (eig : n → ℝ)
+    (H : Matrix n n ℂ)
+    (hgap : ∀ i j, inside i ≠ inside j → eig i ≠ eig j) :
+    response inside eig H = 0 ↔
+      ∀ i j, inside i ≠ inside j → H i j = 0 := by
+  constructor
+  · intro h i j hij
+    have hentry : H i j / (signedGap inside eig i j : ℂ) = 0 := by
+      have h' := congrFun (congrFun h i) j
+      simpa [response, hij] using h'
+    have hd : (signedGap inside eig i j : ℂ) ≠ 0 := by
+      exact Complex.ofReal_ne_zero.mpr (signedGap_ne_zero inside eig hgap hij)
+    exact (div_eq_zero_iff.mp hentry).resolve_right hd
+  · intro h
+    ext i j
+    by_cases hij : inside i = inside j
+    · simp [response, hij]
+    · simp [response, hij, h i j hij]
+
+/-- The response satisfies the differential of `Π² = Π`. -/
+theorem projector_tangent_equation (inside : n → Bool) (eig : n → ℝ)
+    (H : Matrix n n ℂ) :
+    blockProjector inside * response inside eig H +
+      response inside eig H * blockProjector inside = response inside eig H := by
+  ext i j
+  cases hi : inside i <;> cases hj : inside j <;>
+    simp [blockProjector, response, Matrix.diagonal_mul, Matrix.mul_diagonal, hi, hj]
+
+/-- Differentiating `Π Σ = Σ Π` gives the displayed reciprocal-gap entry.
+This is the Sylvester/commutator form of the block formula. -/
+theorem response_commutator_equation (inside : n → Bool) (eig : n → ℝ)
+    (H : Matrix n n ℂ)
+    (hgap : ∀ i j, inside i ≠ inside j → eig i ≠ eig j) :
+    response inside eig H * baseOperator eig - baseOperator eig * response inside eig H =
+      H * blockProjector inside - blockProjector inside * H := by
+  ext i j
+  cases hi : inside i <;> cases hj : inside j
+  · simp [blockProjector, baseOperator, response,
+      Matrix.diagonal_mul, Matrix.mul_diagonal, hi, hj]
+  · have hcross : inside i ≠ inside j := by simp [hi, hj]
+    have hd : eig j - eig i ≠ 0 := sub_ne_zero.mpr (hgap j i (by simp [hi, hj]))
+    have hdC : ((eig j - eig i : ℝ) : ℂ) ≠ 0 := Complex.ofReal_ne_zero.mpr hd
+    simp only [Matrix.sub_apply, Matrix.mul_diagonal, Matrix.diagonal_mul,
+      baseOperator, blockProjector, response, hi, hj, Bool.false_eq_true,
+      reduceIte, Matrix.diagonal_apply, Pi.zero_apply, Bool.true_eq_false,
+      ↓reduceIte, signedGap]
+    field_simp [hdC]
+    rw [Complex.ofReal_sub]
+    ring
+  · have hcross : inside i ≠ inside j := by simp [hi, hj]
+    have hd : eig i - eig j ≠ 0 := sub_ne_zero.mpr (hgap i j hcross)
+    have hdC : ((eig i - eig j : ℝ) : ℂ) ≠ 0 := Complex.ofReal_ne_zero.mpr hd
+    simp only [Matrix.sub_apply, Matrix.mul_diagonal, Matrix.diagonal_mul,
+      baseOperator, blockProjector, response, hi, hj, Bool.false_eq_true,
+      reduceIte, Matrix.diagonal_apply, Pi.zero_apply, Bool.true_eq_false,
+      ↓reduceIte, signedGap]
+    field_simp [hdC]
+    rw [Complex.ofReal_sub]
+    ring
+  · simp [blockProjector, baseOperator, response,
+      Matrix.diagonal_mul, Matrix.mul_diagonal, hi, hj]
+
+/-- Frobenius norm squared, with the finite index sets completely explicit. -/
+def frobSq (H : Matrix n n ℂ) : ℝ := ∑ i, ∑ j, ‖H i j‖ ^ 2
+
+/-- The Frobenius norm itself. -/
+def frobNorm (H : Matrix n n ℂ) : ℝ := Real.sqrt (frobSq H)
+
+/-- Real scalar multiplication scales squared Frobenius energy by its square. -/
+theorem frobSq_real_smul (r : ℝ) (H : Matrix n n ℂ) :
+    frobSq (r • H) = r ^ 2 * frobSq H := by
+  simp [frobSq, norm_smul, Real.norm_eq_abs, mul_pow, sq_abs, Finset.mul_sum]
+
+/-- Real scalar multiplication has the expected Frobenius norm. -/
+theorem frobNorm_real_smul (r : ℝ) (H : Matrix n n ℂ) :
+    frobNorm (r • H) = |r| * frobNorm H := by
+  unfold frobNorm
+  rw [frobSq_real_smul, Real.sqrt_mul (sq_nonneg r), Real.sqrt_sq_eq_abs]
+
+/-- On the whole complex parameter family at one inside/outside pair, the
+singular value is exactly `|λinside - λoutside|⁻¹`.  Together with
+`pairDirections_injective`, this records the multiplicity two. -/
+theorem response_pairDirections_frobNorm (inside : n → Bool) (eig : n → ℝ)
+    {a b : n} (ha : inside a = true) (hb : inside b = false) (z : ℂ) :
+    frobNorm (response inside eig (pairTangent a b z)) =
+      |signedGap inside eig a b|⁻¹ * frobNorm (pairTangent a b z) := by
+  have h := congrArg (fun K : hermitianSubmodule n => K.1)
+    (hermitianResponse_pairDirections inside eig ha hb z)
+  change response inside eig (pairTangent a b z) =
+    (signedGap inside eig a b)⁻¹ • pairTangent a b z at h
+  rw [h, frobNorm_real_smul, abs_inv]
+
+theorem frobSq_nonneg (H : Matrix n n ℂ) : 0 ≤ frobSq H := by
+  unfold frobSq
+  positivity
+
+/-- Exact entrywise weights of the response Gram operator. -/
+theorem norm_response_apply_sq (inside : n → Bool) (eig : n → ℝ)
+    (H : Matrix n n ℂ) (i j : n) :
+    ‖response inside eig H i j‖ ^ 2 =
+      if inside i = inside j then 0
+      else ‖H i j‖ ^ 2 / (signedGap inside eig i j) ^ 2 := by
+  by_cases hij : inside i = inside j
+  · simp [response, hij]
+  · simp [response, hij, norm_div, div_pow, sq_abs]
+
+/-- The response has no diagonal-block contribution and has weight
+`|λinside - λoutside|⁻²` on every off-block entry. -/
+theorem frobSq_response (inside : n → Bool) (eig : n → ℝ)
+    (H : Matrix n n ℂ) :
+    frobSq (response inside eig H) = ∑ i, ∑ j,
+      if inside i = inside j then 0
+      else ‖H i j‖ ^ 2 / (signedGap inside eig i j) ^ 2 := by
+  unfold frobSq
+  congr 1
+  funext i
+  congr 1
+  funext j
+  exact norm_response_apply_sq inside eig H i j
+
+/-- The exact gap stiffness inequality, squared. -/
+theorem frobSq_response_le (inside : n → Bool) (eig : n → ℝ)
+    (H : Matrix n n ℂ) (gap : ℝ) (hgap : 0 < gap)
+    (hwidth : ∀ i j, inside i ≠ inside j → gap ≤ |signedGap inside eig i j|) :
+    frobSq (response inside eig H) ≤ frobSq H / gap ^ 2 := by
+  rw [frobSq_response]
+  calc
+    (∑ i, ∑ j, if inside i = inside j then 0
+        else ‖H i j‖ ^ 2 / (signedGap inside eig i j) ^ 2)
+        ≤ ∑ i, ∑ j, ‖H i j‖ ^ 2 / gap ^ 2 := by
+      apply Finset.sum_le_sum
+      intro i hi
+      apply Finset.sum_le_sum
+      intro j hj
+      by_cases hij : inside i = inside j
+      · simp [hij, div_nonneg (sq_nonneg ‖H i j‖) (sq_nonneg gap)]
+      · simp only [hij, if_false]
+        have hd : 0 < |signedGap inside eig i j| :=
+          lt_of_lt_of_le hgap (hwidth i j hij)
+        have hsq : gap ^ 2 ≤ |signedGap inside eig i j| ^ 2 := by
+          gcongr
+          exact hwidth i j hij
+        rw [show (signedGap inside eig i j) ^ 2 =
+          |signedGap inside eig i j| ^ 2 by exact (sq_abs _).symm]
+        gcongr
+    _ = frobSq H / gap ^ 2 := by
+      simp [frobSq, Finset.sum_div]
+
+/-- In Frobenius norm, the algebraic differential has stiffness at most the
+reciprocal of the minimum spectral gap. -/
+theorem frobNorm_response_le (inside : n → Bool) (eig : n → ℝ)
+    (H : Matrix n n ℂ) (gap : ℝ) (hgap : 0 < gap)
+    (hwidth : ∀ i j, inside i ≠ inside j → gap ≤ |signedGap inside eig i j|) :
+    frobNorm (response inside eig H) ≤ frobNorm H / gap := by
+  unfold frobNorm
+  calc
+    Real.sqrt (frobSq (response inside eig H))
+        ≤ Real.sqrt (frobSq H / gap ^ 2) :=
+      Real.sqrt_le_sqrt (frobSq_response_le inside eig H gap hgap hwidth)
+    _ = Real.sqrt (frobSq H) / gap := by
+      rw [Real.sqrt_div (frobSq_nonneg H), Real.sqrt_sq hgap.le]
+
+/-! ## A non-vacuous two-level witness -/
+
+/-- One eigenvalue is inside and one outside. -/
+def witnessInside : Fin 2 → Bool := ![true, false]
+
+/-- The separated eigenvalues `1` and `-1`, with gap `2`. -/
+def witnessEig : Fin 2 → ℝ := ![1, -1]
+
+/-- The real Pauli-`x` off-block direction. -/
+def witnessReal : Matrix (Fin 2) (Fin 2) ℂ := !![0, 1; 1, 0]
+
+/-- The imaginary Pauli-`y` off-block direction (up to sign convention). -/
+def witnessImag : Matrix (Fin 2) (Fin 2) ℂ := !![0, Complex.I; -Complex.I, 0]
+
+/-- A diagonal-block perturbation, which lies in the response kernel. -/
+def witnessDiagonal : Matrix (Fin 2) (Fin 2) ℂ := !![1, 0; 0, -1]
+
+theorem witness_inside_zero : witnessInside 0 = true := by rfl
+theorem witness_inside_one : witnessInside 1 = false := by rfl
+
+/-- The real direction has signed eigenvalue `1/2`. -/
+theorem response_witnessReal :
+    response witnessInside witnessEig witnessReal = (2 : ℝ)⁻¹ • witnessReal := by
+  ext i j
+  fin_cases i <;> fin_cases j <;>
+    norm_num [response, signedGap, witnessInside, witnessEig, witnessReal]
+
+/-- The imaginary direction has the same signed eigenvalue `1/2`; its singular
+value is therefore also `1/|1 - (-1)| = 1/2`. -/
+theorem response_witnessImag :
+    response witnessInside witnessEig witnessImag = (2 : ℝ)⁻¹ • witnessImag := by
+  ext i j
+  fin_cases i <;> fin_cases j <;>
+    norm_num [response, signedGap, witnessInside, witnessEig, witnessImag] <;> ring
+
+/-- Every diagonal-block direction has singular value zero. -/
+theorem response_witnessDiagonal : response witnessInside witnessEig witnessDiagonal = 0 := by
+  ext i j
+  fin_cases i <;> fin_cases j <;>
+    norm_num [response, signedGap, witnessInside, witnessEig, witnessDiagonal]
+
+/-- The concrete perturbation is nonzero. -/
+theorem witnessReal_ne_zero : witnessReal ≠ 0 := by
+  intro h
+  have h01 := congrFun (congrFun h 0) 1
+  norm_num [witnessReal] at h01
+
+/-- All the example hypotheses of the general kernel are satisfied with gap 2. -/
+theorem witness_gap_two {i j : Fin 2} (hij : witnessInside i ≠ witnessInside j) :
+    |signedGap witnessInside witnessEig i j| = 2 := by
+  fin_cases i <;> fin_cases j <;> simp_all [witnessInside, witnessEig, signedGap] <;> norm_num
+
+#print axioms RelationalAtlas.B72.signedGap_ne_zero
+#print axioms RelationalAtlas.B72.signedGap_swap
+#print axioms RelationalAtlas.B72.response_apply_of_same
+#print axioms RelationalAtlas.B72.response_isHermitian
+#print axioms RelationalAtlas.B72.pairTangent_isHermitian
+#print axioms RelationalAtlas.B72.pairDirections_injective
+#print axioms RelationalAtlas.B72.pairDirections_one_ne_zero
+#print axioms RelationalAtlas.B72.hermitianResponse_pairDirections
+#print axioms RelationalAtlas.B72.blockProjector_idempotent
+#print axioms RelationalAtlas.B72.blockProjector_isHermitian
+#print axioms RelationalAtlas.B72.baseOperator_isHermitian
+#print axioms RelationalAtlas.B72.response_eq_zero_iff
+#print axioms RelationalAtlas.B72.projector_tangent_equation
+#print axioms RelationalAtlas.B72.response_commutator_equation
+#print axioms RelationalAtlas.B72.frobSq_real_smul
+#print axioms RelationalAtlas.B72.frobNorm_real_smul
+#print axioms RelationalAtlas.B72.response_pairDirections_frobNorm
+#print axioms RelationalAtlas.B72.frobSq_nonneg
+#print axioms RelationalAtlas.B72.norm_response_apply_sq
+#print axioms RelationalAtlas.B72.frobSq_response
+#print axioms RelationalAtlas.B72.frobSq_response_le
+#print axioms RelationalAtlas.B72.frobNorm_response_le
+#print axioms RelationalAtlas.B72.witness_inside_zero
+#print axioms RelationalAtlas.B72.witness_inside_one
+#print axioms RelationalAtlas.B72.response_witnessReal
+#print axioms RelationalAtlas.B72.response_witnessImag
+#print axioms RelationalAtlas.B72.response_witnessDiagonal
+#print axioms RelationalAtlas.B72.witnessReal_ne_zero
+#print axioms RelationalAtlas.B72.witness_gap_two
+
+end RelationalAtlas.B72
+
+/-! ## B186 — the sector flip is a quarter turn
+
+Integrated from `.ultramath/smwtkiqjq/m7/B186.lean`.
+-/
+/-
+B186 — the sector flip is a quarter turn, and it swaps the two halves.
+
+This is a self-contained finite algebraic kernel.  For square complex matrices
+we assume exactly the card's grading hypotheses `Γ * Γ = 1`, `Γᴴ = Γ`,
+`Γ * A = -(A * Γ)` (crossing), and `Γ * B = B * Γ` (inside).  Here `X = A + B`
+in the trace decomposition.
+
+The explicit unitary is `U = q • (1 - iΓ)` with `q = √2/2`.  Under `Γ² = 1`
+this is the algebraic evaluation of `exp (-iπΓ/4)`, but this file does NOT prove
+that matrix-exponential identity.  Instead, quarter-turn behaviour is proved
+independently for the concrete real matrix `J` by its powers and its action on
+vectors.  We do not formalize existence of a common grading for a whole family,
+nor the card's physical/spectral interpretation.
+
+Definitions do not need axiom audits; every theorem below has `#print axioms`.
+-/
+
+set_option autoImplicit false
+noncomputable section
+
+open Matrix
+
+namespace RelationalAtlas.B186
+variable {n : Type*} [Fintype n] [DecidableEq n]
+
+/-- A grading conjugates a crossing matrix to its negative. -/
+theorem crossing_conj (Γ A : Matrix n n ℂ) (hΓ : Γ * Γ = 1)
+    (hA : Γ * A = -(A * Γ)) : Γ * A * Γ = -A := by
+  calc
+    Γ * A * Γ = (-(A * Γ)) * Γ := by rw [hA]
+    _ = -(A * (Γ * Γ)) := by rw [neg_mul, mul_assoc]
+    _ = -A := by rw [hΓ]; simp
+
+/-- A grading preserves an inside matrix under conjugation. -/
+theorem inside_conj (Γ B : Matrix n n ℂ) (hΓ : Γ * Γ = 1)
+    (hB : Γ * B = B * Γ) : Γ * B * Γ = B := by
+  calc
+    Γ * B * Γ = (B * Γ) * Γ := by rw [hB]
+    _ = B * (Γ * Γ) := by rw [mul_assoc]
+    _ = B := by rw [hΓ, mul_one]
+
+/-- **B186 (quarter turn on crossing squares).** -/
+theorem grading_crossing_sq (Γ A : Matrix n n ℂ) (hΓ : Γ * Γ = 1)
+    (hA : Γ * A = -(A * Γ)) : (Γ * A) * (Γ * A) = -(A * A) := by
+  have hA' : A * Γ = -(Γ * A) := by rw [hA]; simp
+  calc
+    (Γ * A) * (Γ * A) = Γ * (A * Γ) * A := by simp only [mul_assoc]
+    _ = Γ * (-(Γ * A)) * A := by rw [hA']
+    _ = -((Γ * Γ) * (A * A)) := by simp only [mul_assoc, neg_mul, mul_neg]
+    _ = -(A * A) := by rw [hΓ, one_mul]
+
+/-- Crossing and inside parts are trace-orthogonal; this is proved from the
+grading relations, not assumed separately. -/
+theorem trace_crossing_inside (Γ A B : Matrix n n ℂ) (hΓ : Γ * Γ = 1)
+    (hA : Γ * A = -(A * Γ)) (hB : Γ * B = B * Γ) :
+    Matrix.trace (A * B) = 0 := by
+  have hconj : Γ * (A * B) * Γ = -(A * B) := by
+    calc
+      Γ * (A * B) * Γ = (Γ * A) * (B * Γ) := by simp only [mul_assoc]
+      _ = (-(A * Γ)) * (Γ * B) := by
+        have hB' : B * Γ = Γ * B := hB.symm
+        rw [hA, hB']
+      _ = -((A * B) * (Γ * Γ)) := by
+        rw [hB]
+        simp only [mul_assoc, neg_mul]
+        rw [← mul_assoc Γ B Γ, hB, mul_assoc]
+      _ = -(A * B) := by rw [hΓ]; simp
+  have htr : Matrix.trace (Γ * (A * B) * Γ) = Matrix.trace (A * B) := by
+    calc
+      Matrix.trace (Γ * (A * B) * Γ) = Matrix.trace (Γ * ((A * B) * Γ)) := by rw [mul_assoc]
+      _ = Matrix.trace (((A * B) * Γ) * Γ) := Matrix.trace_mul_comm _ _
+      _ = Matrix.trace ((A * B) * (Γ * Γ)) := by rw [mul_assoc]
+      _ = Matrix.trace (A * B) := by rw [hΓ, mul_one]
+  rw [hconj, Matrix.trace_neg] at htr
+  exact CharZero.eq_neg_self_iff.mp htr.symm
+
+/-- **B186 (trace defect).** For `X = A + B`, the ordinary and grading-twisted
+trace forms differ from twice the inside contribution by exactly zero. -/
+theorem trace_sector_decomposition (Γ A B : Matrix n n ℂ) (hΓ : Γ * Γ = 1)
+    (hA : Γ * A = -(A * Γ)) (hB : Γ * B = B * Γ) :
+    Matrix.trace ((A + B) * (A + B)) +
+      Matrix.trace ((Γ * (A + B)) * (Γ * (A + B))) = 2 * Matrix.trace (B * B) := by
+  have hAA : (Γ * A) * (Γ * A) = -(A * A) := grading_crossing_sq Γ A hΓ hA
+  have hBB : (Γ * B) * (Γ * B) = B * B := by
+    calc
+      (Γ * B) * (Γ * B) = (Γ * B * Γ) * B := by simp only [mul_assoc]
+      _ = B * B := by rw [inside_conj Γ B hΓ hB]
+  have hAB : (Γ * A) * (Γ * B) = -(A * B) := by
+    calc
+      (Γ * A) * (Γ * B) = (Γ * A * Γ) * B := by simp only [mul_assoc]
+      _ = -(A * B) := by rw [crossing_conj Γ A hΓ hA]; simp
+  have hBA : (Γ * B) * (Γ * A) = B * A := by
+    calc
+      (Γ * B) * (Γ * A) = (Γ * B * Γ) * A := by simp only [mul_assoc]
+      _ = B * A := by rw [inside_conj Γ B hΓ hB]
+  have htrAB : Matrix.trace (A * B) = 0 := trace_crossing_inside Γ A B hΓ hA hB
+  have htrBA : Matrix.trace (B * A) = 0 := by
+    rw [← Matrix.trace_mul_comm A B, htrAB]
+  have hX : (A + B) * (A + B) = A * A + A * B + B * A + B * B := by
+    simp only [add_mul, mul_add]
+    abel
+  have hGX : (Γ * (A + B)) * (Γ * (A + B)) =
+      -(A * A) + -(A * B) + B * A + B * B := by
+    calc
+      (Γ * (A + B)) * (Γ * (A + B)) =
+          (Γ * A) * (Γ * A) + (Γ * A) * (Γ * B) +
+            (Γ * B) * (Γ * A) + (Γ * B) * (Γ * B) := by
+        simp only [add_mul, mul_add]
+        abel
+      _ = -(A * A) + -(A * B) + B * A + B * B := by rw [hAA, hAB, hBA, hBB]
+  rw [hX, hGX]
+  simp only [Matrix.trace_add, Matrix.trace_neg]
+  rw [htrAB, htrBA]
+  ring
+
+
+
+/-- The real scalar `1/√2`, viewed as a complex number. -/
+def quarterScale : ℂ := ((Real.sqrt 2 / 2 : ℝ) : ℂ)
+
+/-- Its square is one half. -/
+theorem quarterScale_sq : quarterScale * quarterScale = 1 / 2 := by
+  have hR : (Real.sqrt 2 / 2) * (Real.sqrt 2 / 2) = (1 / 2 : ℝ) := by
+    have h := Real.sq_sqrt (show (0 : ℝ) ≤ 2 by norm_num)
+    nlinarith
+  have hC := congrArg (fun r : ℝ => (r : ℂ)) hR
+  simpa [quarterScale] using hC
+
+/-- The algebraic evaluation of the quarter-turn frame on a grading:
+`q • (1 - iΓ)`, where `q = 1/√2`. -/
+def quarterUnitary (Γ : Matrix n n ℂ) : Matrix n n ℂ :=
+  quarterScale • (1 - Complex.I • Γ)
+
+omit [Fintype n] in
+/-- For a Hermitian grading, the adjoint changes the sign of the phase. -/
+theorem quarterUnitary_star (Γ : Matrix n n ℂ) (hΓstar : Γᴴ = Γ) :
+    (quarterUnitary Γ)ᴴ = quarterScale • (1 + Complex.I • Γ) := by
+  simp [quarterUnitary, hΓstar, quarterScale, sub_eq_add_neg,
+    smul_add]
+
+
+/-- The explicit frame matrix is unitary when `Γ² = I` and `Γ` is Hermitian. -/
+theorem quarterUnitary_isUnitary (Γ : Matrix n n ℂ) (hΓ : Γ * Γ = 1)
+    (hΓstar : Γᴴ = Γ) :
+    quarterUnitary Γ * (quarterUnitary Γ)ᴴ = 1 ∧
+      (quarterUnitary Γ)ᴴ * quarterUnitary Γ = 1 := by
+  have hforward : (1 - Complex.I • Γ) * (1 + Complex.I • Γ) = (2 : ℂ) • 1 := by
+    simp only [sub_mul, one_mul, Matrix.smul_mul, mul_add, mul_one,
+      Matrix.mul_smul, smul_smul, Complex.I_mul_I, hΓ]
+    module
+  have hbackward : (1 + Complex.I • Γ) * (1 - Complex.I • Γ) = (2 : ℂ) • 1 := by
+    calc
+      (1 + Complex.I • Γ) * (1 - Complex.I • Γ) =
+          1 - (Complex.I * Complex.I) • (Γ * Γ) := by
+        simp only [mul_sub, add_mul, one_mul, mul_one, Matrix.smul_mul, Matrix.mul_smul,
+          smul_smul]
+        module
+      _ = (2 : ℂ) • 1 := by rw [Complex.I_mul_I, hΓ]; module
+  rw [quarterUnitary_star Γ hΓstar]
+  constructor
+  · simp only [quarterUnitary, Matrix.smul_mul, Matrix.mul_smul, smul_smul]
+    rw [hforward, quarterScale_sq]
+    module
+  · simp only [quarterUnitary, Matrix.smul_mul, Matrix.mul_smul, smul_smul]
+    rw [hbackward, quarterScale_sq]
+    module
+
+omit [DecidableEq n] in
+/-- Multiplication by a Hermitian grading turns a Hermitian crossing matrix
+into a skew-Hermitian one. -/
+theorem grading_mul_skew_of_hermitian (Γ A : Matrix n n ℂ)
+    (hΓstar : Γᴴ = Γ) (hA : Γ * A = -(A * Γ)) (hAherm : Aᴴ = A) :
+    (Γ * A)ᴴ = -(Γ * A) := by
+  rw [Matrix.conjTranspose_mul, hΓstar, hAherm]
+  rw [hA]
+  simp
+
+omit [DecidableEq n] in
+/-- It turns a skew-Hermitian crossing matrix into a Hermitian one. -/
+theorem grading_mul_hermitian_of_skew (Γ A : Matrix n n ℂ)
+    (hΓstar : Γᴴ = Γ) (hA : Γ * A = -(A * Γ)) (hAskew : Aᴴ = -A) :
+    (Γ * A)ᴴ = Γ * A := by
+  rw [Matrix.conjTranspose_mul, hΓstar, hAskew, neg_mul]
+  exact hA.symm
+
+/-- **B186 (quarter-turn conjugation).**  If `Γ² = I`, `Γ` is Hermitian,
+and `A` crosses the sectors, then change of frame by `U` followed by
+multiplication by `i` is exactly left multiplication by `Γ`. -/
+theorem sector_flip_quarter (Γ A : Matrix n n ℂ) (hΓ : Γ * Γ = 1)
+    (hΓstar : Γᴴ = Γ) (hA : Γ * A = -(A * Γ)) :
+    Complex.I • (quarterUnitary Γ * A * (quarterUnitary Γ)ᴴ) = Γ * A := by
+  have hU : quarterUnitary Γ * A * (quarterUnitary Γ)ᴴ =
+      (quarterScale * quarterScale) •
+        ((1 - Complex.I • Γ) * A * (1 + Complex.I • Γ)) := by
+    rw [quarterUnitary_star Γ hΓstar]
+    simp only [quarterUnitary, Matrix.smul_mul, Matrix.mul_smul, smul_smul]
+  have hbracket : (1 - Complex.I • Γ) * A * (1 + Complex.I • Γ) =
+      (2 * Complex.I) • (A * Γ) := by
+    calc
+      (1 - Complex.I • Γ) * A * (1 + Complex.I • Γ) =
+          A + Complex.I • (A * Γ) - Complex.I • (Γ * A) -
+            (Complex.I * Complex.I) • (Γ * A * Γ) := by
+        simp only [sub_mul, one_mul, Matrix.smul_mul, mul_add, mul_one,
+          Matrix.mul_smul, smul_smul]
+        module
+      _ = (2 * Complex.I) • (A * Γ) := by
+        rw [crossing_conj Γ A hΓ hA, hA, Complex.I_mul_I]
+        module
+  rw [hU, hbracket]
+  simp only [smul_smul, quarterScale_sq]
+  rw [show Complex.I * (1 / 2 * (2 * Complex.I)) = Complex.I * Complex.I by ring,
+    Complex.I_mul_I]
+  simpa using hA.symm
+
+/-- The real quarter-turn on two coordinates. -/
+def J : Matrix (Fin 2) (Fin 2) ℝ := !![0, -1; 1, 0]
+
+/-- The projector onto the first diagonal sector. -/
+def sectorZero : Matrix (Fin 2) (Fin 2) ℝ := !![1, 0; 0, 0]
+
+/-- The projector onto the second diagonal sector. -/
+def sectorOne : Matrix (Fin 2) (Fin 2) ℝ := !![0, 0; 0, 1]
+
+/-- `J` squares to minus the identity, not to the identity. -/
+theorem J_sq : J * J = -1 := by
+  ext i j
+  fin_cases i <;> fin_cases j <;>
+    norm_num [J, Matrix.mul_apply, Fin.sum_univ_two, Matrix.one_apply]
+
+/-- Four applications of `J` give the identity. -/
+theorem J_pow_four : J ^ 4 = 1 := by
+  rw [show 4 = 2 + 2 by norm_num, pow_add, pow_two, J_sq]
+  simp
+
+/-- Three applications give the inverse quarter-turn. -/
+theorem J_pow_three : J ^ 3 = -J := by
+  rw [show 3 = 2 + 1 by norm_num, pow_add, pow_two, pow_one, J_sq]
+  simp
+
+/-- Adding four to an exponent does not change the corresponding power. -/
+theorem J_pow_add_four (k : ℕ) : J ^ (k + 4) = J ^ k := by
+  rw [pow_add, J_pow_four, mul_one]
+
+/-- `J` really is the quarter-turn `(x,y) ↦ (-y,x)`. -/
+theorem J_mulVec (x y : ℝ) : J *ᵥ ![x, y] = ![-y, x] := by
+  funext i
+  fin_cases i <;> norm_num [J, Matrix.mulVec, dotProduct, Fin.sum_univ_two]
+
+/-- A concrete non-vacuous instance: the first coordinate axis is sent to the second. -/
+theorem J_basis_vector : J *ᵥ ![1, 0] = ![0, 1] := by
+  rw [J_mulVec]
+  norm_num
+
+/-- Conjugation by the quarter-turn exchanges the two diagonal sector projectors. -/
+theorem J_swaps_sector_projectors :
+    J * sectorZero * J.transpose = sectorOne ∧
+      J * sectorOne * J.transpose = sectorZero := by
+  constructor <;>
+    ext i j <;>
+    fin_cases i <;> fin_cases j <;>
+    norm_num [J, sectorZero, sectorOne, Matrix.mul_apply, Fin.sum_univ_two,
+      Matrix.transpose_apply]
+
+#print axioms RelationalAtlas.B186.quarterScale_sq
+#print axioms RelationalAtlas.B186.quarterUnitary_star
+#print axioms RelationalAtlas.B186.quarterUnitary_isUnitary
+#print axioms RelationalAtlas.B186.grading_mul_skew_of_hermitian
+#print axioms RelationalAtlas.B186.grading_mul_hermitian_of_skew
+#print axioms RelationalAtlas.B186.sector_flip_quarter
+#print axioms RelationalAtlas.B186.J_sq
+#print axioms RelationalAtlas.B186.J_pow_four
+#print axioms RelationalAtlas.B186.J_pow_three
+#print axioms RelationalAtlas.B186.J_pow_add_four
+#print axioms RelationalAtlas.B186.J_mulVec
+#print axioms RelationalAtlas.B186.J_basis_vector
+#print axioms RelationalAtlas.B186.J_swaps_sector_projectors
+#print axioms RelationalAtlas.B186.crossing_conj
+#print axioms RelationalAtlas.B186.inside_conj
+#print axioms RelationalAtlas.B186.grading_crossing_sq
+#print axioms RelationalAtlas.B186.trace_crossing_inside
+#print axioms RelationalAtlas.B186.trace_sector_decomposition
+
+end RelationalAtlas.B186
+
+/-! ## B44 — five sectors and the lift of a defective block
+
+Integrated from `.ultramath/smwtkiqjq/m2/B44.lean`.
+-/
+/-
+B44: the five-dimensional symmetric-traceless sector and the lower bound
+transferred from a block on an invariant subspace.
+
+This file proves finite algebra only.  In particular, five is the dimension of
+the chosen 2+2+1 profile, not a lower bound for transient growth.
+-/
+
+noncomputable section
+
+open Matrix
+open scoped Matrix
+
+namespace AtlasB44
+
+/-- Real symmetric matrices of trace zero, as a linear subspace. -/
+def symmetricTraceless (n : ℕ) : Submodule ℝ (Matrix (Fin n) (Fin n) ℝ) where
+  carrier := {A | A.IsSymm ∧ A.trace = 0}
+  zero_mem' := by simp [Matrix.IsSymm]
+  add_mem' := by
+    rintro A B ⟨hAs, hAt⟩ ⟨hBs, hBt⟩
+    exact ⟨hAs.add hBs, by simp [Matrix.trace_add, hAt, hBt]⟩
+  smul_mem' := by
+    rintro c A ⟨hAs, hAt⟩
+    exact ⟨hAs.smul c, by simp [Matrix.trace_smul, hAt]⟩
+
+/-- The five independent entries of a real symmetric traceless `3 × 3` matrix.
+The first two coordinates are the diagonal (shape) modes, the next two are the
+first two off-diagonal (shear) modes, and the last is the remaining interface
+coordinate. -/
+def sectorMatrix (x : Fin 5 → ℝ) : Matrix (Fin 3) (Fin 3) ℝ :=
+  !![x 0, x 2, x 3;
+     x 2, x 1, x 4;
+     x 3, x 4, -x 0 - x 1]
+
+/-- Coordinates give a linear parametrization of the symmetric traceless sector. -/
+def sectorParam : (Fin 5 → ℝ) →ₗ[ℝ] symmetricTraceless 3 where
+  toFun x := ⟨sectorMatrix x, by
+    constructor
+    · ext i j
+      fin_cases i <;> fin_cases j <;> simp [sectorMatrix]
+    · simp [sectorMatrix, Matrix.trace_fin_three]⟩
+  map_add' x y := by
+    apply Subtype.ext
+    ext i j
+    fin_cases i <;> fin_cases j <;> simp [sectorMatrix] <;> ring
+  map_smul' c x := by
+    apply Subtype.ext
+    ext i j
+    fin_cases i <;> fin_cases j <;> simp [sectorMatrix] <;> ring
+
+/-- Read the five free entries back from a symmetric traceless matrix. -/
+def sectorCoordinates : symmetricTraceless 3 →ₗ[ℝ] (Fin 5 → ℝ) where
+  toFun A := ![A.1 0 0, A.1 1 1, A.1 0 1, A.1 0 2, A.1 1 2]
+  map_add' A B := by
+    funext i
+    fin_cases i <;> simp
+  map_smul' c A := by
+    funext i
+    fin_cases i <;> simp
+
+/-- The parametrization and coordinate read-off are inverse linear maps. -/
+def sectorEquiv : (Fin 5 → ℝ) ≃ₗ[ℝ] symmetricTraceless 3 :=
+  { sectorParam with
+    invFun := sectorCoordinates
+    left_inv := by
+      intro x
+      funext i
+      fin_cases i <;> simp [sectorCoordinates, sectorParam, sectorMatrix]
+    right_inv := by
+      rintro ⟨A, hAs, hAt⟩
+      apply Subtype.ext
+      ext i j
+      have hs01 : A 1 0 = A 0 1 := by
+        have := congr_fun (congr_fun hAs 0) 1
+        simpa only [Matrix.transpose_apply] using this
+      have hs02 : A 2 0 = A 0 2 := by
+        have := congr_fun (congr_fun hAs 0) 2
+        simpa only [Matrix.transpose_apply] using this
+      have hs12 : A 2 1 = A 1 2 := by
+        have := congr_fun (congr_fun hAs 1) 2
+        simpa only [Matrix.transpose_apply] using this
+      have ht : A 2 2 = -A 0 0 - A 1 1 := by
+        simp [Matrix.trace_fin_three] at hAt
+        linarith
+      fin_cases i <;> fin_cases j <;>
+        simp [sectorCoordinates, sectorParam, sectorMatrix, hs01, hs02, hs12, ht] }
+
+#print axioms sectorEquiv
+
+/-- **B44, sector count.**  The real symmetric traceless sector in three
+ambient dimensions has dimension `2 + 2 + 1 = 5`. -/
+theorem finrank_symmetricTraceless_three :
+    Module.finrank ℝ (symmetricTraceless 3) = 5 := by
+  rw [← sectorEquiv.finrank_eq]
+  simp
+
+#print axioms finrank_symmetricTraceless_three
+
+section BlockGrowth
+
+variable {E V : Type*}
+variable [NormedAddCommGroup E] [NormedSpace ℝ E]
+variable [NormedAddCommGroup V] [NormedSpace ℝ V]
+
+/-- An isometrically embedded block interlaces with every iterate of the
+ambient operator. -/
+theorem intertwines_pow (T : E →L[ℝ] E) (S : V →L[ℝ] V) (ι : V →ₗᵢ[ℝ] E)
+    (h : ∀ x, T (ι x) = ι (S x)) (n : ℕ) (x : V) :
+    (T ^ n) (ι x) = ι ((S ^ n) x) := by
+  induction n generalizing x with
+  | zero => simp
+  | succ n ih =>
+      simp only [pow_succ, mul_apply_eq_comp]
+      rw [h, ih]
+
+#print axioms intertwines_pow
+
+/-- **B44, block-to-ambient growth.**  If `ι` is a linear isometry and
+`T ∘ ι = ι ∘ S`, every power of the block has operator norm at most that of the
+corresponding ambient power.  No finite-dimensionality or nilpotence is needed.
+For an invariant subspace, take `ι = V.subtypeₗᵢ` and `S = T.restrict`. -/
+theorem opNorm_pow_le_of_intertwining (T : E →L[ℝ] E) (S : V →L[ℝ] V)
+    (ι : V →ₗᵢ[ℝ] E) (h : ∀ x, T (ι x) = ι (S x)) (n : ℕ) :
+    ‖S ^ n‖ ≤ ‖T ^ n‖ := by
+  apply (S ^ n).opNorm_le_bound (norm_nonneg _)
+  intro x
+  calc
+    ‖(S ^ n) x‖ = ‖ι ((S ^ n) x)‖ := (ι.norm_map _).symm
+    _ = ‖(T ^ n) (ι x)‖ := by rw [intertwines_pow T S ι h n x]
+    _ ≤ ‖T ^ n‖ * ‖ι x‖ := (T ^ n).le_opNorm _
+    _ = ‖T ^ n‖ * ‖x‖ := by rw [ι.norm_map]
+
+#print axioms opNorm_pow_le_of_intertwining
+
+variable [CompleteSpace E] [CompleteSpace V]
+
+/-- The same intertwiner transports the convergent exponential series. -/
+theorem intertwines_exp (T : E →L[ℝ] E) (S : V →L[ℝ] V) (ι : V →ₗᵢ[ℝ] E)
+    (h : ∀ x, T (ι x) = ι (S x)) (x : V) :
+    NormedSpace.exp T (ι x) = ι (NormedSpace.exp S x) := by
+  have hTx : HasSum (fun n : ℕ => (n.factorial : ℝ)⁻¹ • (T ^ n) (ι x))
+      (NormedSpace.exp T (ι x)) := by
+    simpa only [ContinuousLinearMap.apply_apply, _root_.smul_apply] using
+      (ContinuousLinearMap.apply ℝ E (ι x)).hasSum
+        (NormedSpace.exp_series_hasSum_exp' (𝕂 := ℝ) T)
+  have hSx : HasSum (fun n : ℕ => (n.factorial : ℝ)⁻¹ • (S ^ n) x)
+      (NormedSpace.exp S x) := by
+    simpa only [ContinuousLinearMap.apply_apply, _root_.smul_apply] using
+      (ContinuousLinearMap.apply ℝ V x).hasSum
+        (NormedSpace.exp_series_hasSum_exp' (𝕂 := ℝ) S)
+  have hSi : HasSum (fun n : ℕ => (n.factorial : ℝ)⁻¹ • ι ((S ^ n) x))
+      (ι (NormedSpace.exp S x)) := by
+    simpa only [map_smul, LinearIsometry.coe_toContinuousLinearMap] using
+      hSx.mapL ι.toContinuousLinearMap
+  simp_rw [intertwines_pow T S ι h] at hTx
+  exact hTx.unique hSi
+
+#print axioms intertwines_exp
+
+/-- **B44, exact exponential lower bound.**  On Banach spaces, an invariant
+isometric block gives `‖exp(tS)‖ ≤ ‖exp(tT)‖` for every real time.  This is the
+ambient-operator content of `max_t ‖e^(tA)‖ ≥ max_t ‖e^(tJ)‖`; the pointwise
+inequality is stronger and avoids choosing a time domain. -/
+theorem opNorm_exp_smul_le_of_intertwining (T : E →L[ℝ] E) (S : V →L[ℝ] V)
+    (ι : V →ₗᵢ[ℝ] E) (h : ∀ x, T (ι x) = ι (S x)) (t : ℝ) :
+    ‖NormedSpace.exp (t • S)‖ ≤ ‖NormedSpace.exp (t • T)‖ := by
+  have hscaled : ∀ x, (t • T) (ι x) = ι ((t • S) x) := by
+    intro x
+    simp only [_root_.smul_apply, map_smul, h]
+  apply (NormedSpace.exp (t • S)).opNorm_le_bound (norm_nonneg _)
+  intro x
+  calc
+    ‖NormedSpace.exp (t • S) x‖ = ‖ι (NormedSpace.exp (t • S) x)‖ :=
+      (ι.norm_map _).symm
+    _ = ‖NormedSpace.exp (t • T) (ι x)‖ := by
+      rw [intertwines_exp (t • T) (t • S) ι hscaled x]
+    _ ≤ ‖NormedSpace.exp (t • T)‖ * ‖ι x‖ :=
+      (NormedSpace.exp (t • T)).le_opNorm _
+    _ = ‖NormedSpace.exp (t • T)‖ * ‖x‖ := by rw [ι.norm_map]
+
+#print axioms opNorm_exp_smul_le_of_intertwining
+
+end BlockGrowth
+
+/-! ## The defective `2 × 2` block and its exponential -/
+
+/-- A Jordan block with diagonal eigenvalue `a`. -/
+def jordanBlock (a : ℝ) : Matrix (Fin 2) (Fin 2) ℝ := !![a, 1; 0, a]
+
+/-- Its nilpotent, non-scalar part. -/
+def nilpotentPart : Matrix (Fin 2) (Fin 2) ℝ := !![0, 1; 0, 0]
+
+/-- The Jordan block really is `aI + N`. -/
+theorem jordanBlock_eq (a : ℝ) :
+    jordanBlock a = a • (1 : Matrix (Fin 2) (Fin 2) ℝ) + nilpotentPart := by
+  ext i j
+  fin_cases i <;> fin_cases j <;> simp [jordanBlock, nilpotentPart]
+
+#print axioms jordanBlock_eq
+
+/-- The defect is nonzero but has square zero. -/
+theorem nilpotentPart_sq : nilpotentPart * nilpotentPart = 0 := by
+  ext i j
+  fin_cases i <;> fin_cases j <;>
+    simp [nilpotentPart, Matrix.mul_apply, Fin.sum_univ_two]
+
+#print axioms nilpotentPart_sq
+
+/-- In particular, the block is defective rather than diagonalizable. -/
+theorem nilpotentPart_ne_zero : nilpotentPart ≠ 0 := by
+  intro h
+  have h01 := congr_fun (congr_fun h 0) 1
+  norm_num [nilpotentPart] at h01
+
+#print axioms nilpotentPart_ne_zero
+
+/-- The exponential of a square-zero matrix truncates after its linear term. -/
+theorem exp_smul_of_mul_self_eq_zero {n : Type*} [Fintype n] [DecidableEq n]
+    (N : Matrix n n ℝ) (hN : N * N = 0) (t : ℝ) :
+    NormedSpace.exp (t • N) = 1 + t • N := by
+  have hNpow : N ^ 2 = 0 := by rw [pow_two, hN]
+  rw [NormedSpace.exp_eq_tsum_rat]
+  change (∑' k : ℕ, (k.factorial : ℚ)⁻¹ • (t • N) ^ k) = _
+  rw [tsum_eq_sum (s := Finset.range 2)]
+  · norm_num [Finset.sum_range_succ, smul_pow, hNpow]
+  · intro k hk
+    simp only [Finset.mem_range, not_lt] at hk
+    rw [smul_pow, pow_eq_zero_of_le hk hNpow, smul_zero]
+    simp
+
+#print axioms exp_smul_of_mul_self_eq_zero
+
+/-- **B44, exact small-block flow.**  For the Jordan block `J = aI + N`,
+`e^{tJ} = e^{at}(I + tN)`.  Taking `a < 0` gives a damped eigenvalue while the
+factor `t` records the algebraic transient. -/
+theorem exp_jordanBlock (a t : ℝ) :
+    NormedSpace.exp (t • jordanBlock a) =
+      Real.exp (t * a) •
+        ((1 : Matrix (Fin 2) (Fin 2) ℝ) + t • nilpotentPart) := by
+  have hdecomp : t • jordanBlock a =
+      Matrix.diagonal (fun _ : Fin 2 => t * a) + t • nilpotentPart := by
+    ext i j
+    fin_cases i <;> fin_cases j <;>
+      simp [jordanBlock, nilpotentPart, Matrix.diagonal]
+  have hcomm : Commute (Matrix.diagonal (fun _ : Fin 2 => t * a))
+      (t • nilpotentPart) := by
+    show Matrix.diagonal (fun _ : Fin 2 => t * a) * (t • nilpotentPart) =
+      (t • nilpotentPart) * Matrix.diagonal (fun _ : Fin 2 => t * a)
+    ext i j
+    fin_cases i <;> fin_cases j <;>
+      simp [Matrix.diagonal, nilpotentPart, Matrix.mul_apply] <;> ring
+  rw [hdecomp, Matrix.exp_add_of_commute _ _ hcomm, Matrix.exp_diagonal,
+    exp_smul_of_mul_self_eq_zero nilpotentPart nilpotentPart_sq]
+  ext i j
+  fin_cases i <;> fin_cases j <;>
+    simp [Matrix.diagonal, nilpotentPart, Real.exp_eq_exp_ℝ, Matrix.mul_apply]
+
+#print axioms exp_jordanBlock
+
+/-- The displayed entrywise form at the damped eigenvalue `-1`. -/
+theorem exp_damped_jordanBlock (t : ℝ) :
+    NormedSpace.exp (t • jordanBlock (-1)) =
+      Real.exp (-t) • !![1, t; 0, 1] := by
+  rw [exp_jordanBlock]
+  congr 1
+  · simp
+  · ext i j
+    fin_cases i <;> fin_cases j <;> simp [nilpotentPart]
+
+#print axioms exp_damped_jordanBlock
+
+/-! ## A concrete four-dimensional invariant lift -/
+
+/-- Two real coordinates with their Euclidean norm. -/
+abbrev Plane := EuclideanSpace ℝ (Fin 2)
+
+/-- The damped defective block as a continuous operator. -/
+def dampedJordanOp : Plane →L[ℝ] Plane :=
+  (Matrix.toEuclideanCLM (n := Fin 2) (𝕜 := ℝ)) (jordanBlock (-1))
+
+/-- A four-real-dimensional operator with two copies of the block.  The first
+summand is therefore an invariant defective subspace. -/
+def fourDimensionalLift : (Plane × Plane) →L[ℝ] (Plane × Plane) :=
+  dampedJordanOp.prodMap dampedJordanOp
+
+/-- **B44, concrete instance.**  The general lower bound is non-vacuous: for
+this explicit damped defective block and its four-dimensional lift, every power
+of the small block is bounded by the corresponding ambient power. -/
+theorem dampedJordanOp_norm_pow_le_fourDimensionalLift (n : ℕ) :
+    ‖dampedJordanOp ^ n‖ ≤ ‖fourDimensionalLift ^ n‖ := by
+  apply opNorm_pow_le_of_intertwining fourDimensionalLift dampedJordanOp
+    (LinearIsometry.inl ℝ Plane Plane)
+  intro x
+  simp [fourDimensionalLift]
+
+#print axioms dampedJordanOp_norm_pow_le_fourDimensionalLift
+
+/-- **B44, concrete exponential lift.**  The displayed transient-growth floor
+holds for the explicit damped defective block and its four-dimensional lift. -/
+theorem dampedJordanOp_norm_exp_smul_le_fourDimensionalLift (t : ℝ) :
+    ‖NormedSpace.exp (t • dampedJordanOp)‖ ≤
+      ‖NormedSpace.exp (t • fourDimensionalLift)‖ := by
+  apply opNorm_exp_smul_le_of_intertwining fourDimensionalLift dampedJordanOp
+    (LinearIsometry.inl ℝ Plane Plane)
+  intro x
+  simp [fourDimensionalLift]
+
+#print axioms dampedJordanOp_norm_exp_smul_le_fourDimensionalLift
+
+/-- An explicit vector on which the polynomial transient is visible. -/
+theorem exp_damped_jordanBlock_mulVec (t : ℝ) :
+    (NormedSpace.exp (t • jordanBlock (-1))) *ᵥ ![0, 1] =
+      Real.exp (-t) • ![t, 1] := by
+  rw [exp_damped_jordanBlock]
+  funext i
+  fin_cases i <;> simp [Matrix.mulVec, dotProduct, Fin.sum_univ_two]
+
+#print axioms exp_damped_jordanBlock_mulVec
+
+end AtlasB44
