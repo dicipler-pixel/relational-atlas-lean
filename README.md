@@ -4,7 +4,7 @@
 
 [![Lean proof check](https://github.com/dicipler-pixel/relational-atlas-lean/actions/workflows/build.yml/badge.svg)](https://github.com/dicipler-pixel/relational-atlas-lean/actions/workflows/build.yml)
 ![Lean](https://img.shields.io/badge/Lean-v4.34.1-blue)
-![Theorems](https://img.shields.io/badge/theorems-37-2EA043)
+![Theorems](https://img.shields.io/badge/theorems-215-2EA043)
 ![sorry](https://img.shields.io/badge/sorry-0-2EA043)
 ![Code: MIT](https://img.shields.io/badge/code-MIT-lightgrey)
 ![Text: CC BY 4.0](https://img.shields.io/badge/text-CC%20BY%204.0-lightgrey)
@@ -84,6 +84,28 @@ in [price-of-a-direction-lean](https://github.com/dicipler-pixel/price-of-a-dire
 and B82 in [spectral-stress-lean](https://github.com/dicipler-pixel/spectral-stress-lean), B61 in
 [matter-at-a-scale-lean](https://github.com/dicipler-pixel/matter-at-a-scale-lean). What is not
 proved is in [`LIMITATIONS.md`](LIMITATIONS.md).
+
+## Extensions and audit (23 November 2026)
+
+[`RelationalAtlas/Extended.lean`](RelationalAtlas/Extended.lean) adds 178 further kernel
+declarations, each still a finite statement of one card: B1/B32 in the card's own
+normalization, the B13 half-angle monodromy, the B18 deficit bound, B21's `V²+P²+E² = 1`,
+B26's Jordan block, the B31 Frobenius identity `‖F‖_F = ‖[Ω,Π]‖_F`, B57's oblique projector,
+B66/B85 zero sets, B75's exact cancellation condition, B92's wrap integer, B100's echo circle,
+B105's reduced associator, B122's semigroup norm, B129's complementarity budget, B158's
+weak-value bound, B190's three-way budget, and B199's traceless trace form `T² = q(T)I` with
+`q = 0 ∧ T ≠ 0` exactly the nonzero nilpotents — the wall shared by the spinning key, critical
+damping and the ISCO. The module is self-contained, ends with `#print axioms` for every
+declaration, and rests only on `propext`, `Classical.choice` and `Quot.sound`.
+
+The full statement audit is in [atlas/coverage/LOCAL_KERNEL_AUDIT.md](atlas/coverage/LOCAL_KERNEL_AUDIT.md):
+37/37 ledger declarations elaborate and are axiom-clean, none is false as written, two are
+weaker than their names suggest (B32's normalization, B75's "cancels"), the axiom audit now
+covers all 37 (five had no `#print axioms` line), and the B146 and B51 computational claims were
+recomputed independently — B146 in GAP 4.14.0, B51 against every KnotInfo Alexander polynomial
+of degree ≥ 1 with at most 10 crossings. `scripts/verify_local.py` reproduces the elaboration,
+axiom and false-control checks without Lake, using the toolchain installed in the VM
+(Lean 4.35.0 / Mathlib 4.35.0; the repository still pins v4.34.1 for CI).
 
 ## The Atlas itself
 

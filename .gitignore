@@ -2,3 +2,5 @@
 build.log
 verification/
 __pycache__/
+.venv-snappy/
+.scratch/
