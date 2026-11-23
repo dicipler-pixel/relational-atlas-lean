@@ -200,10 +200,11 @@ is 18, not 36, and any text saying otherwise should be checked before it is publ
 
 The module ends with `#print axioms` for every declaration; all of them rest on a subset of
 `{propext, Classical.choice, Quot.sound}`. `scripts/verify_local.py` elaborates it as a third
-library module, so it is covered by the same checks as the other two. It is **not** yet a record
-in `atlas/coverage/coverage.json`: that ledger pins commits, and this working tree is uncommitted,
-so adding the module there would pin a commit that does not contain it. Once committed, the
-ledger entries are a mechanical addition.
+library module, so it is covered by the same checks as the other two. It is committed as `8fb0e1a`
+(together with this audit and `scripts/verify_local.py`), but it is **not** yet a record in
+`atlas/coverage/coverage.json`: that ledger requires every declaration of every configured module
+to be mapped to a card, so registering the module means writing 178 card mappings at once. That is
+a mechanical but separate change; until it is made, the ledger still covers the original 37.
 
 ## Independent checks against external databases (23 November 2026)
 
@@ -253,9 +254,18 @@ not proved here). The card's example is consistent with the data.
 link `L5a1{1}` volume as `3.66386237670887604523`, and `4G = 3.66386237670888` with Catalan's
 constant, so the card's "4G" is the same number to fifteen digits. The arithmetic *field* of the
 shapes (Eisenstein vs Gaussian), which is what the card uses to predict the absence of a
-relation, is not something these tables contain and was not verified here. SnapPy would give an
-independent volume and a verified Chern–Simons invariant, but it is not installed and the skill
-requires approval before installing it.
+relation, is not something these tables contain and was not verified here.
+
+SnapPy 3.3.2 (installed with approval in `.venv-snappy`, census data 1.4, SageMath present) gives
+both volumes again with interval verification, which is stronger than a numerical estimate:
+
+| manifold | verified volume | verified hyperbolic | CS/(2π²) |
+| :--- | :--- | :--- | :--- |
+| `4_1` (figure-eight) | `2.0298832128193?` | yes | `0.00000000` |
+| `L5a1` (Whitehead link) | `3.6638623767089?` | yes | `−0.12500000` |
+
+So the card's `2.029883…` and `4G` are certified to 13–14 digits, and `CS = −π²/4` for the
+Whitehead link is an extra fact the card does not display.
 
 **Not checked.** The knots in B10's Riley-polynomial identity are not named in the published card
 text, and KnotInfo carries no Riley polynomials, so that identity was not re-checked against data.
