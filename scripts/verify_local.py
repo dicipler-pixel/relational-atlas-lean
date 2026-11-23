@@ -30,8 +30,11 @@ CONFIG = json.loads((ROOT / 'scripts/config.json').read_text())
 # The coverage ledger pins commits, so the extension module is checked here but
 # is not yet a `coverage.json` record; it is a library module all the same.
 MODULES = list(CONFIG['modules'])
+_known = {m['module'] for m in MODULES}
 for extra in sorted((ROOT / 'RelationalAtlas').glob('Extended*.lean')):
-    MODULES.append({'module': f'RelationalAtlas.{extra.stem}', 'path': str(extra.relative_to(ROOT))})
+    if f'RelationalAtlas.{extra.stem}' not in _known:
+        MODULES.append({'module': f'RelationalAtlas.{extra.stem}',
+                        'path': str(extra.relative_to(ROOT))})
 ALLOWED = {'propext', 'Classical.choice', 'Quot.sound'}
 FILE_TIMEOUT = 900  # seconds; one snapshot (CoboundaryK3) is genuinely large
 
