@@ -19,10 +19,12 @@ in the sense that it is not the pinned CI environment.
 ## Result
 
 Final run of `python3 scripts/verify_local.py` (23 November 2026, Lean 4.35.0): three library
-modules, 41 pinned external snapshots, 7 false controls, **215 theorem declarations audited**
-(37 in the ledger modules, 178 in `Extended.lean`).
+modules, 41 pinned external snapshots, 7 false controls, **368 theorem declarations audited**
+(37 in the ledger modules, 178 in `Extended.lean`, 153 in `Extended2.lean`).
 
-* **37/37** ledger theorems elaborate with zero errors, and so do all 178 extension theorems.
+* **37/37** ledger theorems elaborate with zero errors, and so do all 331 extension theorems
+  (`Extended.lean` 178, `Extended2.lean` 153; the latter adds B37, B86, B89, B116, B128, B131,
+  B133, B142, B148, B155, B180 and B202).
 * **37/37** axiom audits return a subset of `{propext, Classical.choice, Quot.sound}`;
   no `sorryAx`, no `Lean.ofReduceBool`, no project axiom.
 * **0** occurrences of `sorry`, `admit` or `axiom` in the compiled local sources.

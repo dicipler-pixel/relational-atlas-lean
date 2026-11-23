@@ -4,7 +4,7 @@
 
 [![Lean proof check](https://github.com/dicipler-pixel/relational-atlas-lean/actions/workflows/build.yml/badge.svg)](https://github.com/dicipler-pixel/relational-atlas-lean/actions/workflows/build.yml)
 ![Lean](https://img.shields.io/badge/Lean-v4.34.1-blue)
-![Theorems](https://img.shields.io/badge/theorems-215-2EA043)
+![Theorems](https://img.shields.io/badge/theorems-368-2EA043)
 ![sorry](https://img.shields.io/badge/sorry-0-2EA043)
 ![Code: MIT](https://img.shields.io/badge/code-MIT-lightgrey)
 ![Text: CC BY 4.0](https://img.shields.io/badge/text-CC%20BY%204.0-lightgrey)
@@ -97,6 +97,13 @@ weak-value bound, B190's three-way budget, and B199's traceless trace form `T² 
 `q = 0 ∧ T ≠ 0` exactly the nonzero nilpotents — the wall shared by the spinning key, critical
 damping and the ISCO. The module is self-contained, ends with `#print axioms` for every
 declaration, and rests only on `propext`, `Classical.choice` and `Quot.sound`.
+
+A second batch lives in [`RelationalAtlas/Extended2.lean`](RelationalAtlas/Extended2.lean) (153
+further declarations): B37's finite trace sum, B86's reciprocity witness, B89's vanishing first-order
+response, B116's permutation distance, B128's δ+g² ≤ 4, B131's divided-difference bracket, B133's
+mixed-channel census, B142's Christoffel data, B148's tensor composition, B155's
+diag(cos²ϑ,1) spectrum, B180's factor eight, and B202's one-way resolvent. Both extension modules
+are checked by `scripts/verify_local.py` under the same rules as the original two.
 
 The full statement audit is in [atlas/coverage/LOCAL_KERNEL_AUDIT.md](atlas/coverage/LOCAL_KERNEL_AUDIT.md):
 37/37 ledger declarations elaborate and are axiom-clean, none is false as written, two are
