@@ -19,8 +19,8 @@ in the sense that it is not the pinned CI environment.
 ## Result
 
 Final run of `python3 scripts/verify_local.py` (23 November 2026, Lean 4.35.0): three library
-modules, 41 pinned external snapshots, 7 false controls, **706 theorem declarations audited**
-(37 in the ledger modules, 178 in `Extended.lean`, 229 in `Extended2.lean`, 262 in `Extended3.lean`).
+modules, 41 pinned external snapshots, 7 false controls, **1020 theorem declarations audited**
+(37 in the ledger modules, 178 in `Extended.lean`, 229 in `Extended2.lean`, 262 in `Extended3.lean`, 314 in `Extended4.lean`).
 
 * **37/37** ledger theorems elaborate with zero errors, and so do all 331 extension theorems
   (`Extended.lean` 178, `Extended2.lean` 229; the latter adds B37, B44, B72, B78, B86, B89, B116,
@@ -166,7 +166,9 @@ statement against that claim, not a judgement of the card's physics.
 
 ## Refutations and corrections
 
-Every card whose displayed claim, or whose ledger transcription, did not survive contact with Lean is listed here with the theorem that settles it. `kind` is `refuted` (false as written), `missing-hypothesis` (true only with a hypothesis the card does not state), `overreach` (true but weaker than the words), `ledger-error` (the card is fine and the ledger is not), `rounding` or `clarification`.
+Every card whose displayed claim, or whose ledger transcription, did not survive contact with Lean is listed here with the theorem that settles it. `kind` is `refuted` (false as written), `missing-hypothesis` (true only with a hypothesis the card does not state), `overreach` / `scope` (true but weaker than the words), `ledger-error` (the card is fine and the ledger is not), `sign`, `rounding`, `provenance` or `clarification`.
+
+Refuted as literally written: B15 (the raw log-det comparator is not subadditive), B132 (the dichotomy needs `F` symmetric), B91 (the positivity criterion fails at `g11 = 0`), and the ledger's squared B44 (the card itself is unsquared). B25 is an overreach: the summed quantity is twice the card's per-level one.
 
 **B15 — refuted.** The global subadditivity S(a∪b) ≤ S(a)+S(b) is false for the raw log-det comparator S(A,B) = log det((A+B)/2) − ½log det A − ½log det B: S(1,4) = log(5/4) = 0.2231 exceeds S(1,2)+S(2,4) = log(9/8) = 0.1178, and the two steps have equal cost so the failure is not a subdivision artefact. The √S metric reading, which the archived HTML and the ledger spell differently, is not addressed.  
 Evidence: `AtlasB15.not_subadditive` in `RelationalAtlas/Extended3.lean`.
@@ -212,6 +214,48 @@ Evidence: `rounded_decimal_not_exact` in `RelationalAtlas/Extended2.lean`.
 
 **B148 — clarification.** Miss probabilities do not multiply: the composition law is q_A + q_B − q_A q_B, with a Lean counterexample (3/4 ≠ 1/4 at q = 1/2). What multiplies is the *stress* 1 − S under the tensor product.  
 Evidence: `b148_miss_product_counterexample` in `RelationalAtlas/Extended2.lean`.
+
+**B91 — missing-hypothesis.** The displayed criterion Q ⪰ 0 ⟺ g₁₁ ≥ 0 ∧ 4 det g ≥ |Ω|² fails at g₁₁ = 0: with (a,b,d,w) = (0,0,−1,0) both displayed conditions hold and Q = diag(0,−1) is not positive semidefinite. The repair is 0 ≤ d (equivalently 0 ≤ a + d); under a > 0 the card's criterion is exact. The literal wall ⊂ {det g > 0} also fails on zero data.  
+Evidence: `B91.literal_equivalence_false` in `RelationalAtlas/Extended4.lean`.
+
+**B24 — missing-hypothesis.** The equality of the two displayed c₂ forms needs E Hermitian: with H = I, η = 0, E = [[0,1],[0,0]] the true c₂ vanishes (E² = 0) while the modulus-squared sum is 1. Separately, positivity of H + η is needed for any finite expansion: H = diag(0,1), η = 0, E = I gives log det = log(ε(1+ε)) → −∞.  
+Evidence: `B24.nonHermitian_perturbation_breaks_two_forms` in `RelationalAtlas/Extended4.lean`.
+
+**B24 — provenance.** The local atlas/cards/html/B24.html has SHA 1f06fe... while coverage.json pins 3f9377...; the audited claims were checked against the official v7 card, whose hash matches. Separately, the unconditional trace identities use totalised division at a zero eigenvalue, so nondegeneracy should be stated rather than inherited from Lean's x/0 = 0.  
+Evidence: `RelationalAtlas.B24.logdet_c2_eq_trace_RERE` in `RelationalAtlas/Extended4.lean`.
+
+**B198 — sign.** The auxiliary conjugation display carries the wrong sign: conjugating σ_x by U = diag(e^{iθ}, e^{−iθ}) gives cos2θ σ_x − sin2θ σ_y, so the printed plus sign on σ_y is wrong. Witness p = 2, θ = π/4 gives −σ_y. The book energies are unaffected.  
+Evidence: `B198.printed_auxiliary_conjugation_false` in `RelationalAtlas/Extended4.lean`.
+
+**B181 — rounding.** The displayed ω = 1.912290 is a six-place rounding of √(2(2√2−1)) = 1.912290315…; the file proves 1.912290 < √(2(2√2−1)) < 1.9122905 so the final equality cannot be read as exact.  
+Evidence: `B181.squareOmega_ne_displayed_exactly` in `RelationalAtlas/Extended4.lean`.
+
+**B181 — clarification.** The file's summary sentence overstates one theorem: no declaration joins the square-frequency identity to the transverse stiffness, so 'formalised omega^2 = V_ss = 2V_w' describes two separate statements. A docstring in squarePotential also gives the diagonal squared length as 1/4 - w/4 rather than 1 - w; the theorem is unaffected.  
+Evidence: `RelationalAtlas.B181.foldPotential_second_deriv` in `RelationalAtlas/Extended4.lean`.
+
+**B46 — provenance.** The archived card HTML read for B46 (SHA b1e69c…) displays Ẇ = Π_TGr(Ẇ) + δ, while coverage.json pins 3626f1…, so the local 93-card edition and the Zenodo v7 card are different documents. The ledger's B46 claim text therefore does not describe the local file; the Lean kernel follows the ledger's formula.  
+Evidence: `B46.b46_idempotency_defect` in `RelationalAtlas/Extended4.lean`.
+
+**B179 — clarification.** The raw quotient dX²/(4c²X) needs λ ≠ 0; at λ = 0 (the horizon X = 0) it gives 0 rather than the limiting 1, which the regular extension supplies. The card's two expressions agree except at that single point.  
+Evidence: `B179.b179_raw_formula_fails_at_fold` in `RelationalAtlas/Extended4.lean`.
+
+**B179 — clarification.** The integrated-distance statement needs c != 0 as well as lambda != 0; the metric identity carries both and the file states them, but the distance wording is positive only under that hypothesis.  
+Evidence: `RelationalAtlas.B179.b179_reflection_isometry_dist` in `RelationalAtlas/Extended4.lean`.
+
+**B25 — clarification.** The susceptibility formula needs a nonzero gap for a contributing term. With degenerate labels and a zero gap, Lean's x/0 = 0 makes the sum vanish; that is not the physical limit, as the file states, so the corrected hypothesis is E_n ≠ E_m on contributing terms.  
+Evidence: `B25.degenerate_gap_witness` in `RelationalAtlas/Extended4.lean`.
+
+**B207 — clarification.** The displayed hyperbolic solution needs a > 0; two zero-mass and ρ = 1 witnesses show the totalised log formula fails without it. The card is stated for positive mass, so this is a boundary remark.  
+Evidence: `B207.tanh_claim_fails_at_zero_mass` in `RelationalAtlas/Extended4.lean`.
+
+**B207 — scope.** The card's Arrive field names the extremal hole at tau = 0, but the file's Q < M hypothesis excludes Q = M and no declaration treats the extremal case; the non-extremal RN constants that are proved are correct.  
+Evidence: `RelationalAtlas.B207.horizon_rapidities_opposite` in `RelationalAtlas/Extended4.lean`.
+
+**B195 — clarification.** The report says q = 1 - u^2 != 0 is needed only for the negative-power statement, but the polynomial determinant identity bass_determinant_cross assumes it too; the exponent and both pencil ends are correct.  
+Evidence: `RelationalAtlas.B195.bass_determinant_cross` in `RelationalAtlas/Extended4.lean`.
+
+**B152 — clarification.** The offset theorem is proved faithfully, but the card's spectral nu -> 1 - nu and offset eps -> -eps clauses are neither formalised nor listed among the report's omissions.  
+Evidence: `RelationalAtlas.B152.offset_eq_zero` in `RelationalAtlas/Extended4.lean`.
 
 ## New kernels added by this audit: `RelationalAtlas/Extended.lean`
 

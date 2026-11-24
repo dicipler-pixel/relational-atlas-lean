@@ -4,7 +4,7 @@
 
 [![Lean proof check](https://github.com/dicipler-pixel/relational-atlas-lean/actions/workflows/build.yml/badge.svg)](https://github.com/dicipler-pixel/relational-atlas-lean/actions/workflows/build.yml)
 ![Lean](https://img.shields.io/badge/Lean-v4.34.1-blue)
-![Theorems](https://img.shields.io/badge/theorems-706-2EA043)
+![Theorems](https://img.shields.io/badge/theorems-1020-2EA043)
 ![sorry](https://img.shields.io/badge/sorry-0-2EA043)
 ![Code: MIT](https://img.shields.io/badge/code-MIT-lightgrey)
 ![Text: CC BY 4.0](https://img.shields.io/badge/text-CC%20BY%204.0-lightgrey)
@@ -114,6 +114,21 @@ does not certify a metric, B154 needs a Hermitian `K`, B119's coefficient is the
 specialization, B171's hidden block is only line-valued, and B183's ⅛ identity needs unitary edge
 blocks rather than merely skew-Hermitian ones. The full list, with the theorem that
 settles each, is in [atlas/coverage/LOCAL_KERNEL_AUDIT.md](atlas/coverage/LOCAL_KERNEL_AUDIT.md).
+
+A fourth batch, [`RelationalAtlas/Extended4.lean`](RelationalAtlas/Extended4.lean) (314 further
+declarations, 16 cards: B20, B24, B25, B46, B91, B109, B152, B173, B177, B179, B181, B194, B195,
+B198, B203, B207), includes three more refutations and the corrections they forced:
+
+- **B91** — `Q ⪰ 0 ⟺ g₁₁ ≥ 0 ∧ 4 det g ≥ |Ω|²` fails at `g₁₁ = 0` (`Q = diag(0,−1)` passes both
+  conditions); adding `0 ≤ d` repairs it, and the card's form is exact when `a > 0`.
+- **B25** — the card's `χ` is per level; the summed version is exactly twice it at two levels, so
+  the per-level value `1/δ²` is supplied separately from the double sum's `2/δ²`.
+- **B198** — the auxiliary conjugation carries the wrong sign on `σ_y` (the book energies are
+  unaffected).
+
+Partial or guarded: B24's equality of the two `c₂` forms needs Hermitian `E`; B207 does not treat
+the extremal `Q = M`; B46's local HTML and the ledger describe different documents.  Each is
+recorded with the theorem that settles it.
 
 The full statement audit is in [atlas/coverage/LOCAL_KERNEL_AUDIT.md](atlas/coverage/LOCAL_KERNEL_AUDIT.md):
 37/37 ledger declarations elaborate and are axiom-clean, none is false as written, two are
