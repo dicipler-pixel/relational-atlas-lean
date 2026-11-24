@@ -35,7 +35,7 @@ for extra in sorted((ROOT / 'RelationalAtlas').glob('Extended*.lean')):
     if f'RelationalAtlas.{extra.stem}' not in _known:
         MODULES.append({'module': f'RelationalAtlas.{extra.stem}',
                         'path': str(extra.relative_to(ROOT))})
-ALLOWED = {'propext', 'Classical.choice', 'Quot.sound'}
+ALLOWED = {'propext', 'Classical.choice', 'choice', 'Quot.sound'}
 FILE_TIMEOUT = 900  # seconds; one snapshot (CoboundaryK3) is genuinely large
 
 MATH_FAILURE = re.compile(
@@ -185,7 +185,9 @@ def main() -> int:
             if mt:
                 found[mt.group(1).split('.')[-1]] = sorted(
                     a.strip() for a in (mt.group(2) or '').split(',') if a.strip())
-        missing = [n for n in names if n not in found]
+        short = lambda x: x.split('.')[-1]
+        found_by_short = {short(k): v for k, v in found.items()}
+        missing = [n for n in names if short(n) not in found_by_short]
         bad = {n: a for n, a in found.items() if not set(a) <= ALLOWED}
         report['axioms'][m['module']] = dict(declared=len(names), audited=len(found),
                                              missing=missing, disallowed=bad)

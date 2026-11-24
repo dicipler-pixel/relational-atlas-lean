@@ -19,8 +19,8 @@ in the sense that it is not the pinned CI environment.
 ## Result
 
 Final run of `python3 scripts/verify_local.py` (23 November 2026, Lean 4.35.0): three library
-modules, 41 pinned external snapshots, 7 false controls, **444 theorem declarations audited**
-(37 in the ledger modules, 178 in `Extended.lean`, 229 in `Extended2.lean`).
+modules, 41 pinned external snapshots, 7 false controls, **706 theorem declarations audited**
+(37 in the ledger modules, 178 in `Extended.lean`, 229 in `Extended2.lean`, 262 in `Extended3.lean`).
 
 * **37/37** ledger theorems elaborate with zero errors, and so do all 331 extension theorems
   (`Extended.lean` 178, `Extended2.lean` 229; the latter adds B37, B44, B72, B78, B86, B89, B116,
@@ -163,6 +163,55 @@ statement against that claim, not a judgement of the card's physics.
 * It does not certify the 136 cards the ledger lists as unmapped, nor the card
   count "37 theorems" against anything but `scripts/config.json`.
 
+
+## Refutations and corrections
+
+Every card whose displayed claim, or whose ledger transcription, did not survive contact with Lean is listed here with the theorem that settles it. `kind` is `refuted` (false as written), `missing-hypothesis` (true only with a hypothesis the card does not state), `overreach` (true but weaker than the words), `ledger-error` (the card is fine and the ledger is not), `rounding` or `clarification`.
+
+**B15 — refuted.** The global subadditivity S(a∪b) ≤ S(a)+S(b) is false for the raw log-det comparator S(A,B) = log det((A+B)/2) − ½log det A − ½log det B: S(1,4) = log(5/4) = 0.2231 exceeds S(1,2)+S(2,4) = log(9/8) = 0.1178, and the two steps have equal cost so the failure is not a subdivision artefact. The √S metric reading, which the archived HTML and the ledger spell differently, is not addressed.  
+Evidence: `AtlasB15.not_subadditive` in `RelationalAtlas/Extended3.lean`.
+
+**B44 — ledger-error.** coverage.json (and the batch brief) carried the squared form max_t‖e^{tA}‖ ≥ max_t‖e^{tJ}‖²; the current card HTML displays the unsquared G(H) ≥ G(block). The squared form is false even for a surjective isometric embedding: J = A = [[−1/2,1],[0,−1/2]] in the max norm has M = 2e^{−1/2} > 1, so max_A = M < M². The unsquared lift is proved.  
+Evidence: `literal_squared_B44_claim_is_false` in `RelationalAtlas/Extended3.lean`.
+
+**B54 — overreach.** det g > 0 does not certify that the form is still a metric: −I₂ has determinant 1 and is negative definite. The universal reading of the first clause ('det g > 0 ⇒ |Ω|² overruns') is false, e.g. g = I₂, |Ω|² = 0. The second clause is true as stated: det g < 0 with |Ω|² ≥ 0 gives 4 det g < |Ω|² and excludes positive definiteness.  
+Evidence: `positive_det_does_not_imply_positiveDef` in `RelationalAtlas/Extended3.lean`.
+
+**B86 — ledger-error.** Three readings of B86's determinant clause disagree: the ledger says det g ≤ 0 for symmetric probes, the archived HTML prose says det g ≡ 0. Arbitrary real symmetry does not give the inequality (G = I₂ beside a regular reciprocity witness), the generic det ≡ 0 is false, and the true content for the intended bilinear form Re(uuᵀ) is det = −Im(conj(u₁)u₂)² ≤ 0, zero exactly at real parallelism — so the non-positivity comes from the bilinear structure, not from reciprocity. The norm clause ‖B‖ = max tᵢ/gᵢ also needs tᵢ ≥ 0.  
+Evidence: `symmetric_alone_does_not_imply_det_nonpos` in `RelationalAtlas/Extended3.lean`.
+
+**B112 — clarification.** 'pᵢ = pⱼ = 0 ⇒ Vᵢⱼ must vanish' is a compatibility condition, not an automaticity claim: with p ≥ 0, existence of L is *equivalent* to it, the solution is the quotient off the zero sums, and an arbitrary block remains on the kernel–kernel pairs. The witness p = 0, V = 1 shows it cannot be dropped.  
+Evidence: `exists_entrywise_sld_iff` in `RelationalAtlas/Extended3.lean`.
+
+**B114 — clarification.** The displayed jet identity needs m > 0: at m = 0 it would read P = P² + P², which fails for the constant path at 1. For m ≥ 1 it is exact, and the C^(m+1) hypothesis can be weakened to C^m.  
+Evidence: `order_zero_literal_claim_false` in `RelationalAtlas/Extended3.lean`.
+
+**B119 — missing-hypothesis.** The transverse coefficient −½∂_y g_xx is the *Killing* specialization of Γ_{xx,y} = g_{xy,x} − ½g_{xx,y}, not the general symbol: pointwise vanishing of g_xy is insufficient (g = [[1,xy],[xy,2]] at (0,1) has g_xy = 0 and coefficient 1, not 0), so ∂_x g_{xy} = 0 is essential. The raised-index coefficient differs as well (−9/8 first kind against −9/32 when g_yy = 4).  
+Evidence: `pointwise_vanishing_gxy_is_insufficient` in `RelationalAtlas/Extended3.lean`.
+
+**B132 — refuted.** The 'otherwise' clause fails without F symmetric: with one zero probe u = 0 and F = [[0,1],[−1,0]], F is outside span{uᵢuᵢᵀ} and every reading vanishes, yet Tr(HF) = 0 for every symmetric H, so the invisible detecting H cannot exist. The antisymmetric part of F is invisible to every symmetric probe. With F = Fᵀ the dichotomy is proved in both directions.  
+Evidence: `literal_otherwise_clause_counterexample` in `RelationalAtlas/Extended3.lean`.
+
+**B154 — missing-hypothesis.** The equivalence 'Tr(K_A δC) = βTr(h_A δC) for all traceless Hermitian δC ⟺ K_A − βh_A = λI' needs K Hermitian. With K = [[0,1],[−1,0]], h = 0, β = 1 every symmetric C is invisible to K (an antisymmetric matrix never pairs with a symmetric one) yet K is not a scalar. The card supplies the hypothesis only through the word 'Hamiltonian'.  
+Evidence: `skewWitness_refutes_dropping_symmetry` in `RelationalAtlas/Extended3.lean`.
+
+**B171 — overreach.** The hidden block P_W D_T² P_W − A² is line-valued, hence of rank at most one, not rank one: hidden(H) = Tr(D_T(P_W(H)))·C^ad(W). At uniform weights with T = I the trace factor vanishes identically and the block is zero, so the card's 'rank one because Q_W = I − P_W does' is an overstatement.  
+Evidence: `hidden_rank_le_one` in `RelationalAtlas/Extended3.lean`.
+
+**B183 — clarification.** The ⅛ identity needs the edge blocks to be unitary, not merely skew-Hermitian: with unstructured complex weights ‖H²−H*²‖²/8 and Σ_E‖D_i + A_ijD_jA_ij^H‖² differ by a non-constant factor. Given a unitary connection the identity is exact, the step being ‖D_iA_ij + A_ijD_j‖ = ‖D_i + A_ijD_jA_ij^H‖.  
+Evidence: `b183_oppositeEnergy` in `RelationalAtlas/Extended3.lean`.
+
+**B190 — missing-hypothesis.** 'Le = 0 exactly when b is a real multiple of a' fails at a = 0, b ≠ 0, where the displayed Le² is 0 but b is not a multiple of 0. The corrected statement is proved under a ≠ 0.  
+Evidence: `LeSq_eq_zero_iff` in `RelationalAtlas/Extended.lean`.
+
+**B155 — ledger-error.** The generic two-unit-vector reading of the Gram matrix is false: for unit vectors with inner product cos ϑ the Gram determinant is sin²ϑ and the characteristic roots are 1 ± cos ϑ. The card's diag(cos²ϑ, 1) is specific to its own shape-sphere parametrisation dΦ(eϑ) = (cosϑcosφ, cosϑsinφ), dΦ(eφ) = (−sinφ, cosφ).  
+Evidence: `literal_unit_vector_counterexample` in `RelationalAtlas/Extended2.lean`.
+
+**B202 — rounding.** The displayed |R₂₁(0.5i)| = 0.130158 is the rounded value of 6√85/425 = 0.130158…; the exact value is proved and the decimal equality is refuted.  
+Evidence: `rounded_decimal_not_exact` in `RelationalAtlas/Extended2.lean`.
+
+**B148 — clarification.** Miss probabilities do not multiply: the composition law is q_A + q_B − q_A q_B, with a Lean counterexample (3/4 ≠ 1/4 at q = 1/2). What multiplies is the *stress* 1 − S under the tensor product.  
+Evidence: `b148_miss_product_counterexample` in `RelationalAtlas/Extended2.lean`.
 
 ## New kernels added by this audit: `RelationalAtlas/Extended.lean`
 

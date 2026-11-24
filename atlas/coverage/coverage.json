@@ -481,14 +481,37 @@
       },
       "closed_when": "Closed whenThe comparison with human colour perception is a cited analogy.",
       "source_reference": "FOFT v2 · FOFT v2 §13.3 · rebuilt from the published script",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "local_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/relational-atlas-lean",
+          "path": "RelationalAtlas/Extended3.lean",
+          "declarations": [
+            "direct_cost",
+            "equal_geodesic_steps",
+            "not_subadditive",
+            "split_cost",
+            "split_lt_direct"
+          ],
+          "scope": "Refutation: the raw log-det comparator is not globally subadditive (explicit equal-step witness), with the √S reading left open.",
+          "commit": "39a2c676c3a4481fe41e13456e4f2526dee10b9d",
+          "snapshot_path": "RelationalAtlas/Extended3.lean",
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/39a2c676c3a4481fe41e13456e4f2526dee10b9d/RelationalAtlas/Extended3.lean"
+        }
+      ],
       "audit_notes": [
         "Do not identify a Bures angle, a Bures–Wasserstein chord distance, an affine-invariant metric and a log-det divergence just because each uses SPD matrices. B15’s global “not a squared metric” wording needs a dedicated source/theorem check; its finite witness establishes a narrower nonadditivity claim."
       ],
       "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
-      "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
+      "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger.",
+      "corrections": [
+        {
+          "kind": "refuted",
+          "finding": "The global subadditivity S(a∪b) ≤ S(a)+S(b) is false for the raw log-det comparator S(A,B) = log det((A+B)/2) − ½log det A − ½log det B: S(1,4) = log(5/4) = 0.2231 exceeds S(1,2)+S(2,4) = log(9/8) = 0.1178, and the two steps have equal cost so the failure is not a subdivision artefact. The √S metric reading, which the archived HTML and the ledger spell differently, is not addressed.",
+          "evidence": "RelationalAtlas/Extended3.lean::AtlasB15.not_subadditive"
+        }
+      ]
     },
     {
       "id": "B16",
@@ -1486,11 +1509,46 @@
           "commit": "a9cb9b3d97ed763f8695469464d51df1106d188f",
           "snapshot_path": "RelationalAtlas/Extended2.lean",
           "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/a9cb9b3d97ed763f8695469464d51df1106d188f/RelationalAtlas/Extended2.lean"
+        },
+        {
+          "repository": "dicipler-pixel/relational-atlas-lean",
+          "path": "RelationalAtlas/Extended3.lean",
+          "declarations": [
+            "exp_jordan",
+            "exp_smul_of_sq_zero",
+            "growth_factor_le_peak",
+            "jordan_eigenvector",
+            "jordan_eq_scalar_add_shear",
+            "jordan_self_flow_restriction",
+            "jordan_self_intertwines",
+            "literal_squared_B44_claim_is_false",
+            "one_lt_transientMax_jordan",
+            "opNorm_exp_jordan_le",
+            "opNorm_exp_le_of_flow_restriction",
+            "peak_le_opNorm_exp_jordan_one",
+            "shear_ne_zero",
+            "shear_sq",
+            "transientMax_jordan",
+            "transientMax_le_of_flow_restriction",
+            "transientMax_lt_transientMax_sq",
+            "transientValues_jordan_bddAbove"
+          ],
+          "scope": "The unsquared lift inequality is proved for real Banach spaces; the ledger's squared form is refuted by an isometric-embedding counterexample.",
+          "commit": "39a2c676c3a4481fe41e13456e4f2526dee10b9d",
+          "snapshot_path": "RelationalAtlas/Extended3.lean",
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/39a2c676c3a4481fe41e13456e4f2526dee10b9d/RelationalAtlas/Extended3.lean"
         }
       ],
       "audit_notes": [],
       "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
-      "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
+      "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger.",
+      "corrections": [
+        {
+          "kind": "ledger-error",
+          "finding": "coverage.json (and the batch brief) carried the squared form max_t‖e^{tA}‖ ≥ max_t‖e^{tJ}‖²; the current card HTML displays the unsquared G(H) ≥ G(block). The squared form is false even for a surjective isometric embedding: J = A = [[−1/2,1],[0,−1/2]] in the max norm has M = 2e^{−1/2} > 1, so max_A = M < M². The unsquared lift is proved.",
+          "evidence": "RelationalAtlas/Extended3.lean::literal_squared_B44_claim_is_false"
+        }
+      ]
     },
     {
       "id": "B45",
@@ -1795,14 +1853,42 @@
       },
       "closed_when": "Closed whenThe nesting of the first two is forced; where the exceptional points sit depends on the family.",
       "source_reference": "Operator-First Atlas v5 · Atlas v5 L1 (B54 revision, GEOWALL-01) · closed form and finite differences",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "local_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/relational-atlas-lean",
+          "path": "RelationalAtlas/Extended3.lean",
+          "declarations": [
+            "b54_first_displayed_clause_false",
+            "b54_second_displayed_clause",
+            "flat_path_holds_before_zero",
+            "flat_path_saturates_at_zero",
+            "flat_path_violates_after_zero",
+            "negative_det_excludes_positiveDef",
+            "negative_det_forces_bound_failure",
+            "positiveFlatWitness_bound_holds_strictly",
+            "positive_det_does_not_force_overrun",
+            "positive_det_does_not_imply_positiveDef"
+          ],
+          "scope": "det g < 0 with |Ω|² ≥ 0 forces 4 det g < |Ω|² and excludes positive definiteness; det g > 0 does not certify a metric (−I₂), and the flat path separates the three regimes.",
+          "commit": "39a2c676c3a4481fe41e13456e4f2526dee10b9d",
+          "snapshot_path": "RelationalAtlas/Extended3.lean",
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/39a2c676c3a4481fe41e13456e4f2526dee10b9d/RelationalAtlas/Extended3.lean"
+        }
+      ],
       "audit_notes": [
         "Positive determinant alone does not establish a positive metric. A finite grid with nonzero discriminant does not exclude a zero between samples without an analytic or rigorous covering bound."
       ],
       "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
-      "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
+      "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger.",
+      "corrections": [
+        {
+          "kind": "overreach",
+          "finding": "det g > 0 does not certify that the form is still a metric: −I₂ has determinant 1 and is negative definite. The universal reading of the first clause ('det g > 0 ⇒ |Ω|² overruns') is false, e.g. g = I₂, |Ω|² = 0. The second clause is true as stated: det g < 0 with |Ω|² ≥ 0 gives 4 det g < |Ω|² and excludes positive definiteness.",
+          "evidence": "RelationalAtlas/Extended3.lean::positive_det_does_not_imply_positiveDef"
+        }
+      ]
     },
     {
       "id": "B55",
@@ -2914,11 +3000,45 @@
           "commit": "a9cb9b3d97ed763f8695469464d51df1106d188f",
           "snapshot_path": "RelationalAtlas/Extended2.lean",
           "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/a9cb9b3d97ed763f8695469464d51df1106d188f/RelationalAtlas/Extended2.lean"
+        },
+        {
+          "repository": "dicipler-pixel/relational-atlas-lean",
+          "path": "RelationalAtlas/Extended3.lean",
+          "declarations": [
+            "bilinearProbe_det",
+            "bilinearProbe_det_conj",
+            "bilinearProbe_det_nonpos",
+            "bilinearProbe_det_zero_iff",
+            "fmax_abs_of_nonneg",
+            "fmax_subsingleton",
+            "generic_bilinearProbe_det",
+            "l2_norm_diagonal_eq_fmax_abs",
+            "norm_pairing",
+            "reciprocity_does_not_force_generic_probe_det_zero",
+            "regularG_positive",
+            "regularM_matrix",
+            "regular_reciprocity",
+            "signedG_positive",
+            "signed_norm_counterexample",
+            "signed_norm_formula_ne",
+            "symmetric_alone_does_not_imply_det_nonpos"
+          ],
+          "scope": "‖B‖ = max|tᵢ/gᵢ| (the displayed max tᵢ/gᵢ needs tᵢ ≥ 0), symmetry alone does not give det g ≤ 0, the generic det ≡ 0 is false, and the bilinear form Re(uuᵀ) has det = −Im(conj(u₁)u₂)² ≤ 0 with equality at real parallelism.",
+          "commit": "39a2c676c3a4481fe41e13456e4f2526dee10b9d",
+          "snapshot_path": "RelationalAtlas/Extended3.lean",
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/39a2c676c3a4481fe41e13456e4f2526dee10b9d/RelationalAtlas/Extended3.lean"
         }
       ],
       "audit_notes": [],
       "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
-      "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
+      "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger.",
+      "corrections": [
+        {
+          "kind": "ledger-error",
+          "finding": "Three readings of B86's determinant clause disagree: the ledger says det g ≤ 0 for symmetric probes, the archived HTML prose says det g ≡ 0. Arbitrary real symmetry does not give the inequality (G = I₂ beside a regular reciprocity witness), the generic det ≡ 0 is false, and the true content for the intended bilinear form Re(uuᵀ) is det = −Im(conj(u₁)u₂)² ≤ 0, zero exactly at real parallelism — so the non-positivity comes from the bilinear structure, not from reciprocity. The norm clause ‖B‖ = max tᵢ/gᵢ also needs tᵢ ≥ 0.",
+          "evidence": "RelationalAtlas/Extended3.lean::symmetric_alone_does_not_imply_det_nonpos"
+        }
+      ]
     },
     {
       "id": "B87",
@@ -3814,12 +3934,44 @@
       },
       "closed_when": "Closed whenA γ-regularized solve is not an exact solution at finite γ.",
       "source_reference": "IQGT v7.3.1 · §9, Remark 9.2 · s9_checks_v2.py 11/11 incl. incompatible-block control · Lean: sld_kernel_block",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "local_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/relational-atlas-lean",
+          "path": "RelationalAtlas/Extended3.lean",
+          "declarations": [
+            "eq_quotient_of_entrywise_of_left_zero",
+            "eq_quotient_of_entrywise_of_right_zero",
+            "eq_quotient_of_entrywise_of_sum_ne_zero",
+            "eq_sldSolve_of_entrywise_of_sum_ne_zero",
+            "exists_entrywise_sld_iff",
+            "exists_isHermitian_entrywise_sld_iff",
+            "kernel_entry_eq_zero_of_entrywise",
+            "no_sld_zero_state_unit_variation",
+            "sldSolve_apply_of_both_zero",
+            "sldSolve_apply_of_sum_ne_zero",
+            "sldSolve_entrywise",
+            "sldSolve_isHermitian",
+            "sldSolve_matrix",
+            "sum_eq_zero_iff_of_nonneg"
+          ],
+          "scope": "The entrywise Sylvester equation has a solution exactly when the kernel–kernel block of V vanishes; the solution is the quotient off the zero sums and an arbitrary block remains there.",
+          "commit": "39a2c676c3a4481fe41e13456e4f2526dee10b9d",
+          "snapshot_path": "RelationalAtlas/Extended3.lean",
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/39a2c676c3a4481fe41e13456e4f2526dee10b9d/RelationalAtlas/Extended3.lean"
+        }
+      ],
       "audit_notes": [],
       "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
-      "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
+      "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger.",
+      "corrections": [
+        {
+          "kind": "clarification",
+          "finding": "'pᵢ = pⱼ = 0 ⇒ Vᵢⱼ must vanish' is a compatibility condition, not an automaticity claim: with p ≥ 0, existence of L is *equivalent* to it, the solution is the quotient off the zero sums, and an arbitrary block remains on the kernel–kernel pairs. The witness p = 0, V = 1 shows it cannot be dropped.",
+          "evidence": "RelationalAtlas/Extended3.lean::exists_entrywise_sld_iff"
+        }
+      ]
     },
     {
       "id": "B113",
@@ -3876,12 +4028,33 @@
       },
       "closed_when": "Closed whenOdd m separates the two sides; t = εm is not a local diffeomorphism at zero.",
       "source_reference": "IQGT v7.3.1 · §8.5, Proposition 8.6 · silent_order_check.py m = 2–5 · Lean: m = 2 identity",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "local_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/relational-atlas-lean",
+          "path": "RelationalAtlas/Extended3.lean",
+          "declarations": [
+            "first_nonzero_iteratedDeriv_tangent",
+            "idempotent_deriv_tangent",
+            "order_zero_literal_claim_false"
+          ],
+          "scope": "First-nonzero-jet tangency: if P⁽¹⁾…P⁽ᵐ⁻¹⁾ vanish then P⁽ᵐ⁾ is tangent, for a curve in a real normed algebra; m > 0 is essential and is exhibited by the constant path at 1.",
+          "commit": "39a2c676c3a4481fe41e13456e4f2526dee10b9d",
+          "snapshot_path": "RelationalAtlas/Extended3.lean",
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/39a2c676c3a4481fe41e13456e4f2526dee10b9d/RelationalAtlas/Extended3.lean"
+        }
+      ],
       "audit_notes": [],
       "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
-      "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
+      "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger.",
+      "corrections": [
+        {
+          "kind": "clarification",
+          "finding": "The displayed jet identity needs m > 0: at m = 0 it would read P = P² + P², which fails for the constant path at 1. For m ≥ 1 it is exact, and the C^(m+1) hypothesis can be weakened to C^m.",
+          "evidence": "RelationalAtlas/Extended3.lean::order_zero_literal_claim_false"
+        }
+      ]
     },
     {
       "id": "B115",
@@ -4027,12 +4200,46 @@
       },
       "closed_when": "Closed whenAt a fold the inverse metric fails and continuation needs extra structure; not every Hall tensor is a geodesic force.",
       "source_reference": "IQGT v7.3.1 · §7.1 and §8.4, Remark 8.4 · rigidity_checks.py: projector-derived coefficient agrees to 3×10⁻⁸",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "local_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/relational-atlas-lean",
+          "path": "RelationalAtlas/Extended3.lean",
+          "declarations": [
+            "cardTransverse_eq",
+            "cardTransverse_pi_div_four",
+            "christoffelFirst_sym",
+            "christoffelFirst_xx_y_expanded",
+            "christoffelFirst_xx_y_of_killing",
+            "christoffelFirst_xx_y_of_killing_all",
+            "deriv_cardGxx",
+            "neg_nine_div_eight_le_cardTransverse",
+            "pointwise_vanishing_gxy_is_insufficient",
+            "probeGxy_zero",
+            "probe_metric_det_at_zero_one",
+            "probe_metric_positive_definite_at_zero_one",
+            "probe_not_transverse_formula",
+            "raisedDiagonal_gyy_eq_one",
+            "raised_card_pi_div_four_gyy_four",
+            "transverseCoefficient_of_deriv_x_gxy_eq_zero"
+          ],
+          "scope": "Γ_{xx,y} = g_{xy,x} − ½g_{xx,y}, so the displayed −½∂_y g_xx is the Killing specialization; pointwise vanishing of g_xy is insufficient and the raised-index coefficient differs.",
+          "commit": "39a2c676c3a4481fe41e13456e4f2526dee10b9d",
+          "snapshot_path": "RelationalAtlas/Extended3.lean",
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/39a2c676c3a4481fe41e13456e4f2526dee10b9d/RelationalAtlas/Extended3.lean"
+        }
+      ],
       "audit_notes": [],
       "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
-      "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
+      "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger.",
+      "corrections": [
+        {
+          "kind": "missing-hypothesis",
+          "finding": "The transverse coefficient −½∂_y g_xx is the *Killing* specialization of Γ_{xx,y} = g_{xy,x} − ½g_{xx,y}, not the general symbol: pointwise vanishing of g_xy is insufficient (g = [[1,xy],[xy,2]] at (0,1) has g_xy = 0 and coefficient 1, not 0), so ∂_x g_{xy} = 0 is essential. The raised-index coefficient differs as well (−9/8 first kind against −9/32 when g_yy = 4).",
+          "evidence": "RelationalAtlas/Extended3.lean::pointwise_vanishing_gxy_is_insufficient"
+        }
+      ]
     },
     {
       "id": "B120",
@@ -4558,12 +4765,38 @@
       },
       "closed_when": "Closed whenSpecial observed values (exact zeros on a positive boundary) can carry extra information this uniform statement ignores.",
       "source_reference": "Light ed. 7.2 · Propositions 4.5b and 4.5e · span test and invisible direction checked",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "local_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/relational-atlas-lean",
+          "path": "RelationalAtlas/Extended3.lean",
+          "declarations": [
+            "exists_invisible_direction_of_symmetric",
+            "exists_reconstruction",
+            "identifiability_iff_of_symmetric",
+            "literal_otherwise_clause_counterexample",
+            "skewTarget_not_mem_span",
+            "trace_mul_vecMulVec",
+            "trace_reconstruction",
+            "trace_symmetric_mul_skewTarget"
+          ],
+          "scope": "The identifiability dichotomy holds for symmetric F; without symmetry the antisymmetric part is invisible to every symmetric probe and the 'otherwise' branch is empty.",
+          "commit": "39a2c676c3a4481fe41e13456e4f2526dee10b9d",
+          "snapshot_path": "RelationalAtlas/Extended3.lean",
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/39a2c676c3a4481fe41e13456e4f2526dee10b9d/RelationalAtlas/Extended3.lean"
+        }
+      ],
       "audit_notes": [],
       "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
-      "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
+      "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger.",
+      "corrections": [
+        {
+          "kind": "refuted",
+          "finding": "The 'otherwise' clause fails without F symmetric: with one zero probe u = 0 and F = [[0,1],[−1,0]], F is outside span{uᵢuᵢᵀ} and every reading vanishes, yet Tr(HF) = 0 for every symmetric H, so the invisible detecting H cannot exist. The antisymmetric part of F is invisible to every symmetric probe. With F = Fᵀ the dichotomy is proved in both directions.",
+          "evidence": "RelationalAtlas/Extended3.lean::literal_otherwise_clause_counterexample"
+        }
+      ]
     },
     {
       "id": "B133",
@@ -4816,9 +5049,38 @@
       },
       "closed_when": "Closed whenAt r = 3 the join edges (63 for n = 7) fit under the budget (76): the count proves nothing there.",
       "source_reference": "Earth–Moon note v1 · Lemma 1, Theorem 1, Corollary 1 · upper bound via Albertson, Boutin and Gethner · edge counts and triangle-freeness recomputed",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "local_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/relational-atlas-lean",
+          "path": "RelationalAtlas/Extended3.lean",
+          "declarations": [
+            "TriangleFree.mono",
+            "arithmetic_n4_r4",
+            "arithmetic_n7_r4",
+            "card_edgeFinset_eq_ncard",
+            "cycleGraph_adj_int_cases",
+            "cycleGraph_triangleFree",
+            "joinBlowup_triangleFree",
+            "joinEdges_not_two_planar_layers",
+            "joinEdges_triangleFree",
+            "join_count_gt_two_layer_budget",
+            "ncard_edgeSet_cycleGraph",
+            "ncard_edgeSet_joinBlowup",
+            "ncard_edgeSet_joinEdges",
+            "ncard_joinEdges_n4_r4",
+            "ncard_joinEdges_n7_r4",
+            "planar_budget_fails_at_N2",
+            "top_fin_two_triangleFree",
+            "triangleFree_edge_card_le_two_layers"
+          ],
+          "scope": "Join edges of Cₙ[K_r] form a triangle-free subgraph with nr² edges against the two-planar triangle-free budget 4N−8, giving Θ ≥ 3 for n,r ≥ 4 (conditional on the planar bound, which Mathlib lacks).",
+          "commit": "39a2c676c3a4481fe41e13456e4f2526dee10b9d",
+          "snapshot_path": "RelationalAtlas/Extended3.lean",
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/39a2c676c3a4481fe41e13456e4f2526dee10b9d/RelationalAtlas/Extended3.lean"
+        }
+      ],
       "audit_notes": [],
       "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
       "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
@@ -4993,9 +5255,27 @@
       },
       "closed_when": "Closed whenBeyond the smallness condition there is no guarantee; a non-normal block amplifies a large seam.",
       "source_reference": "Obstruction interfaces · Theorem 8.1, Corollaries 8.2 and 10.4 · Directional Theorem 15 · bound and destabilising example checked",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "local_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/relational-atlas-lean",
+          "path": "RelationalAtlas/Extended3.lean",
+          "declarations": [
+            "B144_glued_resolvent_bound",
+            "inverse_unit_sub_norm_le",
+            "l2Blocks_diagonal_norm_le",
+            "l2Glued_resolvent_bound",
+            "l2Glued_resolvent_norm_le_of_units",
+            "l2Seam_norm_le",
+            "l2_resolvent_glued_eq_diagonal_sub_seam"
+          ],
+          "scope": "The glued block resolvent obeys ‖(z−H_{A∪B})⁻¹‖ ≤ 2K/δ for Re z ≥ δ from ‖(z−H_X)⁻¹‖ ≤ K/δ and ‖C‖ ≤ δ/(2K), by the D−E/Neumann argument with no seam-square hypothesis; the constant 2 is sharp at r = q = 1/2.",
+          "commit": "fc5b922",
+          "snapshot_path": "RelationalAtlas/Extended3.lean",
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/fc5b922/RelationalAtlas/Extended3.lean"
+        }
+      ],
       "audit_notes": [
         "Projector and resolvent diagnostics differ, but always obey ||P|| ≤ length(Γ) supΓ||R||/(2π) for a fixed contour and compatible norm. Do not discard contour geometry when interpreting an absence of universal bounds."
       ],
@@ -5018,9 +5298,38 @@
       },
       "closed_when": "Closed whenFor a normal operator the radius is ε; the square-root law is the signature of the coupling.",
       "source_reference": "Obstruction interfaces · Filament rev. 4 · Obstruction paper Lemma 9.1, Corollary 9.2 · exact disk in BH v8.4 §3.7 · circle verified by singular values",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "local_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/relational-atlas-lean",
+          "path": "RelationalAtlas/Extended3.lean",
+          "declarations": [
+            "equalDiagonal_star_mul_self_det",
+            "equalDiagonal_star_mul_self_trace",
+            "jordan_normal_iff",
+            "mem_pseudoSpectrum_iff",
+            "norm_sq_eq_largest_char_root",
+            "norm_sq_equalDiagonal",
+            "not_mem_pseudoSpectrum_boundary",
+            "pseudoSpectrum_eq_disk",
+            "pseudoSpectrum_uncoupled",
+            "resolvent_eq_equalDiagonal",
+            "resolvent_mul_shifted",
+            "resolvent_norm",
+            "resolvent_norm_gt_inv_iff",
+            "resolvent_norm_sq",
+            "resolvent_threshold",
+            "shifted_eq_smul_one_sub_jordan",
+            "shifted_mul_resolvent",
+            "shifted_zero_not_isUnit"
+          ],
+          "scope": "The pseudospectrum of the Jordan block is exactly the open disk |z−b| < √(ε|μ|+ε²), with the resolvent norm (|μ|+√(|μ|²+4|w|²))/(2|w|²), the boundary excluded and the normal case μ = 0 reduced to the ε-ball.",
+          "commit": "39a2c676c3a4481fe41e13456e4f2526dee10b9d",
+          "snapshot_path": "RelationalAtlas/Extended3.lean",
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/39a2c676c3a4481fe41e13456e4f2526dee10b9d/RelationalAtlas/Extended3.lean"
+        }
+      ],
       "audit_notes": [],
       "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
       "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
@@ -5155,7 +5464,14 @@
         "A scalar T removes the coupling that would identify its coefficient in B43. A zero tensor factor is an exception to an unrestricted “normal iff both factors normal” statement in B148. State nontriviality hypotheses."
       ],
       "next_obligation": "Check all remaining headline, geometric, analytic and physical clauses against the exact mapped theorem statements; formalize any missing clauses.",
-      "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
+      "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger.",
+      "corrections": [
+        {
+          "kind": "clarification",
+          "finding": "Miss probabilities do not multiply: the composition law is q_A + q_B − q_A q_B, with a Lean counterexample (3/4 ≠ 1/4 at q = 1/2). What multiplies is the *stress* 1 − S under the tensor product.",
+          "evidence": "RelationalAtlas/Extended2.lean::b148_miss_product_counterexample"
+        }
+      ]
     },
     {
       "id": "B149",
@@ -5317,12 +5633,35 @@
       },
       "closed_when": "Closed whenThe test fixes KA up to λI; the offset (B151) needs the empty/full ratio, a separate calibration.",
       "source_reference": "Offset v31 · Offset v31 Proposition 12 · least squares; local profile",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "local_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/relational-atlas-lean",
+          "path": "RelationalAtlas/Extended3.lean",
+          "declarations": [
+            "exists_isScalar_of_trace_mul_eq_zero_on_symm_traceless",
+            "exists_real_isScalar_of_re_trace_mul_eq_zero_on_hermitian_traceless",
+            "one_temperature_iff_complex",
+            "one_temperature_iff_real",
+            "skewWitness_refutes_dropping_symmetry"
+          ],
+          "scope": "A single β is equivalent to K_A − βh_A being a scalar on traceless Hermitian directions, provided K is Hermitian; the antisymmetric witness shows the hypothesis cannot be dropped.",
+          "commit": "39a2c676c3a4481fe41e13456e4f2526dee10b9d",
+          "snapshot_path": "RelationalAtlas/Extended3.lean",
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/39a2c676c3a4481fe41e13456e4f2526dee10b9d/RelationalAtlas/Extended3.lean"
+        }
+      ],
       "audit_notes": [],
       "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
-      "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
+      "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger.",
+      "corrections": [
+        {
+          "kind": "missing-hypothesis",
+          "finding": "The equivalence 'Tr(K_A δC) = βTr(h_A δC) for all traceless Hermitian δC ⟺ K_A − βh_A = λI' needs K Hermitian. With K = [[0,1],[−1,0]], h = 0, β = 1 every symmetric C is invisible to K (an antisymmetric matrix never pairs with a symmetric one) yet K is not a scalar. The card supplies the hypothesis only through the word 'Hamiltonian'.",
+          "evidence": "RelationalAtlas/Extended3.lean::skewWitness_refutes_dropping_symmetry"
+        }
+      ]
     },
     {
       "id": "B155",
@@ -5389,7 +5728,14 @@
       ],
       "audit_notes": [],
       "next_obligation": "Check all remaining headline, geometric, analytic and physical clauses against the exact mapped theorem statements; formalize any missing clauses.",
-      "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
+      "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger.",
+      "corrections": [
+        {
+          "kind": "ledger-error",
+          "finding": "The generic two-unit-vector reading of the Gram matrix is false: for unit vectors with inner product cos ϑ the Gram determinant is sin²ϑ and the characteristic roots are 1 ± cos ϑ. The card's diag(cos²ϑ, 1) is specific to its own shape-sphere parametrisation dΦ(eϑ) = (cosϑcosφ, cosϑsinφ), dΦ(eφ) = (−sinφ, cosφ).",
+          "evidence": "RelationalAtlas/Extended2.lean::literal_unit_vector_counterexample"
+        }
+      ]
     },
     {
       "id": "B156",
@@ -5906,14 +6252,71 @@
       },
       "closed_when": "Closed whenAt the wall, where gW stops being a metric on the Gram tangent space.",
       "source_reference": "Black Hole v8.4 · §3.2, Theorem 4 · BH-LIFT-05, BH-NONNORMAL-04, BH-SPINE-09",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "local_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/relational-atlas-lean",
+          "path": "RelationalAtlas/Extended3.lean",
+          "declarations": [
+            "A_of_trace_zero",
+            "C_scalar",
+            "Cad_smul",
+            "D_add",
+            "D_decomp",
+            "D_smul",
+            "H2_ne_zero",
+            "H2_trace",
+            "P_add",
+            "P_add_Q",
+            "P_idem",
+            "P_on_trace_zero",
+            "P_smul",
+            "Q_eq",
+            "Q_idem",
+            "g_A",
+            "g_D",
+            "g_P",
+            "g_Q",
+            "g_comm",
+            "g_diagonal",
+            "g_diagonal_right",
+            "g_hidden",
+            "g_self_eq_zero",
+            "g_self_nonneg",
+            "g_smul_left",
+            "g_smul_right",
+            "g_sub_left",
+            "g_sub_right",
+            "hidden_eq_Cad_C",
+            "hidden_eq_zero_iff_C_eq_zero",
+            "hidden_positive",
+            "hidden_rank_le_one",
+            "hidden_scalar",
+            "literal_rank_one_counterexample",
+            "t2_eq_one",
+            "t2_pos",
+            "w2_pos",
+            "w2_sum"
+          ],
+          "scope": "g_W(W,H) = ¼Tr H, the compression A(H) = D_T(H) − 2Tr(TH)W on trace-zero tangents, self-adjointness of P_W, D_T, Q_W and A in the displayed pairing, and the hidden block is line-valued — rank at most one, and zero at uniform weights with T = I.",
+          "commit": "39a2c676c3a4481fe41e13456e4f2526dee10b9d",
+          "snapshot_path": "RelationalAtlas/Extended3.lean",
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/39a2c676c3a4481fe41e13456e4f2526dee10b9d/RelationalAtlas/Extended3.lean"
+        }
+      ],
       "audit_notes": [
         "The Gram-chart fold can be removable on an orientation cover; the metric may degenerate with an open spectral gap; a genuine nonzero nilpotent radial block is defective. An interior metric that normalizes one operator does not make a defective Jordan block normal in a positive-definite metric."
       ],
       "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
-      "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
+      "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger.",
+      "corrections": [
+        {
+          "kind": "overreach",
+          "finding": "The hidden block P_W D_T² P_W − A² is line-valued, hence of rank at most one, not rank one: hidden(H) = Tr(D_T(P_W(H)))·C^ad(W). At uniform weights with T = I the trace factor vanishes identically and the block is zero, so the card's 'rank one because Q_W = I − P_W does' is an overstatement.",
+          "evidence": "RelationalAtlas/Extended3.lean::hidden_rank_le_one"
+        }
+      ]
     },
     {
       "id": "B172",
@@ -6229,14 +6632,71 @@
       },
       "closed_when": "Closed whenWith non-unitary edges the factor Aij no longer leaves the norm; the edge sum then carries weights and orientation.",
       "source_reference": "Connection Energy v16 · §1 eq. (4) · random graphs, full-matrix comparison",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "local_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/relational-atlas-lean",
+          "path": "RelationalAtlas/Extended3.lean",
+          "declarations": [
+            "Eminus_eq_half_norm_add",
+            "Eplus_eq_half_norm_sub",
+            "IsUnitaryConnection.apply_eq_neg_conjTranspose",
+            "IsUnitaryConnection.norm_mul_add_mul_comm",
+            "b183_oppositeEnergy",
+            "b183_oppositeEnergy_eq_sum_edgeFinset",
+            "b183_zero_iff_isHermitian_sq",
+            "b184_block_budget",
+            "b184_block_difference",
+            "b184_budget",
+            "b184_difference",
+            "b184_graph_budget_and_difference",
+            "b184_normal_hermitian_sq_eq_zero_on_edges",
+            "blockEminus_diagonal_mul",
+            "blockEminus_eq_half_norm_add",
+            "blockEplus_diagonal_mul",
+            "blockEplus_diagonal_mul_eq_oppositeEnergy",
+            "blockEplus_eq_half_norm_sub",
+            "blockTrace_conjTranspose",
+            "block_norm_sq_add",
+            "block_norm_sq_eq_re_trace",
+            "block_norm_sq_sub",
+            "complex_re_sum",
+            "conjTranspose_diagonal_mul",
+            "isHermitian_sq_iff",
+            "norm_mul_add_mul_eq_of_mem_unitaryGroup",
+            "norm_mul_unitary",
+            "norm_sq_add",
+            "norm_sq_diagonal_mul_eq_sum_degree",
+            "norm_sq_eq_re_trace",
+            "norm_sq_eq_sum",
+            "norm_sq_real_smul",
+            "norm_sq_square_sub_starSquare",
+            "norm_sq_sub",
+            "norm_unitary_mul",
+            "oppositeEnergy_eq_zero_iff",
+            "square_sub_starSquare_diagonal_add",
+            "sum_ite_adj",
+            "sum_sum_ite_adj_eq_two_mul_sum_edgeFinset"
+          ],
+          "scope": "H = diag(D) + A with Hermitian blocks D_i and A a unitary connection on a finite graph: H² − H*² = 2(DA + AD), ‖H²−H*²‖²/8 = oppositeEnergy both as an ordered sum and as an edge sum, and energy zero iff H² is Hermitian. The unitarity of the edge blocks is load-bearing — with unstructured complex weights the identity fails — and ‖D_iA_ij + A_ijD_j‖ = ‖D_i + A_ijD_jA_ij^H‖ is the unitary-invariance step.",
+          "commit": "fc5b922",
+          "snapshot_path": "RelationalAtlas/Extended3.lean",
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/fc5b922/RelationalAtlas/Extended3.lean"
+        }
+      ],
       "audit_notes": [
         "The two product halves belong to X=DA. Their sum is an algebraic fixed-field budget, not automatically a conserved physical energy. Equal books mean a vanishing declared cross-moment, not statistical independence. Centering changes the balance point."
       ],
       "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
-      "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
+      "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger.",
+      "corrections": [
+        {
+          "kind": "clarification",
+          "finding": "The ⅛ identity needs the edge blocks to be unitary, not merely skew-Hermitian: with unstructured complex weights ‖H²−H*²‖²/8 and Σ_E‖D_i + A_ijD_jA_ij^H‖² differ by a non-constant factor. Given a unitary connection the identity is exact, the step being ‖D_iA_ij + A_ijD_j‖ = ‖D_i + A_ijD_jA_ij^H‖.",
+          "evidence": "RelationalAtlas/Extended3.lean::b183_oppositeEnergy"
+        }
+      ]
     },
     {
       "id": "B184",
@@ -6254,9 +6714,59 @@
       },
       "closed_when": "Closed whenThe budget is an identity of a fixed field, not a conservation law: when the field itself changes, the budget changes with it.",
       "source_reference": "Connection Energy v16 · §2 eqs. (budget), (diff); Gravity Ledger ed. 6 Proposition 15 · random graphs, full-matrix comparison",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "local_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/relational-atlas-lean",
+          "path": "RelationalAtlas/Extended3.lean",
+          "declarations": [
+            "Eminus_eq_half_norm_add",
+            "Eplus_eq_half_norm_sub",
+            "IsUnitaryConnection.apply_eq_neg_conjTranspose",
+            "IsUnitaryConnection.norm_mul_add_mul_comm",
+            "b183_oppositeEnergy",
+            "b183_oppositeEnergy_eq_sum_edgeFinset",
+            "b183_zero_iff_isHermitian_sq",
+            "b184_block_budget",
+            "b184_block_difference",
+            "b184_budget",
+            "b184_difference",
+            "b184_graph_budget_and_difference",
+            "b184_normal_hermitian_sq_eq_zero_on_edges",
+            "blockEminus_diagonal_mul",
+            "blockEminus_eq_half_norm_add",
+            "blockEplus_diagonal_mul",
+            "blockEplus_diagonal_mul_eq_oppositeEnergy",
+            "blockEplus_eq_half_norm_sub",
+            "blockTrace_conjTranspose",
+            "block_norm_sq_add",
+            "block_norm_sq_eq_re_trace",
+            "block_norm_sq_sub",
+            "complex_re_sum",
+            "conjTranspose_diagonal_mul",
+            "isHermitian_sq_iff",
+            "norm_mul_add_mul_eq_of_mem_unitaryGroup",
+            "norm_mul_unitary",
+            "norm_sq_add",
+            "norm_sq_diagonal_mul_eq_sum_degree",
+            "norm_sq_eq_re_trace",
+            "norm_sq_eq_sum",
+            "norm_sq_real_smul",
+            "norm_sq_square_sub_starSquare",
+            "norm_sq_sub",
+            "norm_unitary_mul",
+            "oppositeEnergy_eq_zero_iff",
+            "square_sub_starSquare_diagonal_add",
+            "sum_ite_adj",
+            "sum_sum_ite_adj_eq_two_mul_sum_edgeFinset"
+          ],
+          "scope": "With E∓ = 2‖Herm/Skew X‖² and X = DA: E⁻+E⁺ = 2‖X‖², E⁻−E⁺ = 2Re Tr X², the graph budget 2Σdeg(i)‖D_i‖² = 2‖DA‖², the identification of E⁺ with B183, and normal & H² Hermitian ⇒ D_i = 0 on every incident edge.",
+          "commit": "fc5b922",
+          "snapshot_path": "RelationalAtlas/Extended3.lean",
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/fc5b922/RelationalAtlas/Extended3.lean"
+        }
+      ],
       "audit_notes": [
         "The two product halves belong to X=DA. Their sum is an algebraic fixed-field budget, not automatically a conserved physical energy. Equal books mean a vanishing declared cross-moment, not statistical independence. Centering changes the balance point."
       ],
@@ -6466,7 +6976,14 @@
       ],
       "audit_notes": [],
       "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
-      "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
+      "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger.",
+      "corrections": [
+        {
+          "kind": "missing-hypothesis",
+          "finding": "'Le = 0 exactly when b is a real multiple of a' fails at a = 0, b ≠ 0, where the displayed Le² is 0 but b is not a multiple of 0. The corrected statement is proved under a ≠ 0.",
+          "evidence": "RelationalAtlas/Extended.lean::LeSq_eq_zero_iff"
+        }
+      ]
     },
     {
       "id": "B191",
@@ -6740,9 +7257,40 @@
       },
       "closed_when": "Closed whenThis is a conditional reformulation, not a derivation: generator, shift, resource and objective are all assumptions. Full dephasing gives ρ = ⅓ for every triple, and running masses are a different object.",
       "source_reference": "Connection Energy v16 · §10 eqs. (koideq), (koidebooks), (koideosc), (e3); Koide 1982–83, Foot, Brannen; PDG masses · exact algebra; measured masses",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "local_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/relational-atlas-lean",
+          "path": "RelationalAtlas/Extended3.lean",
+          "declarations": [
+            "centeredJ_sq",
+            "koideHSq_nonneg",
+            "koideH_nonneg",
+            "koideH_sq",
+            "koideQ_eq_s_h",
+            "koideQ_eq_two_thirds_iff_Z_sq_zero",
+            "koideQ_eq_two_thirds_iff_canonical_Z_sq_zero",
+            "koideQ_eq_two_thirds_iff_h_eq_s",
+            "koideQ_eq_two_thirds_iff_sq",
+            "koideS_pos",
+            "koideZ_eq",
+            "koideZ_ne_zero_of_s_ne_zero",
+            "koideZ_sq",
+            "koideZ_sq_of_hrepr",
+            "koide_decomposition",
+            "koide_equal_masses",
+            "koide_nonzero_nilpotent_at_value",
+            "koide_spread_ratio",
+            "koide_zeta_sq",
+            "three_mul_koideS_sq"
+          ],
+          "scope": "Q = Σm/(Σ√m)², h²/s² = 3Q−1 and Q = 2/3 ⟺ h = s; the centred Koide matrix squares to (h₁²+h₂²−s²)I, so Q = 2/3 is exactly its nilpotency.",
+          "commit": "39a2c676c3a4481fe41e13456e4f2526dee10b9d",
+          "snapshot_path": "RelationalAtlas/Extended3.lean",
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/39a2c676c3a4481fe41e13456e4f2526dee10b9d/RelationalAtlas/Extended3.lean"
+        }
+      ],
       "audit_notes": [
         "Fastest asymptotic exponential rate for fixed natural frequency and this oscillator family occurs at critical damping. Finite-tolerance settling depends on initial state, observable and metric. Koide’s encoded oscillator has no derived physical resource or mass-selection dynamics here."
       ],
@@ -6820,7 +7368,14 @@
         "The double-bracket flow is a specified mathematical dynamics and leaves the original unitary-edge graph class. Its monotone defects do not select equal books. Transpose preserves both books but reverses directional response; absolute rapidity increments fix route length but not signed endpoint."
       ],
       "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
-      "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
+      "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger.",
+      "corrections": [
+        {
+          "kind": "rounding",
+          "finding": "The displayed |R₂₁(0.5i)| = 0.130158 is the rounded value of 6√85/425 = 0.130158…; the exact value is proved and the decimal equality is refuted.",
+          "evidence": "RelationalAtlas/Extended2.lean::rounded_decimal_not_exact"
+        }
+      ]
     },
     {
       "id": "B203",
@@ -6913,9 +7468,45 @@
       },
       "closed_when": "Closed whenThe first k power sums Tr(PR)j fix every ca, so the hierarchy is complete at that order; the books stop at j = 1.",
       "source_reference": "Connection Energy v16 · §11 eqs. (overlaps3), (hierarchy), (bargmann); Uhlmann, Bargmann · exact; random",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "local_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/relational-atlas-lean",
+          "path": "RelationalAtlas/Extended3.lean",
+          "declarations": [
+            "IsRayProjector.hermitian",
+            "IsRayProjector.idempotent",
+            "IsRayProjector.trace",
+            "bargmann_minus",
+            "bargmann_plus",
+            "born_sub_fidelity",
+            "card_hierarchy",
+            "card_hierarchy_unit_interval",
+            "conj_q",
+            "fidelity_le_born",
+            "geometric_root_le_arithmetic_root",
+            "overlap01",
+            "overlap0Minus",
+            "overlap0Plus",
+            "overlap1Minus",
+            "overlap1Plus",
+            "published_witness_equal",
+            "published_witness_split",
+            "q_sq",
+            "ray0_isRayProjector",
+            "ray1_isRayProjector",
+            "rayMinus_isRayProjector",
+            "rayPlus_isRayProjector",
+            "slater_root_le_fidelity",
+            "star_q"
+          ],
+          "scope": "D^(1/k) ≤ F ≤ ρ and ρ − F = Var(√c) for principal cosines, and three rank-one projectors in ℂ² with all pairwise overlaps ½ have Tr(P₀P₁P₂) = (1±i)/4.",
+          "commit": "39a2c676c3a4481fe41e13456e4f2526dee10b9d",
+          "snapshot_path": "RelationalAtlas/Extended3.lean",
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/39a2c676c3a4481fe41e13456e4f2526dee10b9d/RelationalAtlas/Extended3.lean"
+        }
+      ],
       "audit_notes": [
         "The Schur offset reduction needs protected interior and 0<C<I. A Nambu offset is a doubled quantity. Mean overlap does not determine fidelity, determinant or a three-ray Bargmann phase. Schwarzschild conformal-factor identities do not imply a graph Penrose inequality."
       ],

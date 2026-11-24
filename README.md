@@ -4,7 +4,7 @@
 
 [![Lean proof check](https://github.com/dicipler-pixel/relational-atlas-lean/actions/workflows/build.yml/badge.svg)](https://github.com/dicipler-pixel/relational-atlas-lean/actions/workflows/build.yml)
 ![Lean](https://img.shields.io/badge/Lean-v4.34.1-blue)
-![Theorems](https://img.shields.io/badge/theorems-444-2EA043)
+![Theorems](https://img.shields.io/badge/theorems-706-2EA043)
 ![sorry](https://img.shields.io/badge/sorry-0-2EA043)
 ![Code: MIT](https://img.shields.io/badge/code-MIT-lightgrey)
 ![Text: CC BY 4.0](https://img.shields.io/badge/text-CC%20BY%204.0-lightgrey)
@@ -105,6 +105,15 @@ diag(cos²ϑ,1) spectrum, B180's factor eight, B202's one-way resolvent, B78's s
 B72's off-block projector derivative, B186's quarter-turn sector flip, and B44's five-sector
 count with the lift bound. Both extension modules
 are checked by `scripts/verify_local.py` under the same rules as the original two.
+
+A third batch, [`RelationalAtlas/Extended3.lean`](RelationalAtlas/Extended3.lean) (262 further
+declarations), was asked for each card to state its own displayed formula and then try to break it.
+Several sections are refutations followed by the corrected statement: B15's raw comparator is not
+subadditive, B132's dichotomy needs `F` symmetric, B44's ledger square is false, B54's `det g > 0`
+does not certify a metric, B154 needs a Hermitian `K`, B119's coefficient is the Killing
+specialization, B171's hidden block is only line-valued, and B183's ⅛ identity needs unitary edge
+blocks rather than merely skew-Hermitian ones. The full list, with the theorem that
+settles each, is in [atlas/coverage/LOCAL_KERNEL_AUDIT.md](atlas/coverage/LOCAL_KERNEL_AUDIT.md).
 
 The full statement audit is in [atlas/coverage/LOCAL_KERNEL_AUDIT.md](atlas/coverage/LOCAL_KERNEL_AUDIT.md):
 37/37 ledger declarations elaborate and are axiom-clean, none is false as written, two are

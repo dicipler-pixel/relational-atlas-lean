@@ -8,9 +8,9 @@ This ledger records evidence for every card B1–B207. A source grade of THEOREM
 
 ## Coverage summary
 
-- 49 cards have mapped kernels in this repository (444 declarations, with overlap).
+- 61 cards have mapped kernels in this repository (660 declarations, with overlap).
 - 42 further cards have mapped kernels only in the sixteen inspected companion repositories.
-- 116 cards still need a formal-proof mapping in this audit.
+- 104 cards still need a formal-proof mapping in this audit.
 - The published 207-card files are kept separate from the historical 93-card directory; neither edition is overwritten.
 - Historical CI evidence is pinned below; a fresh PR build checks the local Lean modules and coverage validator. External snapshot files are evidence, not imports into this project build.
 
@@ -20,7 +20,7 @@ The local baseline is commit `172175e410ce7cbbf277c84d95e5d625d8cf7586`. Its [su
 
 The connection-energy repository has a committed verification report, not a GitHub Actions run. Its report records a clean build, five module kernel replays, 49 audited declarations and five rejected false controls. This ledger retains that evidence and source hashes but does not claim to have rebuilt that external project.
 
-Cross-repository theorem snapshots and pinned commits are listed in [external_sources.json](external_sources.json). Per-card assumptions, source hashes, exact scopes and remaining obligations are in [coverage.json](coverage.json). The validator checks that all 207 IDs occur once, proof names exist in the pinned snapshots and all 37 local declarations are represented in the inventory. It does not mathematically prove the mapping from prose to Lean.
+Cross-repository theorem snapshots and pinned commits are listed in [external_sources.json](external_sources.json). Per-card assumptions, source hashes, exact scopes and remaining obligations are in [coverage.json](coverage.json); cards whose claim did not survive formalisation carry a `corrections` record there and are listed in [LOCAL_KERNEL_AUDIT.md](LOCAL_KERNEL_AUDIT.md). The validator checks that all 207 IDs occur once, proof names exist in the pinned snapshots and all 37 local declarations are represented in the inventory. It does not mathematically prove the mapping from prose to Lean.
 
 ## Corrections that must remain visible
 
