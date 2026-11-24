@@ -130,6 +130,11 @@ Partial or guarded: B24's equality of the two `c₂` forms needs Hermitian `E`; 
 the extremal `Q = M`; B46's local HTML and the ledger describe different documents.  Each is
 recorded with the theorem that settles it.
 
+What each kernel covers and what it does not is tabulated per card in
+[atlas/coverage/CERTIFICATION.md](atlas/coverage/CERTIFICATION.md), generated from the ledger by
+`scripts/build_certification.py`: 80 cards have a kernel in this repository, 42 only in a companion
+repository, and every card keeps `full_card_certified: false`, which the validator requires.
+
 The full statement audit is in [atlas/coverage/LOCAL_KERNEL_AUDIT.md](atlas/coverage/LOCAL_KERNEL_AUDIT.md):
 37/37 ledger declarations elaborate and are axiom-clean, none is false as written, two are
 weaker than their names suggest (B32's normalization, B75's "cancels"), the axiom audit now
