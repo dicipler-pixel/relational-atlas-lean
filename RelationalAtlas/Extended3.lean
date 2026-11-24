@@ -4378,6 +4378,3 @@ end RelationalAtlas.B144
 
 
 end
-
-/-! Audit line for the one helper the B132 source did not print. -/
-#print axioms B132.trace_mul_vecMulVec

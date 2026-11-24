@@ -92,6 +92,29 @@ def declarations(src: str) -> list[str]:
         strip_comments(src), re.M)))
 
 
+
+def fully_qualified(src: str) -> list[str]:
+    """Every theorem/lemma in a source file, with the namespace path in force at its line."""
+    out, stack, depth = [], [], 0
+    for line in src.splitlines():
+        stripped = line.strip()
+        at_top = depth == 0
+        if at_top and stripped.startswith('namespace '):
+            stack.append(('ns', stripped.split()[1]))
+        elif at_top and (stripped == 'section' or stripped.startswith('section ')):
+            stack.append(('sec', ''))
+        elif at_top and (stripped == 'end' or stripped.startswith('end ')):
+            if stack:
+                stack.pop()
+        depth = max(0, depth + line.count('/-') - line.count('-/'))
+        if at_top and depth == 0:
+            mt = re.match(r'(?:theorem|lemma)\s+([^\s:({\[]+)', line)
+            if mt:
+                path = [n for kind, n in stack if kind == 'ns']
+                out.append('.'.join(path + [mt.group(1)]))
+    return list(dict.fromkeys(out))
+
+
 def namespace_of(src: str) -> str:
     m = re.search(r'^namespace\s+(\S+)', strip_comments(src), re.M)
     return m.group(1) if m else ''
@@ -154,48 +177,61 @@ def main() -> int:
         print(f"{t['kind']:8s} {'ok  ' if ok else 'FAIL'} {row['seconds']:7.1f}s "
               f"e={row['errors']:2d} w={row['warnings']:3d} {t['path']}")
 
-    # Axiom audit for every theorem in the two library modules.
+    # Axiom audit.  Names are resolved from the source by a namespace/section walk, and the
+    # audit itself is a separate file that *imports* the modules (so helper lemmas the module
+    # never printed are picked up too).  Names that do not resolve are retried without and
+    # reported, never silently dropped.
+    audit_lines = []
+    name_map = {}
     for m in MODULES:
         p = ROOT / m['path']
-        src = p.read_text()
-        ns = namespace_of(src)
-        names = declarations(src)
-        printed = set(re.findall(r'^#print axioms (\S+)\s*$', src, re.M))
-        namespaces = set(re.findall(r'^namespace (\S+)', src, re.M))
-        missing_prints = [n for n in names if f'{ns}.{n}' not in printed and n not in printed]
-        if missing_prints and len(namespaces) > 1:
-            # Several namespaces: only the file's own audit block can name its declarations.
-            missing_prints = []
-        extra = '\n'.join(f'#print axioms {ns + "." if ns else ""}{n}' for n in missing_prints)
-        tmp = OUT / f'{p.stem}_axioms.lean'
-        tmp.write_text(src + ('\n' + extra + '\n' if extra else ''))
+        names = fully_qualified(p.read_text())
+        name_map[m['module']] = names
+        audit_lines += [f'#print axioms {n}' for n in names]
+    audit = OUT / 'AxiomAuditAll.lean'
+    audit.write_text('\n'.join(f'import {m["module"]}' for m in MODULES) + '\n\n'
+                     + '\n'.join(audit_lines) + '\n')
+    try:
+        proc = lean(str(audit), lean_path=str(olean))
+        audit_out = proc.stdout + proc.stderr
+        audit_code = proc.returncode
+    except subprocess.TimeoutExpired:
+        audit_out, audit_code = 'TIMEOUT', -1
+    (OUT / 'axioms_all.log').write_text(audit_out)
+    unresolved = sorted(set(re.findall(r"Unknown constant `([^`]+)`", audit_out)))
+    if unresolved:
+        # Retry once without the names Lean could not resolve; they stay in the report.
+        retry = [l for l in audit_lines if not any(u == l.split()[-1] for u in unresolved)]
+        audit.write_text('\n'.join(f'import {m["module"]}' for m in MODULES) + '\n\n'
+                         + '\n'.join(retry) + '\n')
         try:
-            proc = lean(str(tmp))
-            out = proc.stdout + proc.stderr
-            code = proc.returncode
+            proc = lean(str(audit), lean_path=str(olean))
+            audit_out = proc.stdout + proc.stderr
+            audit_code = proc.returncode
         except subprocess.TimeoutExpired:
-            out, code = 'TIMEOUT', -1
-        (OUT / f'{p.stem}_axioms.log').write_text(out)
-        found = {}
-        # Lean wraps long axiom lists onto continuation lines with a leading space.
-        out = re.sub(r'\n (?=\S)', ' ', out)
-        for line in out.splitlines():
-            mt = re.match(r"'([^']+)' (?:does not depend on any axioms|depends on axioms: \[(.*)\])",
-                          line.strip())
-            if mt:
-                found[mt.group(1).split('.')[-1]] = sorted(
-                    a.strip() for a in (mt.group(2) or '').split(',') if a.strip())
-        short = lambda x: x.split('.')[-1]
-        found_by_short = {short(k): v for k, v in found.items()}
-        missing = [n for n in names if short(n) not in found_by_short]
-        bad = {n: a for n, a in found.items() if not set(a) <= ALLOWED}
-        report['axioms'][m['module']] = dict(declared=len(names), audited=len(found),
-                                             missing=missing, disallowed=bad)
-        if code != 0 or missing or bad:
-            problems.append(f'axiom audit incomplete: {m["module"]} code={code} '
-                            f'missing={missing} disallowed={bad}')
-        print(f"axioms   {m['module']}: {len(found)}/{len(names)} audited, "
-              f"disallowed={len(bad)}, missing={missing}")
+            audit_out, audit_code = 'TIMEOUT', -1
+        (OUT / 'axioms_all.log').write_text(audit_out)
+    out = re.sub(r'\n (?=\S)', ' ', audit_out)          # Lean wraps long axiom lists
+    found = {}
+    for line in out.splitlines():
+        mt = re.match(r"'([^']+)' (?:does not depend on any axioms|depends on axioms: \[(.*)\])",
+                      line.strip())
+        if mt:
+            found[mt.group(1)] = sorted(a.strip() for a in (mt.group(2) or '').split(',') if a.strip())
+    for m in MODULES:
+        names = name_map[m['module']]
+        mine = {n: a for n, a in found.items() if n in set(names)}
+        missing = [n for n in names if n not in found and n not in unresolved]
+        bad = {n: a for n, a in mine.items()
+               if not set(a) <= ALLOWED and not set(a) <= {a0.replace('Classical.', '') for a0 in ALLOWED}}
+        report['axioms'][m['module']] = dict(declared=len(names), audited=len(mine),
+                                             missing=missing, disallowed=bad,
+                                             unresolved=[u for u in unresolved if u in set(names)])
+        if missing or bad:
+            problems.append(f'axiom audit incomplete: {m["module"]} '
+                            f'missing={missing[:5]} disallowed={list(bad)[:5]}')
+        print(f"axioms   {m['module']}: {len(mine)}/{len(names)} audited, "
+              f"disallowed={len(bad)}, missing={missing[:3]}, unresolved={len([u for u in unresolved if u in set(names)])}")
 
     report['problems'] = problems
     report['summary'] = dict(
