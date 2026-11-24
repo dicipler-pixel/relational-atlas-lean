@@ -700,9 +700,9 @@
             "nonuniform_precision_changes_correlation"
           ],
           "scope": "For the Fisher matrix F(D,σ) = Σ_k conj(D_ki)D_kj/σ_k², uniform precision scaling gives F(D,sσ) = s^{−2}F and leaves every inverse-Fisher correlation fixed; non-uniform precision does move them (ρ = −4/5 at (1,1), unchanged at (1,1)/50, but −319/481 at (5,12)).",
-          "commit": "84f21ea4080071aca433ad7a217270f32c7a2646",
+          "commit": "116f9a1",
           "snapshot_path": "RelationalAtlas/Extended4.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/84f21ea4080071aca433ad7a217270f32c7a2646/RelationalAtlas/Extended4.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/116f9a1/RelationalAtlas/Extended4.lean"
         }
       ],
       "audit_notes": [
@@ -851,9 +851,9 @@
             "two_c2_forms_hermitian"
           ],
           "scope": "For a Hermitian 2×2 perturbation: f′(0) = a/A + d/B and ½f″(0) = −½Tr(RERE) = −½(a²/A² + d²/B² + 2|b|²/(AB)), so the two displayed c₂ forms agree. They disagree for non-Hermitian E (H = I, E = [[0,1],[0,0]]: true c₂ = 0, modulus sum 1), and positivity of H + η is needed for any finite expansion.",
-          "commit": "84f21ea4080071aca433ad7a217270f32c7a2646",
+          "commit": "116f9a1",
           "snapshot_path": "RelationalAtlas/Extended4.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/84f21ea4080071aca433ad7a217270f32c7a2646/RelationalAtlas/Extended4.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/116f9a1/RelationalAtlas/Extended4.lean"
         }
       ],
       "audit_notes": [
@@ -912,9 +912,9 @@
             "twoLevel_susceptibility_pos"
           ],
           "scope": "The ordered susceptibility sum χ = Σ_{m≠n}|A_nm|²/γ_nm² is conjugation-fixed, real, nonnegative without Hermiticity, and strictly positive on a contributing nondegenerate term; the two-level case gives χ = 2/δ². Degenerate labels with a zero gap give x/0 = 0 in Lean, which is not the physical value, so the formula needs non-degeneracy.",
-          "commit": "84f21ea4080071aca433ad7a217270f32c7a2646",
+          "commit": "116f9a1",
           "snapshot_path": "RelationalAtlas/Extended4.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/84f21ea4080071aca433ad7a217270f32c7a2646/RelationalAtlas/Extended4.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/116f9a1/RelationalAtlas/Extended4.lean"
         }
       ],
       "audit_notes": [
@@ -1712,9 +1712,9 @@
             "witness_card_identity_fails"
           ],
           "scope": "(Π + hV)² − (Π + hV) = h²V² for V tangent to the idempotents, over any commutative ring; the unrestricted linear term is h(ΠV + VΠ − V), so tangency is exactly what removes it. A 2×2 witness shows the identity fails without tangency.",
-          "commit": "84f21ea4080071aca433ad7a217270f32c7a2646",
+          "commit": "116f9a1",
           "snapshot_path": "RelationalAtlas/Extended4.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/84f21ea4080071aca433ad7a217270f32c7a2646/RelationalAtlas/Extended4.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/116f9a1/RelationalAtlas/Extended4.lean"
         }
       ],
       "audit_notes": [
@@ -3361,9 +3361,9 @@
             "wall_not_inside_metric_positive_literally"
           ],
           "scope": "Q = g − (i/2)Ω has det Q = det g − |Ω|²/4. The card's criterion Q ⪰ 0 ⟺ g₁₁ ≥ 0 ∧ 4 det g ≥ |Ω|² fails at g₁₁ = 0, where the determinant condition carries no information about g₂₂; adding 0 ≤ d (equivalently 0 ≤ a + d) repairs it, and under a > 0 the card's criterion is exact. The literal wall ⊂ {det g > 0} also fails on zero data.",
-          "commit": "84f21ea4080071aca433ad7a217270f32c7a2646",
+          "commit": "116f9a1",
           "snapshot_path": "RelationalAtlas/Extended4.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/84f21ea4080071aca433ad7a217270f32c7a2646/RelationalAtlas/Extended4.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/116f9a1/RelationalAtlas/Extended4.lean"
         }
       ],
       "audit_notes": [
@@ -4013,9 +4013,9 @@
             "two_trace_PVV"
           ],
           "scope": "With ρ = P/k, L = 2Ṗ and tangency VP + PV = V: the SLD equation holds, Tr(V²) = 2Tr(PV²), F_Q = 4g/k and Bures² = g/k under ds_B² = F_Q ds²/4; the rank-one witness gives g = 1, F_Q = 4, Bures² = 1.",
-          "commit": "84f21ea4080071aca433ad7a217270f32c7a2646",
+          "commit": "116f9a1",
           "snapshot_path": "RelationalAtlas/Extended4.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/84f21ea4080071aca433ad7a217270f32c7a2646/RelationalAtlas/Extended4.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/116f9a1/RelationalAtlas/Extended4.lean"
         }
       ],
       "audit_notes": [],
@@ -5776,9 +5776,9 @@
             "swap₂_unitary"
           ],
           "scope": "U C U† = I − C with U unitary forces det(I−C) = det C, hence τ = log det(I−C) − log det C = 0; the transpose variant gives the same. Hermiticity and 0 < C < I are not needed for the cancellation. Dropping unitarity is refuted by U = [2], C = [1/5], where the relation holds but τ = log 4 ≠ 0.",
-          "commit": "84f21ea4080071aca433ad7a217270f32c7a2646",
+          "commit": "116f9a1",
           "snapshot_path": "RelationalAtlas/Extended4.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/84f21ea4080071aca433ad7a217270f32c7a2646/RelationalAtlas/Extended4.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/116f9a1/RelationalAtlas/Extended4.lean"
         }
       ],
       "audit_notes": [],
@@ -6609,9 +6609,9 @@
             "typeN_sq"
           ],
           "scope": "n(z) = (1−z², i(1+z²), −2z) is isotropic, n·n = 0; ψ_Q = nᵀQn depends only on the traceless part (ψ_{Q+tI} = ψ_Q); the coefficient map between the five traceless parameters and the binary quartic is invertible with determinant 3072, and the canonical examples realise Q² = 0 ≠ Q, Q³ = 0 ≠ Q² and the non-squarefree case.",
-          "commit": "84f21ea4080071aca433ad7a217270f32c7a2646",
+          "commit": "116f9a1",
           "snapshot_path": "RelationalAtlas/Extended4.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/84f21ea4080071aca433ad7a217270f32c7a2646/RelationalAtlas/Extended4.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/116f9a1/RelationalAtlas/Extended4.lean"
         }
       ],
       "audit_notes": [],
@@ -6752,9 +6752,9 @@
             "wobble_mul_self"
           ],
           "scope": "With L² = r²/(r−3), V″/2 = (r−6)/(r³(r−3)) exactly (q(7) = 1/1372, q(5) = −1/250), ω_r²/Ω² = 1 − 6/r, and the wobble is a nonzero nilpotent exactly at r = 6. Substituting the constraint before differentiating gives the wrong value 1/162 at r = 6; the card differentiates first and is right.",
-          "commit": "84f21ea4080071aca433ad7a217270f32c7a2646",
+          "commit": "116f9a1",
           "snapshot_path": "RelationalAtlas/Extended4.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/84f21ea4080071aca433ad7a217270f32c7a2646/RelationalAtlas/Extended4.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/116f9a1/RelationalAtlas/Extended4.lean"
         }
       ],
       "audit_notes": [
@@ -6827,9 +6827,9 @@
             "tangent_reflection"
           ],
           "scope": "The fold normal form as a coordinate change: X = λ² gives dX²/(4c²X) = dλ²/c² for c ≠ 0, λ ≠ 0, with both card specializations; λ ↦ −λ is an isometry of the regular form and the integrated distance. The raw quotient fails at λ = 0 (the horizon), where the regular extension gives the correct value.",
-          "commit": "84f21ea4080071aca433ad7a217270f32c7a2646",
+          "commit": "116f9a1",
           "snapshot_path": "RelationalAtlas/Extended4.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/84f21ea4080071aca433ad7a217270f32c7a2646/RelationalAtlas/Extended4.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/116f9a1/RelationalAtlas/Extended4.lean"
         }
       ],
       "audit_notes": [
@@ -6928,9 +6928,9 @@
             "squareSlope_nonneg"
           ],
           "scope": "For V(σ) = f(σ²): V_σ(0) = 0 and V_σσ(0) = 2V_w(0), with the square inverse-distance potential giving U(0) = −4√2−2 and U_w(0) = 2√2−1. The displayed 1.912290 is a six-place rounding: the file proves 1.912290 < √(2(2√2−1)) < 1.9122905.",
-          "commit": "84f21ea4080071aca433ad7a217270f32c7a2646",
+          "commit": "116f9a1",
           "snapshot_path": "RelationalAtlas/Extended4.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/84f21ea4080071aca433ad7a217270f32c7a2646/RelationalAtlas/Extended4.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/116f9a1/RelationalAtlas/Extended4.lean"
         }
       ],
       "audit_notes": [],
@@ -7504,9 +7504,9 @@
             "unit_reflectZ"
           ],
           "scope": "For a rank-one projector with unit real Bloch vector the Pauli commutator energies sum to the squared Frobenius norms |[P,sigma_x]|^2 + |[P,sigma_z]|^2 = 2(1 + n_y^2) >= 2, with equality exactly when n_y = 0; and the two bow-tie minima are IsLeast statements over all unit Bloch fields: 4 - 2*sqrt(2) for a shared edge and 6 - 3*sqrt(3) for a shared vertex. The card's arbitrary-unitary generality is not formalised.",
-          "commit": "84f21ea4080071aca433ad7a217270f32c7a2646",
+          "commit": "116f9a1",
           "snapshot_path": "RelationalAtlas/Extended4.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/84f21ea4080071aca433ad7a217270f32c7a2646/RelationalAtlas/Extended4.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/116f9a1/RelationalAtlas/Extended4.lean"
         }
       ],
       "audit_notes": [
@@ -7564,9 +7564,9 @@
             "zeta_sign_flip"
           ],
           "scope": "K_ρ(u) = I − uA_ρ + u²(Deg − I) with K(1) = Deg − A = L⁻ and K(−1) = Deg + A = L⁺; det(I − uB_ρ) = (1−u²)^{(m−card v)d} det K_ρ(u) over any field, with the exponent checked exactly on a two-vertex one-edge graph and the reversed exponent refuted at u = 1/2.",
-          "commit": "84f21ea4080071aca433ad7a217270f32c7a2646",
+          "commit": "116f9a1",
           "snapshot_path": "RelationalAtlas/Extended4.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/84f21ea4080071aca433ad7a217270f32c7a2646/RelationalAtlas/Extended4.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/116f9a1/RelationalAtlas/Extended4.lean"
         }
       ],
       "audit_notes": [
@@ -7691,9 +7691,9 @@
             "two_sqrt_le_add_one"
           ],
           "scope": "E∓ = 2p(1 ∓ cos 2θ) gives E⁻ = 4p − a² and E⁺ = a² for a = 2√p cos θ; τ = 2 artanh(a/(p+1)), Γ = tanh(τ/2) = a/(p+1), Ad(−U) = Ad(U), a² < 4p, and non-balancing at odd primes. The card's auxiliary conjugation carries the wrong sign on σ_y: p = 2, θ = π/4 gives −σ_y, not +σ_y.",
-          "commit": "84f21ea4080071aca433ad7a217270f32c7a2646",
+          "commit": "116f9a1",
           "snapshot_path": "RelationalAtlas/Extended4.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/84f21ea4080071aca433ad7a217270f32c7a2646/RelationalAtlas/Extended4.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/116f9a1/RelationalAtlas/Extended4.lean"
         }
       ],
       "audit_notes": [
@@ -7931,9 +7931,9 @@
             "sum_eq_positive_sub_negative"
           ],
           "scope": "L_rec = 2Σ|r_j|, D_end = 2|Σ r_j| and L_rec − D_end = 4 min(R₊,R₋) exactly, with equality iff every step is weakly of one sign, and L_rec = 2Σ artanh√(E⁻/E⁺) from the card's tanh² relation.",
-          "commit": "84f21ea4080071aca433ad7a217270f32c7a2646",
+          "commit": "116f9a1",
           "snapshot_path": "RelationalAtlas/Extended4.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/84f21ea4080071aca433ad7a217270f32c7a2646/RelationalAtlas/Extended4.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/116f9a1/RelationalAtlas/Extended4.lean"
         }
       ],
       "audit_notes": [
@@ -8095,9 +8095,9 @@
             "tanh_exp_ratio"
           ],
           "scope": "The displayed hyperbolic system λ = (1−a/ρ)/(1+a/ρ) = tanh(½log(ρ/a)), ψ = 1 + a/ρ, the involution ρ ↦ a²/ρ sending λ ↦ −λ, r₊r₋ = Q² and τ₊ = −τ₋, all for a > 0; two boundary witnesses show a > 0 cannot be dropped.",
-          "commit": "84f21ea4080071aca433ad7a217270f32c7a2646",
+          "commit": "116f9a1",
           "snapshot_path": "RelationalAtlas/Extended4.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/84f21ea4080071aca433ad7a217270f32c7a2646/RelationalAtlas/Extended4.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/116f9a1/RelationalAtlas/Extended4.lean"
         }
       ],
       "audit_notes": [
