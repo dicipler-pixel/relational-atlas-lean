@@ -304,9 +304,9 @@
             "zsign_neg"
           ],
           "scope": "The Levine-Tristram form for a real 2x2 Seifert matrix is Hermitian and satisfies det LT(omega) = (1-omega)^2 det(V - omega^-1 V^T); a continuous unit-circle path with unequal endpoint signatures has an intermediate Alexander root (IVT on canonical Hermitian signature roots), while the converse fails: T (+) (-T^T) has a sixth-root of unity zero and identically vanishing signature, the square-knot double root.",
-          "commit": "10369caaf651ce972a326f447d2316c2304ad25d",
+          "commit": "3f311a433efc910188aff045056f7a70d87b2aa4",
           "snapshot_path": "RelationalAtlas/Extended9.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/10369caaf651ce972a326f447d2316c2304ad25d/RelationalAtlas/Extended9.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/3f311a433efc910188aff045056f7a70d87b2aa4/RelationalAtlas/Extended9.lean"
         }
       ],
       "audit_notes": [],
@@ -1146,9 +1146,9 @@
             "volume_restrict_Ioc_real"
           ],
           "scope": "For tau > 0 and integrable speed, speed^2: L^2 <= tau E and L^2/tau <= E, with equality iff the speed is a.e. constant, both directions from an exact centred-square defect identity.",
-          "commit": "10369caaf651ce972a326f447d2316c2304ad25d",
+          "commit": "3f311a433efc910188aff045056f7a70d87b2aa4",
           "snapshot_path": "RelationalAtlas/Extended9.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/10369caaf651ce972a326f447d2316c2304ad25d/RelationalAtlas/Extended9.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/3f311a433efc910188aff045056f7a70d87b2aa4/RelationalAtlas/Extended9.lean"
         }
       ],
       "audit_notes": [
@@ -1200,9 +1200,9 @@
             "witness_violates_displayed_card_formula"
           ],
           "scope": "Refutation and repair of the SLD tensor identity: for arbitrary finite complex matrices Q = F/4 + C/8 with F = 1/2 Tr(rho{L1,L2}) and C = Tr(rho[L1,L2]); the card's F/4 - iC/8 fails at rho = diag(3/4,1/4), L1 = sigma_x, L2 = sigma_y, where Q = i/8 and the card's expression is 1/8. For Hermitian data Re Q = F/4 and the imaginary part is -iC/8 as a real scalar.",
-          "commit": "10369caaf651ce972a326f447d2316c2304ad25d",
+          "commit": "3f311a433efc910188aff045056f7a70d87b2aa4",
           "snapshot_path": "RelationalAtlas/Extended9.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/10369caaf651ce972a326f447d2316c2304ad25d/RelationalAtlas/Extended9.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/3f311a433efc910188aff045056f7a70d87b2aa4/RelationalAtlas/Extended9.lean"
         }
       ],
       "audit_notes": [
@@ -2245,9 +2245,9 @@
             "s_re"
           ],
           "scope": "The three wall radii as exact roots of det g at m = 7/20, gamma = 1: k^2 = 351/400, 5837/10800 and 12123/5200, with Im s = 7/10 proved nonzero so the clearing is legitimate, and half-unit interval certificates for the printed six-decimal roundings; the literal k = 1526875/10^6 is proved not to be a zero.",
-          "commit": "10369caaf651ce972a326f447d2316c2304ad25d",
+          "commit": "3f311a433efc910188aff045056f7a70d87b2aa4",
           "snapshot_path": "RelationalAtlas/Extended8.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/10369caaf651ce972a326f447d2316c2304ad25d/RelationalAtlas/Extended8.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/3f311a433efc910188aff045056f7a70d87b2aa4/RelationalAtlas/Extended8.lean"
         }
       ],
       "audit_notes": [
@@ -2630,9 +2630,9 @@
             "unit_circle_zero_two"
           ],
           "scope": "The contour integral (2 pi i)^-1 of the resolvent of a diagonal 2x2 matrix over a positively oriented circle equals the projector onto the enclosed eigenvalue, under exactly the hypotheses that one eigenvalue lies in the open ball and the other outside the closed one; idempotence and an explicit unit-circle instance follow.",
-          "commit": "10369caaf651ce972a326f447d2316c2304ad25d",
+          "commit": "3f311a433efc910188aff045056f7a70d87b2aa4",
           "snapshot_path": "RelationalAtlas/Extended8.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/10369caaf651ce972a326f447d2316c2304ad25d/RelationalAtlas/Extended8.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/3f311a433efc910188aff045056f7a70d87b2aa4/RelationalAtlas/Extended8.lean"
         }
       ],
       "audit_notes": [
@@ -2986,9 +2986,9 @@
             "sum_matrix_eq_zero_of_antisymm"
           ],
           "scope": "The gap exponents: overlap asymptotics give K ~ gap^-2, the displayed F = c g^-2 sqrt K gives F ~ c gap^-3, and independently an antisymmetric numerator makes the double sum vanish so that N = g sum b and F = (sum b) g^-3, with a Unit witness retaining g^-4 when antisymmetry is absent.",
-          "commit": "10369caaf651ce972a326f447d2316c2304ad25d",
+          "commit": "3f311a433efc910188aff045056f7a70d87b2aa4",
           "snapshot_path": "RelationalAtlas/Extended9.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/10369caaf651ce972a326f447d2316c2304ad25d/RelationalAtlas/Extended9.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/3f311a433efc910188aff045056f7a70d87b2aa4/RelationalAtlas/Extended9.lean"
         }
       ],
       "audit_notes": [],
@@ -3270,9 +3270,9 @@
             "z_zero"
           ],
           "scope": "For a continuous nowhere-zero closed loop the argument is a lift with integer winding, proved via the circle covering map; for H(z) = [[0,1],[z,0]] the discriminant is 4z so the discriminant winds by 1 while the eigenvalue phase changes by 1/2 — the display counts the discriminant. The literal 'no eigenvector at the collision' is refuted by H(0)(1,0) = 0.",
-          "commit": "10369caaf651ce972a326f447d2316c2304ad25d",
+          "commit": "3f311a433efc910188aff045056f7a70d87b2aa4",
           "snapshot_path": "RelationalAtlas/Extended8.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/10369caaf651ce972a326f447d2316c2304ad25d/RelationalAtlas/Extended8.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/3f311a433efc910188aff045056f7a70d87b2aa4/RelationalAtlas/Extended8.lean"
         }
       ],
       "audit_notes": [
@@ -3335,9 +3335,9 @@
             "two_band_curvature_true"
           ],
           "scope": "The curvature sum rule: with Q_bc the displayed antisymmetrised quotient off the diagonal and zero on it, Q_cb = -Q_bc, so the full double sum vanishes by transposition, for arbitrary complex matrix elements — no simplicity, diagonalisability or Hermiticity needed.",
-          "commit": "10369caaf651ce972a326f447d2316c2304ad25d",
+          "commit": "3f311a433efc910188aff045056f7a70d87b2aa4",
           "snapshot_path": "RelationalAtlas/Extended8.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/10369caaf651ce972a326f447d2316c2304ad25d/RelationalAtlas/Extended8.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/3f311a433efc910188aff045056f7a70d87b2aa4/RelationalAtlas/Extended8.lean"
         }
       ],
       "audit_notes": [],
@@ -3442,9 +3442,9 @@
             "symmetric_skew_commutator"
           ],
           "scope": "In the 2x2 eigenbasis model the eigenvalues are given in closed form with the real-eigenvalue iff, the first-order spectral shift vanishes with the explicit bound |lambda - a| <= (2e^2/(a-d)) e^2, and the non-normality is exactly first order with commutator e[[0,2(a-d)],[2(a-d),0]] and normality iff e = 0.",
-          "commit": "10369caaf651ce972a326f447d2316c2304ad25d",
+          "commit": "3f311a433efc910188aff045056f7a70d87b2aa4",
           "snapshot_path": "RelationalAtlas/Extended8.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/10369caaf651ce972a326f447d2316c2304ad25d/RelationalAtlas/Extended8.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/3f311a433efc910188aff045056f7a70d87b2aa4/RelationalAtlas/Extended8.lean"
         }
       ],
       "audit_notes": [],
@@ -3668,9 +3668,9 @@
             "gram_eq"
           ],
           "scope": "The axis and point counts from the fixed-point equations: M = D R^T Q R D with D = diag(cos theta, 1), axes on the eigendirections of Q and cos^2 theta = q_min/q_max; for m = (1,2,3) the exhaustive solutions give a^2 = 5/7 and 2/7 with sum 1, two antipodal axes, and the perpendicular branch unreachable since it needs c^2 = 49/36 > 1.",
-          "commit": "10369caaf651ce972a326f447d2316c2304ad25d",
+          "commit": "3f311a433efc910188aff045056f7a70d87b2aa4",
           "snapshot_path": "RelationalAtlas/Extended8.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/10369caaf651ce972a326f447d2316c2304ad25d/RelationalAtlas/Extended8.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/3f311a433efc910188aff045056f7a70d87b2aa4/RelationalAtlas/Extended8.lean"
         }
       ],
       "audit_notes": [],
@@ -3939,9 +3939,9 @@
             "normalizedHamming_swap_two"
           ],
           "scope": "The padding law for a block-diagonal regulator family, |F' - F| = (|delta|/h)(h/(r+k)) with slope independent of the padding, together with the normalised Hamming cost 2/n of a transposition (n = 2 included) and the vanishing of the response along the family; the knot-dependent constant C_K is an input that this kernel does not construct.",
-          "commit": "10369caaf651ce972a326f447d2316c2304ad25d",
+          "commit": "3f311a433efc910188aff045056f7a70d87b2aa4",
           "snapshot_path": "RelationalAtlas/Extended8.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/10369caaf651ce972a326f447d2316c2304ad25d/RelationalAtlas/Extended8.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/3f311a433efc910188aff045056f7a70d87b2aa4/RelationalAtlas/Extended8.lean"
         }
       ],
       "audit_notes": [],
@@ -4249,9 +4249,9 @@
             "one_sub_fresnel_sq"
           ],
           "scope": "The exact Airy model is built and the sheet formula shown to differ from it by O(d^2) for y = -i k d (N^2 - n0^2), Y = n_s + y and r = (n0 - Y)/(n0 + Y), with a positive-real-index corollary discharging the denominator hypotheses and the phase exp(-2 i k n0 d) accounting for the reference-plane index.",
-          "commit": "10369caaf651ce972a326f447d2316c2304ad25d",
+          "commit": "3f311a433efc910188aff045056f7a70d87b2aa4",
           "snapshot_path": "RelationalAtlas/Extended8.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/10369caaf651ce972a326f447d2316c2304ad25d/RelationalAtlas/Extended8.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/3f311a433efc910188aff045056f7a70d87b2aa4/RelationalAtlas/Extended8.lean"
         }
       ],
       "audit_notes": [],
@@ -4472,9 +4472,9 @@
             "shared_weight_different_exponent_pairs"
           ],
           "scope": "The Hopf exponent as a homogeneity weight: N(u^q z, u^p w) = u^(alpha q + beta p) N and D(u^q z, u^p w) = u^(p q) D, so the zero set is preserved and W is invariant when u^(p q) = 1; no common zero on the unit sphere for positive p, q, and the five T(3,4) loadings checked.",
-          "commit": "10369caaf651ce972a326f447d2316c2304ad25d",
+          "commit": "3f311a433efc910188aff045056f7a70d87b2aa4",
           "snapshot_path": "RelationalAtlas/Extended8.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/10369caaf651ce972a326f447d2316c2304ad25d/RelationalAtlas/Extended8.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/3f311a433efc910188aff045056f7a70d87b2aa4/RelationalAtlas/Extended8.lean"
         }
       ],
       "audit_notes": [
@@ -4873,9 +4873,9 @@
             "witness_triangle_distance"
           ],
           "scope": "The normalised Jacobi projector is Hermitian, idempotent, trace one and invariant under every nonzero complex phase, so the record (w1,w2) descends to the shape sphere; the Bloch coordinates lie on the unit sphere; w1 = 3 d0 - 1 and w2 = sqrt 3 (d1 - d2) recover exactly those two coordinates; mirroring preserves (w1,w2), negates w3 and preserves the displayed distances; at w3 = 0 the record and distance derivatives vanish while the height derivative is -1.",
-          "commit": "10369caaf651ce972a326f447d2316c2304ad25d",
+          "commit": "3f311a433efc910188aff045056f7a70d87b2aa4",
           "snapshot_path": "RelationalAtlas/Extended9.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/10369caaf651ce972a326f447d2316c2304ad25d/RelationalAtlas/Extended9.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/3f311a433efc910188aff045056f7a70d87b2aa4/RelationalAtlas/Extended9.lean"
         }
       ],
       "audit_notes": [],
@@ -4992,9 +4992,9 @@
             "threeCycle_upper_strict"
           ],
           "scope": "The normalised sandwich d_H/2 <= L^2/n <= (pi^2/8) d_H for every finite angle list, with both equality cases characterised (all angles zero; every angle 0 or pi/2, i.e. (U^dag V)^2 = 1), the n = 2 swap attaining the upper bound, and an exact intermediate ratio 16/27.",
-          "commit": "10369caaf651ce972a326f447d2316c2304ad25d",
+          "commit": "3f311a433efc910188aff045056f7a70d87b2aa4",
           "snapshot_path": "RelationalAtlas/Extended8.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/10369caaf651ce972a326f447d2316c2304ad25d/RelationalAtlas/Extended8.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/3f311a433efc910188aff045056f7a70d87b2aa4/RelationalAtlas/Extended8.lean"
         }
       ],
       "audit_notes": [],
@@ -5042,9 +5042,9 @@
             "wrong_metric_factor_counterexample"
           ],
           "scope": "The Veronese chart with A_theta = 0 and A_phi = j(1 - cos theta): g = (j/2) h, Omega = j sin theta dtheta and dphi with 4 det g = Omega^2 for every real j, flux 4 pi j and Chern number 2j, equal to n at j = n/2; the metric factor j and an out-of-chart magnitude claim are refuted.",
-          "commit": "10369caaf651ce972a326f447d2316c2304ad25d",
+          "commit": "3f311a433efc910188aff045056f7a70d87b2aa4",
           "snapshot_path": "RelationalAtlas/Extended9.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/10369caaf651ce972a326f447d2316c2304ad25d/RelationalAtlas/Extended9.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/3f311a433efc910188aff045056f7a70d87b2aa4/RelationalAtlas/Extended9.lean"
         }
       ],
       "audit_notes": [],
@@ -5195,9 +5195,9 @@
             "witness_is_regular_coplanar_wall"
           ],
           "scope": "Refutation: the displayed Jordan criterion holds at t1 = t2 = t3 = 1, w = (1/2,1/2,0) while the transport is 2H on traceless H, hence diagonalisable; the card's prose supplies the missing A12 != 0.",
-          "commit": "10369caaf651ce972a326f447d2316c2304ad25d",
+          "commit": "3f311a433efc910188aff045056f7a70d87b2aa4",
           "snapshot_path": "RelationalAtlas/Extended8.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/10369caaf651ce972a326f447d2316c2304ad25d/RelationalAtlas/Extended8.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/3f311a433efc910188aff045056f7a70d87b2aa4/RelationalAtlas/Extended8.lean"
         }
       ],
       "audit_notes": [],
@@ -5437,9 +5437,9 @@
             "unitDet_eq_expansion"
           ],
           "scope": "The log-determinant derivative at general K, B with det K != 0 equals Tr(K^-1 B); the coordinate-selected log gives Tr(P_J K^-1 B); the dagger form equals the weighted normSq sum and is nonnegative exactly when K > 0, with the rank-one case tying the derivative to q.",
-          "commit": "10369caaf651ce972a326f447d2316c2304ad25d",
+          "commit": "3f311a433efc910188aff045056f7a70d87b2aa4",
           "snapshot_path": "RelationalAtlas/Extended8.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/10369caaf651ce972a326f447d2316c2304ad25d/RelationalAtlas/Extended8.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/3f311a433efc910188aff045056f7a70d87b2aa4/RelationalAtlas/Extended8.lean"
         }
       ],
       "audit_notes": [],
@@ -6212,9 +6212,9 @@
             "trace_congruence"
           ],
           "scope": "Exact finite spectra for the smooth and corner geometries, the intended top-three/no-Jordan corner claim, and the refutation of the unqualified 'all rates 1/eps': no c > 0 bounds the mixed rates below by c/eps, with the witness eps = 144/5329 giving eps*lambda = 12/71 < 1/4.",
-          "commit": "10369caaf651ce972a326f447d2316c2304ad25d",
+          "commit": "3f311a433efc910188aff045056f7a70d87b2aa4",
           "snapshot_path": "RelationalAtlas/Extended8.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/10369caaf651ce972a326f447d2316c2304ad25d/RelationalAtlas/Extended8.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/3f311a433efc910188aff045056f7a70d87b2aa4/RelationalAtlas/Extended8.lean"
         }
       ],
       "audit_notes": [],
@@ -6433,9 +6433,9 @@
             "two_mul_succ_dvd_two_mul"
           ],
           "scope": "The series D_l = sum over m with l | 2m of 1/(m(4m^2-1)): summability, exact positive-multiple reindexing, D(2l) = D(l) for odd l, two-sided finite-l error bounds against zeta(5), and both limits l^3 D_l -> 2 zeta(3) (even l) and zeta(3)/4 (odd l).",
-          "commit": "10369caaf651ce972a326f447d2316c2304ad25d",
+          "commit": "3f311a433efc910188aff045056f7a70d87b2aa4",
           "snapshot_path": "RelationalAtlas/Extended8.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/10369caaf651ce972a326f447d2316c2304ad25d/RelationalAtlas/Extended8.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/3f311a433efc910188aff045056f7a70d87b2aa4/RelationalAtlas/Extended8.lean"
         }
       ],
       "audit_notes": [],
@@ -6592,9 +6592,9 @@
             "tensorDifference_eq_trace_part"
           ],
           "scope": "From the trace-free component equation and div T = 0 one gets A = Ric - kappa T = (1/4) g (R - kappa T), so the contracted Bianchi identity forces d(R + kappa T) = 0; traces and raised-index divergences are computed over Fin 4 with constant Minkowski g, and a mean-value theorem gives f = 4 Lambda. Bianchi itself is an explicit external hypothesis.",
-          "commit": "10369caaf651ce972a326f447d2316c2304ad25d",
+          "commit": "3f311a433efc910188aff045056f7a70d87b2aa4",
           "snapshot_path": "RelationalAtlas/Extended9.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/10369caaf651ce972a326f447d2316c2304ad25d/RelationalAtlas/Extended9.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/3f311a433efc910188aff045056f7a70d87b2aa4/RelationalAtlas/Extended9.lean"
         }
       ],
       "audit_notes": [
@@ -6647,9 +6647,9 @@
             "trace_spectralEntanglement"
           ],
           "scope": "The log-odds identity for diagonalisable C with spectrum in (0,1): tr K = sum eps_i = log det(I-C) - log det C = log of the empty/full ratio, with the normalised independent-mode masses; endpoint witnesses show c = 0 forces the full mass to vanish and c = 1 the empty one.",
-          "commit": "10369caaf651ce972a326f447d2316c2304ad25d",
+          "commit": "3f311a433efc910188aff045056f7a70d87b2aa4",
           "snapshot_path": "RelationalAtlas/Extended8.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/10369caaf651ce972a326f447d2316c2304ad25d/RelationalAtlas/Extended8.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/3f311a433efc910188aff045056f7a70d87b2aa4/RelationalAtlas/Extended8.lean"
         }
       ],
       "audit_notes": [],
@@ -6997,9 +6997,9 @@
             "unitCircle_iff_mul_star"
           ],
           "scope": "The characteristic-polynomial signature equals the positive-minus-negative Hermitian eigenvalue count in arbitrary finite dimension; the mirror Seifert matrix -V^T gives A_mirror = -A^T and sigma_mirror = -sigma, hence zero for a mirror-symmetric knot; on the unit circle det A = (1 - conj omega)^n det(V^T - omega V), so singularity occurs exactly at an Alexander root for omega != 1, with no root-implies-jump converse.",
-          "commit": "10369caaf651ce972a326f447d2316c2304ad25d",
+          "commit": "3f311a433efc910188aff045056f7a70d87b2aa4",
           "snapshot_path": "RelationalAtlas/Extended9.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/10369caaf651ce972a326f447d2316c2304ad25d/RelationalAtlas/Extended9.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/3f311a433efc910188aff045056f7a70d87b2aa4/RelationalAtlas/Extended9.lean"
         }
       ],
       "audit_notes": [],
@@ -7644,9 +7644,9 @@
             "totalTransport_simple_loop_of_regular_trivial"
           ],
           "scope": "In the model z = exp(i theta), v = exp(i theta/2) one has v^2 = z and dv/v = (1/2) dz/z, with loop exponents pi i and 2 pi i, Gram holonomy -1 and cover holonomy +1; the coefficient c = 1 at n = 1 is refuted because it gives +1. A real projective eigenline returns at 2 pi while its oriented vector negates, and the total-sign statement needs trivial regular holonomy, with r = pi i as the witness that it cannot be dropped.",
-          "commit": "10369caaf651ce972a326f447d2316c2304ad25d",
+          "commit": "3f311a433efc910188aff045056f7a70d87b2aa4",
           "snapshot_path": "RelationalAtlas/Extended9.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/10369caaf651ce972a326f447d2316c2304ad25d/RelationalAtlas/Extended9.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/3f311a433efc910188aff045056f7a70d87b2aa4/RelationalAtlas/Extended9.lean"
         }
       ],
       "audit_notes": [
@@ -7839,9 +7839,9 @@
             "two_lt_fockCHSH_max_with_units"
           ],
           "scope": "From the displayed two-mode squeezed Fock amplitudes: normalisation, phase cancellation in the reduced occupations, parity_XX = tanh(2r), and CHSH = 2 sqrt(1 + tanh^2 2r) proved as a greatest value over arbitrary planar settings with attainment; strict violation for positive squeezing and exactly 2 at r = 0. Separately the Dirac partial record gives log((1-C)/C) = hbar omega / (k_B T_H) with C = sin^2 r, a tan relation distinct from the bosonic tanh.",
-          "commit": "10369caaf651ce972a326f447d2316c2304ad25d",
+          "commit": "3f311a433efc910188aff045056f7a70d87b2aa4",
           "snapshot_path": "RelationalAtlas/Extended9.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/10369caaf651ce972a326f447d2316c2304ad25d/RelationalAtlas/Extended9.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/3f311a433efc910188aff045056f7a70d87b2aa4/RelationalAtlas/Extended9.lean"
         }
       ],
       "audit_notes": [],
@@ -8189,9 +8189,9 @@
             "δ_sq_mul_weights"
           ],
           "scope": "The two-exponential solution of the displayed system for kappa, a > 0 and b >= 0, the exact integrals giving the mean (1 + a/b)/kappa, and the non-commutation of t -> infinity with b -> 0, proved by comparing the b = 0 value with the outer limit of the b > 0 stocks.",
-          "commit": "10369caaf651ce972a326f447d2316c2304ad25d",
+          "commit": "3f311a433efc910188aff045056f7a70d87b2aa4",
           "snapshot_path": "RelationalAtlas/Extended8.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/10369caaf651ce972a326f447d2316c2304ad25d/RelationalAtlas/Extended8.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/3f311a433efc910188aff045056f7a70d87b2aa4/RelationalAtlas/Extended8.lean"
         }
       ],
       "audit_notes": [],
