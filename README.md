@@ -4,7 +4,7 @@
 
 [![Lean proof check](https://github.com/dicipler-pixel/relational-atlas-lean/actions/workflows/build.yml/badge.svg)](https://github.com/dicipler-pixel/relational-atlas-lean/actions/workflows/build.yml)
 ![Lean](https://img.shields.io/badge/Lean-v4.34.1-blue)
-![Theorems](https://img.shields.io/badge/theorems-1806-2EA043)
+![Theorems](https://img.shields.io/badge/theorems-2345-2EA043)
 ![sorry](https://img.shields.io/badge/sorry-0-2EA043)
 ![Code: MIT](https://img.shields.io/badge/code-MIT-lightgrey)
 ![Text: CC BY 4.0](https://img.shields.io/badge/text-CC%20BY%204.0-lightgrey)
@@ -157,6 +157,21 @@ The rest are proofs: B187's loop-kernel equivalence, B188's two exact minima (`(
 and `0`), B189's rapidity, B192's bipartiteness criterion in both directions, B193's integer
 minimisation with the parity split, B197's zeta pencil, B201's `−32` derivative laws, B204's Schur
 factorisation and the ½ protection condition, plus a shared matrix kernel for the block.
+
+Seventh and eighth batches, [`RelationalAtlas/Extended8.lean`](RelationalAtlas/Extended8.lean)
+and [`Extended9.lean`](RelationalAtlas/Extended9.lean) (295 + 254 declarations, 26 cards), took the
+remaining theorem-grade cards. Three more corrections:
+
+- **B28** — the SLD tensor is `Q = F/4 + C/8`, not `F/4 − iC/8`: at `ρ = diag(3/4,1/4)`,
+  `L₁ = σ_x`, `L₂ = σ_y` the card's right side is `1/8` while `Q = i/8`.
+- **B121** — the Jordan criterion drops `A₁₂ ≠ 0`: at `t₁=t₂=t₃=1, w=(½,½,0)` the displayed
+  equality holds and the transport is `2H`, diagonalizable.
+- **B143** — "all rates `ε⁻¹`" fails for the mixed eigenvalues; no `c/ε` lower bound exists.
+
+The rest are proofs across B7, B27, B55, B65, B73, B79, B81, B84, B88, B94, B101, B115, B117,
+B118, B126, B147, B150, B151, B157, B172, B176, B182. Batch eight also ran six referee audits of
+batch six, which found one error in this repository's own ledger wording (B185) rather than in the
+maths.
 
 Partial or guarded: B24's equality of the two `c₂` forms needs Hermitian `E`; B207 does not treat
 the extremal `Q = M`; B46's local HTML and the ledger describe different documents.  Each is

@@ -119,7 +119,7 @@ def theorems_in(path: pathlib.Path) -> list[str]:
         at_top = depth == 0
         if at_top and stripped.startswith("namespace "):
             stack.append(("ns", stripped.split()[1]))
-        elif at_top and (stripped == "section" or stripped.startswith("section ")):
+        elif at_top and re.match(r"(?:noncomputable\s+|private\s+|protected\s+)?section\b", stripped):
             stack.append(("sec", ""))
         elif at_top and (stripped == "end" or stripped.startswith("end ")):
             if stack:

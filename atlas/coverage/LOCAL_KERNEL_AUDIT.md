@@ -19,8 +19,8 @@ in the sense that it is not the pinned CI environment.
 ## Result
 
 Final run of `python3 scripts/verify_local.py` (23 November 2026, Lean 4.35.0): three library
-modules, 41 pinned external snapshots, 7 false controls, **1806 theorem declarations audited**
-(37 in the ledger modules, 178 in `Extended.lean`, 229 in `Extended2.lean`, 262 in `Extended3.lean`, 314 in `Extended4.lean`, 188 in `Extended5.lean`, 19 in `Extended6.lean`, 579 in `Extended7.lean`).
+modules, 41 pinned external snapshots, 7 false controls, **2345 theorem declarations audited**
+(37 in the ledger modules, 178 in `Extended.lean`, 229 in `Extended2.lean`, 262 in `Extended3.lean`, 314 in `Extended4.lean`, 188 in `Extended5.lean`, 19 in `Extended6.lean`, 579 in `Extended7.lean`, 295 in `Extended8.lean`, 254 in `Extended9.lean`).
 
 * **37/37** ledger theorems elaborate with zero errors, and so do all 331 extension theorems
   (`Extended.lean` 178, `Extended2.lean` 229; the latter adds B37, B44, B72, B78, B86, B89, B116,
@@ -205,7 +205,7 @@ the pins were moved from v4.34.1 to v4.35.0 precisely because every proof here w
 
 Every card whose displayed claim, or whose ledger transcription, did not survive contact with Lean is listed here with the theorem that settles it. `kind` is `refuted` (false as written), `missing-hypothesis` (true only with a hypothesis the card does not state), `overreach` / `scope` (true but weaker than the words), `ledger-error` (the card is fine and the ledger is not), `sign`, `rounding`, `provenance` or `clarification`.
 
-Nine cards are false as literally written and now carry Lean counterexamples: **B15** (the raw log-det comparator is not subadditive), **B67** (a closed loop need not lift), **B91** (the positivity criterion fails at `g11 = 0`), **B132** (the dichotomy needs `F` symmetric), **B169** (no −0.99 correlation floor), **B185** (nonunitary does not imply non-stochastic), **B196** (minimality holds at `|c| = 2`), **B200** (the shift is `−hI`, not `+hI`) and **B205** (even blocks can carry half modes).
+Fifteen cards are false as literally written and now carry Lean counterexamples: **B15** (the raw log-det comparator is not subadditive), **B28** (the SLD tensor is `F/4 + C/8`, not `F/4 − iC/8`), **B67** (a closed loop need not lift), **B91** (the positivity criterion fails at `g11 = 0`), **B121** (the Jordan criterion drops `A12 ≠ 0`), **B132** (the dichotomy needs `F` symmetric), **B169** (no −0.99 correlation floor), **B185** (nonunitary does not imply non-stochastic), **B196** (minimality holds at `|c| = 2`), **B200** (the shift is `−hI`), **B205** (even blocks can carry half modes), plus the ledger's squared B44, B86, B155 and the rounded B202.
 
 **B15 — refuted.** The global subadditivity S(a∪b) ≤ S(a)+S(b) is false for the raw log-det comparator S(A,B) = log det((A+B)/2) − ½log det A − ½log det B: S(1,4) = log(5/4) = 0.2231 exceeds S(1,2)+S(2,4) = log(9/8) = 0.1178, and the two steps have equal cost so the failure is not a subdivision artefact. The √S metric reading, which the archived HTML and the ledger spell differently, is not addressed.  
 Evidence: `AtlasB15.not_subadditive` in `RelationalAtlas/Extended3.lean`.
@@ -303,9 +303,6 @@ Evidence: `B169.B169_no_precision_floor` in `RelationalAtlas/Extended5.lean`.
 **B185 — refuted.** The closing sentence reads as a universal: nonunitary transport implies non-stochastic weights. It is false in that direction: the constant 2x2 matrix with every entry (1+i)/2 is not unitary, yet all Born weights are 1/2 and W is doubly stochastic. The other direction does hold (U = [2] is nonunitary with weight 4), so the correct statement is an implication, not an equivalence.  
 Evidence: `B185.equalPhaseTransport_bornWeights_doublyStochastic` in `RelationalAtlas/Extended7.lean`.
 
-**B200 — sign.** The card's explanation says shifting Z by +hI makes the top Hermitian eigenvalue vanish and yields the companion matrix. At h = s = h1 = 1, h2 = 0 the matrix Z = [[1,1],[-1,-1]] is a nonzero nilpotent but Herm(Z + I) = diag(2,0) has top eigenvalue 2. The correct statement is Z(h,0,s) - hI = s * companion(h,s) for s != 0.  
-Evidence: `B200_refutation` in `RelationalAtlas/Extended7.lean`.
-
 **B196 — refuted.** 'Minimal solution iff |lambda| > 2 sqrt q' fails at the boundary: at c = 2r with r^2 = 1 every solution is r^n(a + bn), a non-proportional partner forces b != 0, and r^n/s_n = 1/(a + bn) -> 0, so the fundamental solution is minimal also at |c| = 2. The witness is graph-realised (q = 1, lambda = -2 by a C4 adjacency matrix with an alternating eigenvector). The correct criterion is |lambda| >= 2 sqrt q.  
 Evidence: `B196.fundamental_isMinimalSolution` in `RelationalAtlas/Extended7.lean`.
 
@@ -314,6 +311,24 @@ Evidence: `riceMele_oddBlock_halfMode` in `RelationalAtlas/Extended7.lean`.
 
 **B191 — overreach.** The prose net-increment reading cannot drop the uncentered linear terms: on one scalar edge with D = U = c = 1 the shifted E+ is 16 while the old E+ plus 4rc^2 is 8. Also, uncentered balance and k/r-centered balance are different conditions: the first holds iff rho = 0, the second iff rho = k/r.  
 Evidence: `B191` in `RelationalAtlas/Extended7.lean`.
+
+**B121 — refuted.** The displayed Jordan criterion is false as an iff: at t1 = t2 = t3 = 1, w = (1/2,1/2,0), T = I, G = diag(1/2,1/2,0) every stated hypothesis holds and the displayed equality reads 0 = 0, yet the transport A(H) = TH + HT - 2 tr(TH)G is 2H on traceless H, so it is diagonalisable and not a nontrivial Jordan block. The card's own Why paragraph requires A12 != 0, which the display omits.  
+Evidence: `B121` in `RelationalAtlas/Extended8.lean`.
+
+**B143 — overreach.** 'lambda_max = 1/eps - 1 + O(eps), lambda_frame ~ eps^-1/2, all rates eps^-1' is right for the large eigenvalues but false for the full operator: on the corner geometry the mixed rates are not bounded below by any c/eps, with the witness eps = 144/5329 giving eps*lambda_mixed = 12/71 < 1/4.  
+Evidence: `B143` in `RelationalAtlas/Extended8.lean`.
+
+**B28 — refuted.** The displayed SLD tensor identity Q = 1/4 F - (i/8)Tr(rho[L1,L2]) is false: at rho = diag(3/4,1/4), L1 = sigma_x, L2 = sigma_y every hypothesis holds (PosDef, trace one, Hermitian, both SLD equations) and Q = i/8 while the displayed right-hand side is 1/8. The correct identity for arbitrary finite complex matrices is Q = F/4 + C/8 with F = 1/2 Tr(rho{L1,L2}) and C = Tr(rho[L1,L2]); for Hermitian data Re Q = F/4 and the imaginary part equals -iC/8 only as a real scalar.  
+Evidence: `B28` in `RelationalAtlas/Extended9.lean`.
+
+**B201 — scope.** The referee audit confirms the local derivative laws, the -32 normalization and both directions of dE+ = 0 iff K^2 normal, but records what is weaker than the card: power traces are only infinitesimally stationary rather than invariants along a flow, the improper budget assumes integrability and convergence, the spectral budget never identifies v with the spectrum, and the endpoint limits assume convergence to a unitary diagonal, with no global existence or Barbalat argument.  
+Evidence: `B201` in `RelationalAtlas/Extended7.lean`.
+
+**B94 — scope.** The displayed |Delta (1/n) log det eta| = C_K d_H is only partly formalisable here: the padding law and the 2/n Hamming cost of a transposition are proved, but C_K is a knot-dependent regulator constant that this repository does not construct, so the card's exact identity remains conditional on knot theory.  
+Evidence: `B94` in `RelationalAtlas/Extended8.lean`.
+
+**B147 — scope.** The displayed D_l and both limits are proved, but the entropy-to-lattice identity the card derives D_l from (the S_l sum over sin^2 of h) is not formalised, so the kernel covers the series and its asymptotics, not its origin.  
+Evidence: `B147` in `RelationalAtlas/Extended8.lean`.
 
 ## New kernels added by this audit: `RelationalAtlas/Extended.lean`
 

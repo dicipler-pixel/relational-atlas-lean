@@ -18,6 +18,19 @@ def strip_comments(s):
    i+=1
  if depth:raise ValueError('Unclosed Lean comment')
  return ''.join(out)
+def qualified_names(p):
+ src=strip_comments(p.read_text());out=[];stack=[];depth=0
+ for line in src.splitlines():
+  st=line.strip();at=depth==0
+  if at and st.startswith('namespace '):stack.append(('ns',st.split()[1]))
+  elif at and re.match(r'(?:noncomputable\s+|private\s+|protected\s+)?section\b',st):stack.append(('sec',''))
+  elif at and (st=='end' or st.startswith('end ')):
+   if stack:stack.pop()
+  depth=max(0,depth+line.count('/-')-line.count('-/'))
+  if at and depth==0:
+   mt=re.match(r'(?:theorem|lemma)\s+([^\s:({\[]+)',line)
+   if mt:out.append('.'.join([n for k,n in stack if k=='ns']+[mt.group(1)]))
+ return out
 def decl_names(p):return re.findall(r'^\s*(?:protected\s+)?(?:theorem|lemma)\s+([^\s:({\[]+)',strip_comments(p.read_text()),re.M)
 def names(p):return set(decl_names(p))
 def declaration_names(p):
@@ -44,7 +57,7 @@ def validate(d,archive=None):
   p=ROOT/m['path'];ns=names(p);all_local|={(m['path'],n)for n in ns}
   # Count declarations as written, not distinct short names: one module may hold several
   # namespaces, so two declarations can share a short name (they are distinct kernel names).
-  local_declarations+=len(decl_names(p))
+  local_declarations+=len(set(qualified_names(p)))
   s=strip_comments(p.read_text())
   require(not re.search(r'\b(?:sorry|axiom)\b',s),'Local source placeholder/axiom')
   inventory.append(dict(path=m['path'],sha256=hashlib.sha256(p.read_bytes()).hexdigest(),theorems=sorted(ns)))
