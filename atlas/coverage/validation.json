@@ -3101,11 +3101,5 @@
         "zero_mode_pauli_current"
       ]
     }
-  ],
-  "rejected_metadata_controls": [
-    "missing_card",
-    "nonexistent_proof",
-    "unsupported_whole_card_upgrade",
-    "wrong_edition"
   ]
 }
