@@ -19,8 +19,8 @@ in the sense that it is not the pinned CI environment.
 ## Result
 
 Final run of `python3 scripts/verify_local.py` (23 November 2026, Lean 4.35.0): three library
-modules, 41 pinned external snapshots, 7 false controls, **1020 theorem declarations audited**
-(37 in the ledger modules, 178 in `Extended.lean`, 229 in `Extended2.lean`, 262 in `Extended3.lean`, 314 in `Extended4.lean`).
+modules, 41 pinned external snapshots, 7 false controls, **1806 theorem declarations audited**
+(37 in the ledger modules, 178 in `Extended.lean`, 229 in `Extended2.lean`, 262 in `Extended3.lean`, 314 in `Extended4.lean`, 188 in `Extended5.lean`, 19 in `Extended6.lean`, 579 in `Extended7.lean`).
 
 * **37/37** ledger theorems elaborate with zero errors, and so do all 331 extension theorems
   (`Extended.lean` 178, `Extended2.lean` 229; the latter adds B37, B44, B72, B78, B86, B89, B116,
@@ -179,7 +179,7 @@ snapshots cannot be re-elaborated at all.
 
 Every card whose displayed claim, or whose ledger transcription, did not survive contact with Lean is listed here with the theorem that settles it. `kind` is `refuted` (false as written), `missing-hypothesis` (true only with a hypothesis the card does not state), `overreach` / `scope` (true but weaker than the words), `ledger-error` (the card is fine and the ledger is not), `sign`, `rounding`, `provenance` or `clarification`.
 
-Refuted as literally written: B15 (the raw log-det comparator is not subadditive), B132 (the dichotomy needs `F` symmetric), B91 (the positivity criterion fails at `g11 = 0`), and the ledger's squared B44 (the card itself is unsquared). B25 is an overreach: the summed quantity is twice the card's per-level one.
+Nine cards are false as literally written and now carry Lean counterexamples: **B15** (the raw log-det comparator is not subadditive), **B67** (a closed loop need not lift), **B91** (the positivity criterion fails at `g11 = 0`), **B132** (the dichotomy needs `F` symmetric), **B169** (no −0.99 correlation floor), **B185** (nonunitary does not imply non-stochastic), **B196** (minimality holds at `|c| = 2`), **B200** (the shift is `−hI`, not `+hI`) and **B205** (even blocks can carry half modes).
 
 **B15 — refuted.** The global subadditivity S(a∪b) ≤ S(a)+S(b) is false for the raw log-det comparator S(A,B) = log det((A+B)/2) − ½log det A − ½log det B: S(1,4) = log(5/4) = 0.2231 exceeds S(1,2)+S(2,4) = log(9/8) = 0.1178, and the two steps have equal cost so the failure is not a subdivision artefact. The √S metric reading, which the archived HTML and the ledger spell differently, is not addressed.  
 Evidence: `AtlasB15.not_subadditive` in `RelationalAtlas/Extended3.lean`.
@@ -244,7 +244,7 @@ Evidence: `B181.squareOmega_ne_displayed_exactly` in `RelationalAtlas/Extended4.
 **B181 — clarification.** The file's summary sentence overstates one theorem: no declaration joins the square-frequency identity to the transverse stiffness, so 'formalised omega^2 = V_ss = 2V_w' describes two separate statements. A docstring in squarePotential also gives the diagonal squared length as 1/4 - w/4 rather than 1 - w; the theorem is unaffected.  
 Evidence: `RelationalAtlas.B181.foldPotential_second_deriv` in `RelationalAtlas/Extended4.lean`.
 
-**B46 — provenance.** The archived card HTML read for B46 (SHA b1e69c…) displays Ẇ = Π_TGr(Ẇ) + δ, while coverage.json pins 3626f1…, so the local 93-card edition and the Zenodo v7 card are different documents. The ledger's B46 claim text therefore does not describe the local file; the Lean kernel follows the ledger's formula.  
+**B46 — provenance.** Resolved in the ledger's favour: the coverage claim is an exact extraction from the official v7 card (archive SHA-256 cdc604b1..., member cards/html/B46.html SHA-256 3626f1bb...), whose display is the idempotency-defect formula the kernel proves. The local 93-card edition (b1e69c...) displays a different formula (W-dot = Pi_TGr(W-dot) + delta) and is the divergent document. All seven source-derived fields reproduce with build_coverage.py's own extraction algorithm.  
 Evidence: `B46.b46_idempotency_defect` in `RelationalAtlas/Extended4.lean`.
 
 **B179 — clarification.** The raw quotient dX²/(4c²X) needs λ ≠ 0; at λ = 0 (the horizon X = 0) it gives 0 rather than the limiting 1, which the regular extension supplies. The card's two expressions agree except at that single point.  
@@ -267,6 +267,27 @@ Evidence: `RelationalAtlas.B195.bass_determinant_cross` in `RelationalAtlas/Exte
 
 **B152 — clarification.** The offset theorem is proved faithfully, but the card's spectral nu -> 1 - nu and offset eps -> -eps clauses are neither formalised nor listed among the report's omissions.  
 Evidence: `RelationalAtlas.B152.offset_eq_zero` in `RelationalAtlas/Extended4.lean`.
+
+**B67 — refuted.** A closed loop in shape space need not admit an open lift even with horizontality, collision-freeness and regularity throughout (explicit nonconstant radial witness), so the card's unrestricted 'closed loop => open lift' is false; the sharp replacement is the gap condition. The isotropy clause r <= d-2 is exact: a nonidentity determinant-one isometry fixing the span exists iff finrank K + 2 <= finrank E.  
+Evidence: `B67.admissible_B67_open_lift_claim_is_false` in `RelationalAtlas/Extended5.lean`.
+
+**B169 — refuted.** No -0.99 correlation floor: on the card's own grid the correlation is -sqrt(7/10) at uniform weights and -1/5 at (133,1,...,1), and -4/sqrt(17) in the normalization-free model, so it moves with the precision profile. The measured -0.999475 is not replayed: the nonlinear sensitivity data is absent, so that number stays unverified rather than refuted.  
+Evidence: `B169.B169_no_precision_floor` in `RelationalAtlas/Extended5.lean`.
+
+**B185 — refuted.** The closing sentence reads as a universal: nonunitary transport implies non-stochastic weights. It is false in that direction: the constant 2x2 matrix with every entry (1+i)/2 is not unitary, yet all Born weights are 1/2 and W is doubly stochastic. The other direction does hold (U = [2] is nonunitary with weight 4), so the correct statement is an implication, not an equivalence.  
+Evidence: `B185.equalPhaseTransport_bornWeights_doublyStochastic` in `RelationalAtlas/Extended7.lean`.
+
+**B200 — sign.** The card's explanation says shifting Z by +hI makes the top Hermitian eigenvalue vanish and yields the companion matrix. At h = s = h1 = 1, h2 = 0 the matrix Z = [[1,1],[-1,-1]] is a nonzero nilpotent but Herm(Z + I) = diag(2,0) has top eigenvalue 2. The correct statement is Z(h,0,s) - hI = s * companion(h,s) for s != 0.  
+Evidence: `B200_refutation` in `RelationalAtlas/Extended7.lean`.
+
+**B196 — refuted.** 'Minimal solution iff |lambda| > 2 sqrt q' fails at the boundary: at c = 2r with r^2 = 1 every solution is r^n(a + bn), a non-proportional partner forces b != 0, and r^n/s_n = 1/(a + bn) -> 0, so the fundamental solution is minimal also at |c| = 2. The witness is graph-realised (q = 1, lambda = -2 by a C4 adjacency matrix with an alternating eigenvector). The correct criterion is |lambda| >= 2 sqrt q.  
+Evidence: `B196.fundamental_isMinimalSolution` in `RelationalAtlas/Extended7.lean`.
+
+**B205 — refuted.** 'nu = 1/2 in odd blocks only' is false as a universal: in the card-allowed dimer limit t1 = 1, t2 = 0, v = 0 the even block carries C_B = (1/2) I2, two half modes. The odd-block existence half is proved (a forced nu = 1/2 eigenvector for odd |n|); only the exclusion fails.  
+Evidence: `riceMele_oddBlock_halfMode` in `RelationalAtlas/Extended7.lean`.
+
+**B191 — overreach.** The prose net-increment reading cannot drop the uncentered linear terms: on one scalar edge with D = U = c = 1 the shifted E+ is 16 while the old E+ plus 4rc^2 is 8. Also, uncentered balance and k/r-centered balance are different conditions: the first holds iff rho = 0, the second iff rho = k/r.  
+Evidence: `B191` in `RelationalAtlas/Extended7.lean`.
 
 ## New kernels added by this audit: `RelationalAtlas/Extended.lean`
 

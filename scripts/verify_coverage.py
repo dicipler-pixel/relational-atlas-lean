@@ -18,7 +18,8 @@ def strip_comments(s):
    i+=1
  if depth:raise ValueError('Unclosed Lean comment')
  return ''.join(out)
-def names(p):return set(re.findall(r'^\s*(?:protected\s+)?(?:theorem|lemma)\s+([^\s:({\[]+)',strip_comments(p.read_text()),re.M))
+def decl_names(p):return re.findall(r'^\s*(?:protected\s+)?(?:theorem|lemma)\s+([^\s:({\[]+)',strip_comments(p.read_text()),re.M)
+def names(p):return set(decl_names(p))
 def declaration_names(p):
  return set(re.findall(r'^\s*(?:noncomputable\s+)?(?:protected\s+)?(?:theorem|lemma|def)\s+([^\s:({\[]+)',strip_comments(p.read_text()),re.M))
 def require(ok,msg):
@@ -38,12 +39,16 @@ def validate(d,archive=None):
  for path in ['NonNormality/SelfCommutator.lean','NonNormality/Holonomy.lean']:
   require(hashlib.sha256((nn/path).read_bytes()).hexdigest()==report['sha256'][path],'Committed verification report hash mismatch')
  config=json.loads((ROOT/'scripts/config.json').read_text());inventory=[];all_local=set()
+ local_declarations=0
  for m in config['modules']:
   p=ROOT/m['path'];ns=names(p);all_local|={(m['path'],n)for n in ns}
+  # Count declarations as written, not distinct short names: one module may hold several
+  # namespaces, so two declarations can share a short name (they are distinct kernel names).
+  local_declarations+=len(decl_names(p))
   s=strip_comments(p.read_text())
   require(not re.search(r'\b(?:sorry|axiom)\b',s),'Local source placeholder/axiom')
   inventory.append(dict(path=m['path'],sha256=hashlib.sha256(p.read_bytes()).hexdigest(),theorems=sorted(ns)))
- require(len(all_local)==config['expected_theorems'],'Local theorem inventory changed; review coverage')
+ require(local_declarations==config['expected_theorems'],'Local theorem inventory changed; review coverage')
  mapped=set()
  for c in cards:
   require(c['source_grade']in {'theorem','derived','measured','conjecture','reading'},'Unrecognized source grade')
@@ -66,7 +71,7 @@ def validate(d,archive=None):
   require('md5:'+hashlib.md5(archive.read_bytes()).hexdigest()==published['checksum'],'Zenodo archive checksum mismatch')
   with zipfile.ZipFile(archive)as z:
    for c in cards:require(hashlib.sha256(z.read(c['source_file'])).hexdigest()==c['source_sha256'],'Original card checksum mismatch '+c['id'])
- return dict(cards=len(cards),coverage=dict(collections.Counter(c['coverage_status']for c in cards)),source_grades=dict(collections.Counter(c['source_grade']for c in cards)),local_theorems=len(all_local),external_source_snapshots=len(ext),archive_verified=bool(archive),local_inventory=inventory)
+ return dict(cards=len(cards),coverage=dict(collections.Counter(c['coverage_status']for c in cards)),source_grades=dict(collections.Counter(c['source_grade']for c in cards)),local_theorems=local_declarations,external_source_snapshots=len(ext),archive_verified=bool(archive),local_inventory=inventory)
 def self_test(d):
  cases=[]
  x=copy.deepcopy(d);x['cards'].pop();cases.append(('missing_card',x))

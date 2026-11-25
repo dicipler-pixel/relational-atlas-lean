@@ -4,7 +4,7 @@
 
 [![Lean proof check](https://github.com/dicipler-pixel/relational-atlas-lean/actions/workflows/build.yml/badge.svg)](https://github.com/dicipler-pixel/relational-atlas-lean/actions/workflows/build.yml)
 ![Lean](https://img.shields.io/badge/Lean-v4.34.1-blue)
-![Theorems](https://img.shields.io/badge/theorems-1227-2EA043)
+![Theorems](https://img.shields.io/badge/theorems-1806-2EA043)
 ![sorry](https://img.shields.io/badge/sorry-0-2EA043)
 ![Code: MIT](https://img.shields.io/badge/code-MIT-lightgrey)
 ![Text: CC BY 4.0](https://img.shields.io/badge/text-CC%20BY%204.0-lightgrey)
@@ -137,6 +137,26 @@ dimension, B145's boundary, B207's extremal hole, B156's pole indices as an exac
 equality case, B77's two thresholds, B93's invariance hypothesis, B60's converse, B15's 1/(2√2)
 constant shown to belong to √S, B152's spectral clauses, B112's one-zero case, B119's full symbol
 and B181's missing join.
+
+A sixth batch, [`RelationalAtlas/Extended7.lean`](RelationalAtlas/Extended7.lean) (579 further
+declarations), covers the two-books block B185–B206, and five of its cards needed correction:
+
+- **B185** — nonunitary transport does *not* imply non-stochastic weights: the constant `(1+i)/2`
+  matrix has all weights `1/2` and `W` doubly stochastic. The converse is true, so the correct
+  statement is an implication.
+- **B196** — minimality of the recurrence solution holds at `|c| = 2` as well, so the criterion is
+  `|λ| ≥ 2√q`; the boundary witness is graph-realised by a `C₄` adjacency matrix.
+- **B200** — the explanation's shift is `−hI`, not `+hI`: `Herm(Z + I) = diag(2,0)` at the
+  card's own witness, and the corrected companion identity is proved.
+- **B205** — "odd blocks only" is false: in the card-allowed dimer limit an even block carries
+  `C_B = ½·I₂`, two half modes.
+- **B191** — uncentered linear terms cannot be dropped (one scalar edge gives 16 against 8), and
+  uncentered balance (`ρ = 0`) differs from `k/r`-centered balance (`ρ = k/r`).
+
+The rest are proofs: B187's loop-kernel equivalence, B188's two exact minima (`(N/2)(1−cos π/N)`
+and `0`), B189's rapidity, B192's bipartiteness criterion in both directions, B193's integer
+minimisation with the parity split, B197's zeta pencil, B201's `−32` derivative laws, B204's Schur
+factorisation and the ½ protection condition, plus a shared matrix kernel for the block.
 
 Partial or guarded: B24's equality of the two `c₂` forms needs Hermitian `E`; B207 does not treat
 the extremal `Q = M`; B46's local HTML and the ledger describe different documents.  Each is
