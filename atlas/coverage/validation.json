@@ -12,7 +12,7 @@
     "reading": 8,
     "derived": 6
   },
-  "local_theorems": 3033,
+  "local_theorems": 3045,
   "external_source_snapshots": 41,
   "archive_verified": true,
   "local_inventory": [
@@ -2727,7 +2727,7 @@
     },
     {
       "path": "RelationalAtlas/Extended11.lean",
-      "sha256": "6ca29b45b439214c380b714d2b77fe94e8e39c56e3b53435b2a9fc89eba78607",
+      "sha256": "d68aba4efd6ca0537bde3abed5f9e31e4d4305d28aaff82fe0f8a31b8e5f4675",
       "theorems": [
         "D_det",
         "D_hermitian",
@@ -2751,6 +2751,7 @@
         "base_winding_integral_zero",
         "base_winding_zero",
         "blochWigner_of_norm_one",
+        "bounded_exclusion_does_not_give_unbounded_independence",
         "ceDeleteRe_zero_mode",
         "chiral_comparison_kernel",
         "chiral_det",
@@ -2796,6 +2797,12 @@
         "displayedExponent_d2_k1",
         "displayedExponent_d2_k2",
         "dropped_margin_witness",
+        "edgeW_factor",
+        "edgeW_quadratic",
+        "edgeZ_factor",
+        "edgeZ_ne_edgeW",
+        "edgeZ_quadratic",
+        "edge_shapes_positive_im",
         "exceptional_at_zero_kernel_iff",
         "exceptional_at_zero_ne",
         "exceptional_at_zero_sq",
@@ -2806,6 +2813,7 @@
         "exp_neg_nat_mul_log_two",
         "figureEightGluing_of_shape",
         "figureEight_finite_sum",
+        "figure_eight_edge_equation",
         "fixed_loop_integer_winding",
         "flat_A1",
         "fold_pullback_metric",
@@ -2898,6 +2906,8 @@
         "neumannResolvent_left_inverse",
         "neumannResolvent_right_inverse",
         "no_nonconstant_linear_projector_variation",
+        "no_nontrivial_relation_of_abs_le_ten",
+        "no_nontrivial_relation_within_ten",
         "norm_leftMinus",
         "norm_leftPlus",
         "norm_neumannResolvent_le",
@@ -2995,6 +3005,7 @@
         "roundSphere_heatTrace_log_two_lower",
         "roundSphere_partialHeat_zero",
         "roundSphere_scalarIntegral_eq_area_mul_scalar",
+        "rounded_decimals_exact_relation",
         "scalarBaseP_eq_one",
         "scalarPerturbedP_eq_zero",
         "scalar_base_resolvent_norm",
@@ -3015,6 +3026,7 @@
         "sphereHeatTerm_nonneg",
         "sqrt_div_mul",
         "sqrt_mul_sqrt_div",
+        "sqrt_seven_sq",
         "sqrt_three_sq",
         "squareFlatTorus_A0",
         "strawZ_im",
@@ -3101,5 +3113,11 @@
         "zero_mode_pauli_current"
       ]
     }
+  ],
+  "rejected_metadata_controls": [
+    "missing_card",
+    "nonexistent_proof",
+    "unsupported_whole_card_upgrade",
+    "wrong_edition"
   ]
 }

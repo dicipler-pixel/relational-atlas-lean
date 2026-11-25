@@ -4,7 +4,7 @@
 
 [![Lean proof check](https://github.com/dicipler-pixel/relational-atlas-lean/actions/workflows/build.yml/badge.svg)](https://github.com/dicipler-pixel/relational-atlas-lean/actions/workflows/build.yml)
 ![Lean](https://img.shields.io/badge/Lean-v4.35.0-blue)
-![Theorems](https://img.shields.io/badge/theorems-3033-2EA043)
+![Theorems](https://img.shields.io/badge/theorems-3045-2EA043)
 ![sorry](https://img.shields.io/badge/sorry-0-2EA043)
 ![Code: MIT](https://img.shields.io/badge/code-MIT-lightgrey)
 ![Text: CC BY 4.0](https://img.shields.io/badge/text-CC%20BY%204.0-lightgrey)
@@ -27,7 +27,7 @@ The ledger maps kernels for 137 cards to this repository and 40 additional cards
 companion repositories. The remaining 30 are 23 `measured`, 6 `reading` and 1 `derived`: **every
 card graded `theorem` now has a local kernel**, seven of them added by the tenth batch, and the
 ledger gives its reason per card for each of the 30 that remain. These are card counts, not theorem
-counts or full-card certifications. The local library is 3033 theorem declarations across thirteen
+counts or full-card certifications. The local library is 3045 theorem declarations across thirteen
 modules. Proved kernels, empirical witnesses, interpretations and remaining obligations are
 recorded separately. The historical 93-card files below remain preserved.
 
@@ -210,7 +210,7 @@ is still literal, and attacked. Nothing in the earlier modules was modified.
   form-space spectrum `R, R/4 (×4), R/6 (×6)`, the unit `S⁴` spectrum `36β + 102β²`, and a
   Lorentzian non-conformally-flat product.
 
-A tenth batch, [`RelationalAtlas/Extended11.lean`](RelationalAtlas/Extended11.lean) (385 further
+A tenth batch, [`RelationalAtlas/Extended11.lean`](RelationalAtlas/Extended11.lean) (397 further
 declarations, the last seven cards graded `theorem` with no kernel), tested a different failure
 mode. Every card had two or more members with opposite orders of work — one built the weakest
 reading a careless reader would accept as "the card" and refuted it first, the other attacked the

@@ -19,8 +19,8 @@ the previously pinned v4.34.1.
 
 Final run of `python3 scripts/verify.py` and `python3 scripts/verify_local.py --core` (25 November
 2026, Lean 4.35.0): thirteen library modules, 41 pinned external snapshots, 7 false controls,
-**3033 theorem declarations audited** (16 in `Basic.lean`, 21 in `AtlasFormalCore.lean`, 178 in
-`Extended.lean`, 229, 262, 314, 188, 19, 579, 295, 244, 303 and 385 in `Extended11.lean`).
+**3045 theorem declarations audited** (16 in `Basic.lean`, 21 in `AtlasFormalCore.lean`, 178 in
+`Extended.lean`, 229, 262, 314, 188, 19, 579, 295, 244, 303 and 397 in `Extended11.lean`).
 
 The count is of unique fully-qualified theorem and lemma names, which is what the three checkers
 agree on. It is neither the raw declaration count nor a short-name count: ten declarations in
@@ -29,7 +29,7 @@ so the inventory walkers (which anchor `theorem` at column 0) do not see them, a
 holds namespaces that share short names, so a short-name count under-counts it. The indented
 declarations are kernel-checked all the same and are registered in the ledger.
 
-* **3033/3033** axiom audits return a subset of `{propext, Classical.choice, Quot.sound}`;
+* **3045/3045** axiom audits return a subset of `{propext, Classical.choice, Quot.sound}`;
   no `sorryAx`, no `Lean.ofReduceBool`, no project axiom.
 * **0** occurrences of `sorry`, `admit` or `axiom` in the compiled local sources.
 * **7/7** false controls are rejected, each with a mathematical failure
@@ -385,6 +385,9 @@ Evidence: `B29.unitSphere_curvature_index_discrepancy` in `RelationalAtlas/Exten
 
 **B36 — clarification, and a displayed clause proved.** Writing the wall block on span{diag(1,−1,0), diag(1,1,−2)} as [[λ₁, b],[0, 2t₃]] with λ₁ = 2t₁(1−w₁)+2t₂w₁ and b = 2(t₁−t₃−(t₁+t₂−2t₃)w₁): the joint condition is exactly λ₁ = 2t₃, so JC alone is the repeated-eigenvalue condition, and the block is defective exactly when JC holds and b ≠ 0. Every scalar T lies on the vanishing locus and gives 2sI; at equal weights the block is [[t₁+t₂, t₁−t₂],[0,2t₃]] and is defective exactly when t₁ ≠ t₂. Separately the lift B = J⁻¹AJ with J = diag(1, σ₃) is proved to be a genuine conjugation off the wall, to equal (2t₃)·I at the wall under the joint condition — the display's B(0) = λI — and to be diagonal without it. This matters because the historical 93-card edition of B36 displays '‖R‖ → ∞, Jordan block of size two' at this locus, which is exactly what the v7 card corrects; two members' first verdicts refuted that other document.  
 Evidence: `B36m7.lifted_zero_eq_scalar_of_joint` in `RelationalAtlas/Extended11.lean`.
+
+**B11 — clarification.** The Check field 'Solve the gluing equations; Im zⱼ > 0' does not by itself determine the volume. The figure-eight edge equation z(z−1)w(w−1) = 1 has a second solution with both shapes in the upper half-plane and distinct, z = (1+i√7)/2 and w = (1+i)/2, whose Bloch–Wigner sum differs from the complete one; Thurston–Zagier needs completeness, which the card's Carry and Arrive fields elide. The Closed clause is also now a theorem in the only sense it can be: real enclosures exclude every nonzero integer relation ax+by = 0 with |a|,|b| ≤ 10 for the displayed volume pair, a relation with coefficients 363 and −201 shows the bound is not independence, and rounding to three decimals manufactures an exact relation.  
+Evidence: `Atlas.B11.bounded_exclusion_does_not_give_unbounded_independence` in `RelationalAtlas/Extended11.lean`.
 
 **B58 — referee note.** A tenth-batch referee pass judged the batch-nine cone argument a counterexample to an invented cone rather than to the card: the card defines no admissible cone C, so refuting the inference through one particular cone shows only that the inference is not automatic and needs an explicit monotonicity hypothesis. The record now says so; the log-determinant seam identity itself is unaffected.
 

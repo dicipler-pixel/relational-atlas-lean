@@ -848,6 +848,201 @@ end
 end
 
 
+/-! ## B11 — what a coefficient-bounded relation check proves, and what it does not
+
+Integrated from `.ultramath/smwwdl7d5/m9/B11BoundedRelation.lean`.
+-/
+
+section
+/-!
+# B11: what a coefficient-bounded integer-relation check proves
+
+The real numbers `x` and `y` below are abstract.  The enclosure hypotheses are
+the only input needed from a volume computation.  In particular, this file does
+not define hyperbolic volume or the Bloch--Wigner dilogarithm.
+-/
+
+namespace Atlas.B11
+
+set_option maxHeartbeats 2000000 in
+/-- If `2 < x < 2.03` and `3.66 < y < 3.67`, then no nonzero integer pair
+whose two coefficients lie between `-10` and `10` satisfies `a*x + b*y = 0`.
+
+This is a finite coefficient-bounded exclusion theorem, not a proof of
+irrationality and not an assertion about coefficients outside that box. -/
+theorem no_nontrivial_relation_within_ten
+    {x y : ℝ}
+    (hxlo : (2 : ℝ) < x) (hxhi : x < (203 : ℝ) / 100)
+    (hylo : (366 : ℝ) / 100 < y) (hyhi : y < (367 : ℝ) / 100)
+    {a b : ℤ}
+    (halo : -10 ≤ a) (hahi : a ≤ 10)
+    (hblo : -10 ≤ b) (hbhi : b ≤ 10)
+    (hab : (a : ℝ) * x + (b : ℝ) * y = 0) :
+    a = 0 ∧ b = 0 := by
+  interval_cases a <;> interval_cases b <;> norm_num at hab ⊢ <;> linarith
+
+/-- The bounded exclusion result in absolute-value form. -/
+theorem no_nontrivial_relation_of_abs_le_ten
+    {x y : ℝ}
+    (hxlo : (2 : ℝ) < x) (hxhi : x < (203 : ℝ) / 100)
+    (hylo : (366 : ℝ) / 100 < y) (hyhi : y < (367 : ℝ) / 100)
+    {a b : ℤ}
+    (ha : |a| ≤ 10) (hb : |b| ≤ 10)
+    (hab : (a : ℝ) * x + (b : ℝ) * y = 0) :
+    a = 0 ∧ b = 0 := by
+  apply no_nontrivial_relation_within_ten hxlo hxhi hylo hyhi
+      (a := a) (b := b) ?_ ?_ ?_ ?_ hab
+  · exact (abs_le.mp ha).1
+  · exact (abs_le.mp ha).2
+  · exact (abs_le.mp hb).1
+  · exact (abs_le.mp hb).2
+
+/-- SWAPPED-PHASE STRAW-MAN REFUTATION.  The rational numbers `x=736/363`
+and `y=736/201` satisfy exactly the same crude enclosures, but have the exact
+integer relation `363*x - 201*y = 0`.  Hence exclusion of coefficients at most
+`10` cannot logically be promoted to absence of relations of every size.
+
+This is not a counterexample to the geometrical volume formula, nor a claim
+that the actual two hyperbolic volumes have this relation. -/
+theorem bounded_exclusion_does_not_give_unbounded_independence :
+    let x : ℝ := (736 : ℝ) / 363
+    let y : ℝ := (736 : ℝ) / 201
+    (2 < x ∧ x < (203 : ℝ) / 100) ∧
+      ((366 : ℝ) / 100 < y ∧ y < (367 : ℝ) / 100) ∧
+      ∃ a b : ℤ, a ≠ 0 ∧ (10 < a.natAbs ∨ 10 < b.natAbs) ∧
+        (a : ℝ) * x + (b : ℝ) * y = 0 := by
+  dsimp
+  apply And.intro
+  · constructor <;> norm_num
+  apply And.intro
+  · constructor <;> norm_num
+  · refine ⟨363, -201, by norm_num, Or.inl (by norm_num), ?_⟩
+    norm_num
+
+/-- Rounded decimals can acquire an exact integer relation that says nothing
+about the unrounded reals.  This is the exact finite identity used in the
+second weak-reading numerical experiment. -/
+theorem rounded_decimals_exact_relation :
+    (366 : ℝ) * (203 / 100) - (203 : ℝ) * (366 / 100) = 0 := by
+  norm_num
+
+#print axioms no_nontrivial_relation_within_ten
+#print axioms no_nontrivial_relation_of_abs_le_ten
+#print axioms bounded_exclusion_does_not_give_unbounded_independence
+#print axioms rounded_decimals_exact_relation
+
+end Atlas.B11
+end
+
+
+/-! ## B11 — a non-complete gluing solution, and why completeness is not free
+
+Integrated from `.ultramath/smwwdl7d5/m9/B11GluingScope.lean`.
+-/
+
+section
+/-!
+# B11: edge gluing does not itself state completeness
+
+This file proves the finite complex-algebra part of an explicit two-shape
+figure-eight edge-gluing test.  The geometric identification of this equation
+with the standard two-tetrahedron triangulation, and the uniqueness of its
+complete solution, are external inputs.  No dilogarithm value is proved here.
+-/
+
+namespace Atlas.B11
+
+open Complex
+
+/-- The first upper-half-plane shape in the edge-gluing test. -/
+noncomputable def edgeZ : ℂ := (1 + (Real.sqrt 7 : ℂ) * I) / 2
+
+/-- The second upper-half-plane shape in the edge-gluing test. -/
+noncomputable def edgeW : ℂ := (1 + I) / 2
+
+lemma sqrt_seven_sq : (Real.sqrt (7 : ℝ)) ^ 2 = 7 := by
+  exact Real.sq_sqrt (by norm_num)
+
+lemma edgeZ_quadratic : edgeZ ^ 2 - edgeZ + 2 = 0 := by
+  have hrR := sqrt_seven_sq
+  have hr : ((Real.sqrt 7 : ℂ)) ^ 2 = 7 := by exact_mod_cast hrR
+  calc
+    edgeZ ^ 2 - edgeZ + 2
+        = (((Real.sqrt 7 : ℂ) * I) ^ 2 + 7) / 4 := by
+            simp only [edgeZ]
+            ring
+    _ = 0 := by
+          rw [mul_pow, Complex.I_sq, hr]
+          norm_num
+
+lemma edgeW_quadratic : edgeW ^ 2 - edgeW + (1 / 2 : ℂ) = 0 := by
+  calc
+    edgeW ^ 2 - edgeW + (1 / 2 : ℂ) = (I ^ 2 + 1) / 4 := by
+      simp only [edgeW]
+      ring
+    _ = 0 := by rw [Complex.I_sq]; norm_num
+
+/-- The first shape has `z(z-1) = -2`. -/
+lemma edgeZ_factor : edgeZ * (edgeZ - 1) = -2 := by
+  have hp := edgeZ_quadratic
+  calc
+    edgeZ * (edgeZ - 1) = (edgeZ ^ 2 - edgeZ + 2) - 2 := by ring
+    _ = -2 := by rw [hp]; ring
+
+/-- The second shape has `w(w-1) = -1/2`. -/
+lemma edgeW_factor : edgeW * (edgeW - 1) = -(1 / 2 : ℂ) := by
+  have hp := edgeW_quadratic
+  calc
+    edgeW * (edgeW - 1) = (edgeW ^ 2 - edgeW + (1 / 2 : ℂ)) - (1 / 2 : ℂ) := by ring
+    _ = -(1 / 2 : ℂ) := by rw [hp]; ring
+
+/-- Both shapes satisfy the display's `Im z_j > 0` check. -/
+theorem edge_shapes_positive_im : 0 < edgeZ.im ∧ 0 < edgeW.im := by
+  constructor
+  · have h7 : 0 < Real.sqrt (7 : ℝ) := Real.sqrt_pos.2 (by norm_num)
+    simp only [edgeZ, div_im, add_re, add_im, one_re, one_im, mul_re,
+      mul_im, ofReal_re, ofReal_im, I_re, I_im, zero_mul, mul_zero, add_zero,
+      sub_zero, zero_add]
+    norm_num [Complex.normSq_apply]
+  · norm_num [edgeW]
+
+/-- The two shapes satisfy the standard figure-eight edge equation
+`z(z-1)w(w-1)=1`. -/
+theorem figure_eight_edge_equation :
+    edgeZ * (edgeZ - 1) * edgeW * (edgeW - 1) = 1 := by
+  calc
+    edgeZ * (edgeZ - 1) * edgeW * (edgeW - 1)
+        = (edgeZ * (edgeZ - 1)) * (edgeW * (edgeW - 1)) := by ring
+    _ = 1 := by rw [edgeZ_factor, edgeW_factor]; norm_num
+
+/-- The witness is not the equal-shape complete regular pair: already its two
+shapes are distinct.  Completeness itself is not defined or proved in this
+file; the cited geometric theorem supplies that final comparison. -/
+theorem edgeZ_ne_edgeW : edgeZ ≠ edgeW := by
+  intro h
+  have him := congrArg Complex.im h
+  simp only [edgeZ, edgeW, div_im, add_re, add_im, one_re, one_im, mul_re,
+    mul_im, ofReal_re, ofReal_im, I_re, I_im, zero_mul, mul_zero, add_zero,
+    sub_zero, zero_add] at him
+  norm_num [Complex.normSq_apply] at him
+  have h7 : (Real.sqrt (7 : ℝ)) = 1 := by
+    nlinarith
+  have hs := sqrt_seven_sq
+  rw [h7] at hs
+  norm_num at hs
+
+#print axioms edgeZ_quadratic
+#print axioms edgeW_quadratic
+#print axioms edgeZ_factor
+#print axioms edgeW_factor
+#print axioms edge_shapes_positive_im
+#print axioms figure_eight_edge_equation
+#print axioms edgeZ_ne_edgeW
+
+end Atlas.B11
+end
+
+
 /-! ## B29 — the classical coefficients, and the index the displayed power law gives them
 
 Integrated from `.ultramath/smwwdl7d5/m4/B29.lean`.
