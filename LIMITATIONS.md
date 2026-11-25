@@ -6,10 +6,17 @@ Lean proves exactly the statements written, under exactly the hypotheses written
   formalized kernels for seven cards graded CONJECTURE (B4, B49, B53, B58, B62, B76, B125); each of
   those carries a correction record saying which part of the claim survived. MEASURED and READING
   cards have no kernel unless the ledger names a finite algebraic fragment.
-* B1 (`4 det g ≥ |Ω|²`) is proved in iqgt-grassmannian-lean, not here. Of the theorem-grade cards,
-  B9 (winding), B11 (dilogarithm volumes), B29 (heat-kernel coefficients), B36, B70, B140 and B164
-  are still unmapped here, as is the derived card B34; every other theorem-grade card has a local
-  kernel named in the ledger.
+* B1 (`4 det g ≥ |Ω|²`) is proved in iqgt-grassmannian-lean, not here. Every card graded THEOREM
+  now has a local kernel named in the ledger; what remains unmapped is 23 cards graded MEASURED,
+  6 graded READING and 1 DERIVED.
+* A kernel is a finite statement, and several cards' kernels leave their cited theorems outside:
+  B11 does not formalise the Bloch–Wigner dilogarithm or Thurston–Zagier; B29 does not formalise the
+  operator-side reduction; B140 proves the bound for circular contours and does not tie δ to the
+  spectral distance; B164 does not formalise the global magnetostatic step; B9 does not formalise
+  codimension two or the comparison with spectral flow; B36 does not prove the fold metric, the
+  finiteness of K or the arcsin√ε distance.
+* B70's displayed metric dichotomy is false as written and is recorded as refuted, with the
+  counterexamples in `RelationalAtlas/Extended11.lean`; its spectral half is unaffected.
 * B6 restates the binary entropy's properties from Mathlib. The free-fermion construction
   `S = Σ H(ν_k)` is cited, not proved.
 * B48 is Mathlib's block-determinant theorem, restated. That the interface has this block form

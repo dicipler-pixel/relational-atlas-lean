@@ -18,9 +18,9 @@ the previously pinned v4.34.1.
 ## Result
 
 Final run of `python3 scripts/verify.py` and `python3 scripts/verify_local.py --core` (25 November
-2026, Lean 4.35.0): twelve library modules, 41 pinned external snapshots, 7 false controls,
-**2648 theorem declarations audited** (16 in `Basic.lean`, 21 in `AtlasFormalCore.lean`, 178 in
-`Extended.lean`, 229, 262, 314, 188, 19, 579, 295, 244 and 303 in `Extended10.lean`).
+2026, Lean 4.35.0): thirteen library modules, 41 pinned external snapshots, 7 false controls,
+**3033 theorem declarations audited** (16 in `Basic.lean`, 21 in `AtlasFormalCore.lean`, 178 in
+`Extended.lean`, 229, 262, 314, 188, 19, 579, 295, 244, 303 and 385 in `Extended11.lean`).
 
 The count is of unique fully-qualified theorem and lemma names, which is what the three checkers
 agree on. It is neither the raw declaration count nor a short-name count: ten declarations in
@@ -29,7 +29,7 @@ so the inventory walkers (which anchor `theorem` at column 0) do not see them, a
 holds namespaces that share short names, so a short-name count under-counts it. The indented
 declarations are kernel-checked all the same and are registered in the ledger.
 
-* **2648/2648** axiom audits return a subset of `{propext, Classical.choice, Quot.sound}`;
+* **3033/3033** axiom audits return a subset of `{propext, Classical.choice, Quot.sound}`;
   no `sorryAx`, no `Lean.ofReduceBool`, no project axiom.
 * **0** occurrences of `sorry`, `admit` or `axiom` in the compiled local sources.
 * **7/7** false controls are rejected, each with a mathematical failure
@@ -373,6 +373,20 @@ Evidence: `B53Domain.mmr_reciprocal_and_html_bare_polynomial_incompatible` in `R
 
 **B53 — clarification.** Two limits on the card's reading, both certified. (i) Domain: Δ_{3₁}(z) = z²−z+1 vanishes at ω = (1+i√3)/2, which has |ω| = 1, so a pointwise statement J_N(z) → 1/Δ(z) is undefined at a unit-modulus zero, and the reciprocal series does not converge there; only the formal, power-series reading about z = 0 is well posed. That is a domain obstruction, not an MMR failure. (ii) Determination: 'two shadows of one object' asserts a common source, not a factorisation A = G(Δ); that stronger reading is false — 7₄ and 9₂ share Δ = 4t²−7t+4, while Hoste's two-bridge table gives A(L,1) = (L+1)⁵ and (L+1)⁷, so no G returns both, and the quotient (L+1)² is not a unit in the Laurent ring. The A-polynomial values are an external table input.  
 Evidence: `B53.no_A_function_of_Alexander` in `RelationalAtlas/Extended10.lean`.
+
+**B70 — refuted.** The displayed metric dichotomy 'along ⇒ Π constant on the locus, a coordinate pole · across ⇒ Π varies, a genuine stratum' is false in both directions, and the two properties it bundles are independent. F(x,y) = (x, y²) has derivative diag(1, 2y): on the wall the kernel is the transverse y-axis, the wall image (x,0) is nonconstant and the collapsed metric eigenvalue is 4y², yet the kernel projector is diag(0,1) for every x and its Frobenius variation vanishes — across with constant Π. F(x,y) = (y−x², xy−x³) collapses its whole locus to the origin — the card's own 'preimage of a single point' — with the tangent line as kernel, and its orthogonal projector (1/(1+4x²))[[1,2x],[2x,4x²]] has off-diagonal 2x/(1+4x²), so Π varies — along with varying Π. The projector is normalised in the ambient Euclidean inner product, the pullback metric being degenerate at the locus. What survives is the spectral half — gaps 2√(a²+b²) and 2√r, with the geometric fit returning 1 and 1/2 — and the diagnosis that Π's variation is governed by the rotation of the kernel direction along the locus, not by its tangency; the higher-order tangency that gives another exponent is excluded by the card's own Closed field.  
+Evidence: `B70Strong.wall_projector_delta_norm` and `B70CurvedPole.poleKernelProjector_not_constant` in `RelationalAtlas/Extended11.lean`.
+
+**B9 — missing-hypothesis.** The Closed sentence 'the winding is defined up to gauge; its value on a closed loop is not' is false for gauges of nonzero winding and true only for gauges continuously deformable to a constant. On the constant family diag(1,−1) and again on the non-constant chiral family [[0,z],[z*,0]] with z = e^{iθ} (gap 2, spectrum ±1 throughout), two closed nowhere-zero representatives of the same eigenline differ by a closed unit-modulus gauge and have displayed integrals 0 and 1. The winding is additive over phase functions, so a gauge of winding n shifts it by n and gauges of zero winding leave it fixed; integrality holds for a fixed closed nowhere-zero loop. The repair is to fix a gauge or to state the invariance modulo the gauge's own winding.  
+Evidence: `AtlasB9Comparison.periodic_gauge_changes_displayed_integral` in `RelationalAtlas/Extended11.lean`.
+
+**B29 — clarification.** The displayed exponent (k−d)/2 and the Check's a₁ disagree about which power the ∫R/6 coefficient multiplies. On the unit round sphere the exact spectrum gives Tr e^{−tΔ} = 1/t + 1/3 + t/15 + 4t²/315 + …, which is the series the card's own witness chart plots beside 'a₁ = χ/6 = 1/3'; but in the display index 1 in d = 2 multiplies t^{−1/2}, where the true coefficient vanishes, and 1/3 sits at t⁰, which the display calls a₂. So the card's a₁ is a₂ under its own law (a₀ = 1, a₁ = 0, a₂ = 1/3 on S²). Either renumber, or display the (4πt)^{−d/2} prefactor and then a₀ = Area, a₁ = (1/6)∫R. The values are correct and the substantive claim is untouched.  
+Evidence: `B29.unitSphere_curvature_index_discrepancy` in `RelationalAtlas/Extended11.lean`.
+
+**B36 — clarification, and a displayed clause proved.** Writing the wall block on span{diag(1,−1,0), diag(1,1,−2)} as [[λ₁, b],[0, 2t₃]] with λ₁ = 2t₁(1−w₁)+2t₂w₁ and b = 2(t₁−t₃−(t₁+t₂−2t₃)w₁): the joint condition is exactly λ₁ = 2t₃, so JC alone is the repeated-eigenvalue condition, and the block is defective exactly when JC holds and b ≠ 0. Every scalar T lies on the vanishing locus and gives 2sI; at equal weights the block is [[t₁+t₂, t₁−t₂],[0,2t₃]] and is defective exactly when t₁ ≠ t₂. Separately the lift B = J⁻¹AJ with J = diag(1, σ₃) is proved to be a genuine conjugation off the wall, to equal (2t₃)·I at the wall under the joint condition — the display's B(0) = λI — and to be diagonal without it. This matters because the historical 93-card edition of B36 displays '‖R‖ → ∞, Jordan block of size two' at this locus, which is exactly what the v7 card corrects; two members' first verdicts refuted that other document.  
+Evidence: `B36m7.lifted_zero_eq_scalar_of_joint` in `RelationalAtlas/Extended11.lean`.
+
+**B58 — referee note.** A tenth-batch referee pass judged the batch-nine cone argument a counterexample to an invented cone rather than to the card: the card defines no admissible cone C, so refuting the inference through one particular cone shows only that the inference is not automatic and needs an explicit monotonicity hypothesis. The record now says so; the log-determinant seam identity itself is unaffected.
 
 **B125 — survived, no correction.** Tr₁₁ = 3R was confirmed three ways — the constant-curvature form-space spectrum R (×1), R/4 (×4), R/6 (×6); the unit S⁴ spectrum 36β + 102β²; and a Lorentzian non-conformally-flat product dS²(k)×S²(l) — so the card keeps its coefficients and no entry is added to the ledger's corrections.
 Evidence: `B147` in `RelationalAtlas/Extended8.lean`.

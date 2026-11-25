@@ -8,9 +8,9 @@ This ledger records evidence for every card B1–B207. A source grade of THEOREM
 
 ## Coverage summary
 
-- 130 cards have mapped kernels in this repository (2648 theorem declarations, with overlap).
+- 137 cards have mapped kernels in this repository (3033 theorem declarations, with overlap).
 - 40 further cards have mapped kernels only in the sixteen inspected companion repositories.
-- 37 cards still need a formal-proof mapping in this audit.
+- 30 cards still need a formal-proof mapping in this audit (23 measured, 6 reading, 1 derived; no card graded theorem remains unmapped).
 - The published 207-card files are kept separate from the historical 93-card directory; neither edition is overwritten.
 - Historical CI evidence is pinned below; a fresh PR build checks the local Lean modules and coverage validator. External snapshot files are evidence, not imports into this project build.
 

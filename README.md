@@ -4,7 +4,7 @@
 
 [![Lean proof check](https://github.com/dicipler-pixel/relational-atlas-lean/actions/workflows/build.yml/badge.svg)](https://github.com/dicipler-pixel/relational-atlas-lean/actions/workflows/build.yml)
 ![Lean](https://img.shields.io/badge/Lean-v4.35.0-blue)
-![Theorems](https://img.shields.io/badge/theorems-2648-2EA043)
+![Theorems](https://img.shields.io/badge/theorems-3033-2EA043)
 ![sorry](https://img.shields.io/badge/sorry-0-2EA043)
 ![Code: MIT](https://img.shields.io/badge/code-MIT-lightgrey)
 ![Text: CC BY 4.0](https://img.shields.io/badge/text-CC%20BY%204.0-lightgrey)
@@ -23,14 +23,13 @@ has a [complete card-by-card Lean coverage ledger](atlas/coverage/README.md), wi
 [machine-readable claims, hypotheses and proof links](atlas/coverage/coverage.json).
 The source archive and continuous HTML were matched to the Zenodo checksums on 23 October 2026.
 
-The ledger maps kernels for 130 cards to this repository and 40 additional cards to sixteen
-companion repositories. The remaining 37 are 23 `measured`, 6 `reading`, 1 `derived` and 7 still
-graded `theorem` (B9, B11, B29, B36, B70, B140, B164) — the theorem-grade ones are the next proof
-targets, and the ledger gives its reason per card for every one of the 37.
-These are card counts, not theorem counts or full-card certifications. The local library is
-2648 theorem declarations across twelve modules. Proved kernels, empirical witnesses,
-interpretations and remaining obligations are recorded separately. The historical 93-card files
-below remain preserved.
+The ledger maps kernels for 137 cards to this repository and 40 additional cards to sixteen
+companion repositories. The remaining 30 are 23 `measured`, 6 `reading` and 1 `derived`: **every
+card graded `theorem` now has a local kernel**, seven of them added by the tenth batch, and the
+ledger gives its reason per card for each of the 30 that remain. These are card counts, not theorem
+counts or full-card certifications. The local library is 3033 theorem declarations across thirteen
+modules. Proved kernels, empirical witnesses, interpretations and remaining obligations are
+recorded separately. The historical 93-card files below remain preserved.
 
 Run the ledger integrity check with `python3 scripts/verify_coverage.py --self-test`.
 This checks evidence and mappings; the separate Lean workflow checks the actual proofs.
@@ -211,13 +210,49 @@ is still literal, and attacked. Nothing in the earlier modules was modified.
   form-space spectrum `R, R/4 (×4), R/6 (×6)`, the unit `S⁴` spectrum `36β + 102β²`, and a
   Lorentzian non-conformally-flat product.
 
+A tenth batch, [`RelationalAtlas/Extended11.lean`](RelationalAtlas/Extended11.lean) (385 further
+declarations, the last seven cards graded `theorem` with no kernel), tested a different failure
+mode. Every card had two or more members with opposite orders of work — one built the weakest
+reading a careless reader would accept as "the card" and refuted it first, the other attacked the
+card's own claim first — and each then swapped roles. Two referees re-derived the results
+independently. The outcome, per card:
+
+- **B70 — refuted.** The displayed metric dichotomy fails in both directions. `F(x,y) = (x,y²)` has
+  a transverse wall kernel, a nonconstant wall image and the quadratic collapsed eigenvalue, yet
+  the kernel projector is `diag(0,1)` for every `x`; `F(x,y) = (y−x², xy−x³)` collapses its whole
+  locus to a point, the card's own coordinate pole, yet its tangent-kernel projector
+  `(1/(1+4x²))[[1,2x],[2x,4x²]]` varies. The two properties the card bundles — constant projector,
+  one-point preimage — are independent; what governs the projector is the rotation of the kernel
+  direction along the locus. The spectral half survives.
+- **B9 — missing hypothesis.** The closed-loop winding is invariant under gauges of zero winding and
+  shifts by the gauge's own winding otherwise: on `[[0,z],[z*,0]]` with `z = e^{iθ}` two closed
+  representatives of one eigenline have integrals `0` and `1`.
+- **B29 — clarification.** The Check's `a₁ = (1/4π)∫R/6` sits at `t⁰` under the displayed power law,
+  which the card calls `a₂`; the card's own witness chart plots `1/3` at the constant term. The
+  values are right, the indexing is not.
+- **B36 — clarification, and a clause proved.** The wall block is defective exactly when the joint
+  condition holds *and* the off-diagonal is nonzero; scalar `T` is a diagonalisable boundary. The
+  lift `B = J⁻¹AJ` is proved to be a genuine conjugation and to equal `(2t₃)I` at the wall under the
+  joint condition — the display's `B(0) = λI`.
+- **B11, B140, B164 — survived.** The figure-eight shape and the vanishing correction term; the
+  displayed projector bound for circular contours with the perturbed inverse constructed as a
+  Neumann series, plus the exact `(1+η)/(2√η)` blowup of the individual idempotents at fixed margin;
+  and the Pauli-current identity, proved twice independently for arbitrary spinor and real `A`.
+
+Two scope corrections came out of the same batch. The commoner failure was a real computation
+against an invented reading: both B36 `REFUTED` verdicts initially attacked a display belonging to
+the historical 93-card edition, and the pinned v7 archive — now obtained from the DOI and verified,
+`archive_verified: true` — says the opposite about curvature at that locus. And a referee pass
+judged batch nine's B58 cone argument a counterexample to an invented cone rather than to the card,
+which is how its record now reads.
+
 Partial or guarded: B24's equality of the two `c₂` forms needs Hermitian `E`; B207 does not treat
 the extremal `Q = M`; B46's local HTML and the ledger describe different documents.  Each is
 recorded with the theorem that settles it.
 
 What each kernel covers and what it does not is tabulated per card in
 [atlas/coverage/CERTIFICATION.md](atlas/coverage/CERTIFICATION.md), generated from the ledger by
-`scripts/build_certification.py`: 130 cards have a kernel in this repository, 40 only in a companion
+`scripts/build_certification.py`: 137 cards have a kernel in this repository, 40 only in a companion
 repository, and every card keeps `full_card_certified: false`, which the validator requires.
 
 The full statement audit is in [atlas/coverage/LOCAL_KERNEL_AUDIT.md](atlas/coverage/LOCAL_KERNEL_AUDIT.md):
