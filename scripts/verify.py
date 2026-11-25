@@ -30,22 +30,21 @@ import hashlib
 import json
 import pathlib
 import re
+import shutil
 import subprocess
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 OUT = ROOT / "verification"
-ALLOWED = {"propext", "Classical.choice", "Quot.sound"}
+ALLOWED = {"propext", "Classical.choice", "choice", "Quot.sound"}
 CONFIG = json.loads((pathlib.Path(__file__).resolve().parent / "config.json").read_text())
 MODULES = [(m["module"], m["path"]) for m in CONFIG["modules"]]
 EXPECTED_THEOREMS = CONFIG["expected_theorems"]
 EXPECTED_FALSE_CONTROLS = CONFIG["expected_false_controls"]
 ROOT_IMPORTS = CONFIG["root_imports"]
-# Private helper lemmas cannot be named from another file, so they are not listed; their
-# axioms are audited through every public theorem that uses them.
-THEOREM_RE = re.compile(
-    r"^\s*(?:@\[[^\]]*\]\s*)?(?:protected\s+)?theorem\s+([^\s:({\[]+)", re.M)
-NAMESPACE_RE = re.compile(r"^namespace\s+(\S+)", re.M)
+# A declaration is `theorem` or `lemma` at the top level of its file; `private` ones cannot be
+# named from another file and are audited through the public theorems that use them.
+DECL_RE = re.compile(r"(?:theorem|lemma)\s+([^\s:({\[]+)")
 MATH_FAILURE = re.compile(
     r"unsolved goals|proved that the proposition.*false|tactic '.*' failed|"
     r"linarith failed|failed to prove|decide failed|norm_num failed|type mismatch|"
@@ -59,9 +58,44 @@ INFRA_FAILURE = re.compile(
 LAST_OUTPUT = ""
 
 
+# `lake env lean` is the CI path, where the pinned Mathlib has been built. In a bare
+# checkout (no `.lake/build`) that command cannot resolve the library modules, so the
+# plain toolchain is used instead; the checks themselves are identical.
+USE_LAKE = (shutil.which("lake") is not None
+            and (pathlib.Path(__file__).resolve().parents[1] / ".lake/build/lib/lean").is_dir())
+
+
+OLEAN_DIR = OUT / "olean"
+ENV = None
+
+
+def prepare_oleans() -> None:
+    """Without `lake`, build the library objects so the audit file can import them."""
+    global ENV
+    if USE_LAKE:
+        return
+    import os
+    OLEAN_DIR.mkdir(parents=True, exist_ok=True)
+    for module, rel in MODULES:
+        out = OLEAN_DIR / rel.replace(".lean", ".olean")
+        out.parent.mkdir(parents=True, exist_ok=True)
+        env = dict(os.environ, LEAN_PATH=os.environ["LEAN_PATH"] + ":" + str(OLEAN_DIR))
+        proc = subprocess.run(["lean", "-o", str(out), rel], cwd=ROOT,
+                              capture_output=True, text=True, env=env)
+        if proc.returncode != 0:
+            print(proc.stdout + proc.stderr)
+            raise SystemExit(f"could not build objects for {module}")
+    ENV = dict(os.environ, LEAN_PATH=os.environ["LEAN_PATH"] + ":" + str(OLEAN_DIR))
+
+
+def lean_cmd(args: list[str]) -> list[str]:
+    """`lake env lean` in CI (where the pinned Mathlib is built); plain `lean` otherwise."""
+    return ["lake", "env", "lean", *args] if USE_LAKE else ["lean", *args]
+
+
 def run(argv: list[str]) -> subprocess.CompletedProcess:
     global LAST_OUTPUT
-    proc = subprocess.run(argv, cwd=ROOT, capture_output=True, text=True)
+    proc = subprocess.run(argv, cwd=ROOT, capture_output=True, text=True, env=ENV)
     LAST_OUTPUT = " ".join(argv) + "\n" + proc.stdout + proc.stderr
     return proc
 
@@ -72,11 +106,31 @@ def strip_comments(text: str) -> str:
 
 
 def theorems_in(path: pathlib.Path) -> list[str]:
-    text = strip_comments(path.read_text())
-    spaces = sorted(set(NAMESPACE_RE.findall(text)))
-    if len(spaces) != 1:
-        raise SystemExit(f"{path}: expected exactly one namespace, found {spaces}")
-    return [f"{spaces[0]}.{name}" for name in THEOREM_RE.findall(text)]
+    """Every non-private theorem/lemma in the file, fully qualified.
+
+    The extension modules open many namespaces (one per card), so the namespace path is
+    tracked line by line, with `section` acting as an anonymous frame.
+    """
+    out: list[str] = []
+    stack: list[tuple[str, str]] = []
+    depth = 0
+    for line in path.read_text().splitlines():
+        stripped = line.strip()
+        at_top = depth == 0
+        if at_top and stripped.startswith("namespace "):
+            stack.append(("ns", stripped.split()[1]))
+        elif at_top and (stripped == "section" or stripped.startswith("section ")):
+            stack.append(("sec", ""))
+        elif at_top and (stripped == "end" or stripped.startswith("end ")):
+            if stack:
+                stack.pop()
+        depth = max(0, depth + line.count("/-") - line.count("-/"))
+        if at_top and depth == 0:
+            mt = DECL_RE.match(line)
+            if mt:
+                path_ns = [n for kind, n in stack if kind == "ns"]
+                out.append(".".join(path_ns + [mt.group(1)]))
+    return list(dict.fromkeys(out))
 
 
 def main() -> int:
@@ -101,17 +155,20 @@ def main() -> int:
         raise SystemExit(f"inventory changed: {total} theorems, expected {EXPECTED_THEOREMS}")
     report["theorems"] = total
 
+    prepare_oleans()
+
     # Axiom audit.
     audit = OUT / "AxiomAudit.lean"
     lines = [f"import {m}" for m in ROOT_IMPORTS] + [""]
     lines += [f"#print axioms {name}" for name in names]
     audit.write_text("\n".join(lines) + "\n")
-    proc = run(["lake", "env", "lean", str(audit.relative_to(ROOT))])
+    proc = run(lean_cmd([str(audit.relative_to(ROOT))]))
     log = proc.stdout + proc.stderr
     (OUT / "axioms.log").write_text(log)
     if proc.returncode != 0:
         print(log)
         raise SystemExit("axiom audit file did not compile")
+    log = re.sub(r"\n (?=\S)", " ", log)   # Lean wraps long axiom lists
     axioms: dict[str, list[str]] = {}
     for name in names:
         dep = re.search(re.escape(f"'{name}' depends on axioms: [") + r"([^\]]*)\]", log, re.S)
@@ -132,7 +189,7 @@ def main() -> int:
     # False controls.
     controls = {}
     for path in sorted((ROOT / "FalseControls").glob("*.lean")):
-        proc = run(["lake", "env", "lean", str(path.relative_to(ROOT))])
+        proc = run(lean_cmd([str(path.relative_to(ROOT))]))
         text = proc.stdout + proc.stderr
         (OUT / f"{path.stem}.log").write_text(text)
         if proc.returncode == 0:
