@@ -7446,9 +7446,9 @@
             "trace_unitary_conj"
           ],
           "scope": "Shared finite-matrix kernel for the two-books block: Born expansions, unitary stochasticity, projector books with the 2k(1 -/+ overlap/k) formulas, signless and ordinary Laplacian edge identities, and the Lax derivative identity.",
-          "commit": "e1efbca2c2c761e80424605ba55fa93d050d62d8",
+          "commit": "2c0a83b24e62123248cc9d979006cdebc3f99da7",
           "snapshot_path": "RelationalAtlas/Extended7.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/e1efbca2c2c761e80424605ba55fa93d050d62d8/RelationalAtlas/Extended7.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/2c0a83b24e62123248cc9d979006cdebc3f99da7/RelationalAtlas/Extended7.lean"
         }
       ],
       "audit_notes": [
@@ -7582,9 +7582,9 @@
             "trace_unitary_conj"
           ],
           "scope": "Shared finite-matrix kernel for the two-books block: Born expansions, unitary stochasticity, projector books with the 2k(1 -/+ overlap/k) formulas, signless and ordinary Laplacian edge identities, and the Lax derivative identity.",
-          "commit": "e1efbca2c2c761e80424605ba55fa93d050d62d8",
+          "commit": "2c0a83b24e62123248cc9d979006cdebc3f99da7",
           "snapshot_path": "RelationalAtlas/Extended7.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/e1efbca2c2c761e80424605ba55fa93d050d62d8/RelationalAtlas/Extended7.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/2c0a83b24e62123248cc9d979006cdebc3f99da7/RelationalAtlas/Extended7.lean"
         }
       ],
       "audit_notes": [
@@ -7647,9 +7647,9 @@
             "transitionTrace_star"
           ],
           "scope": "Both books as Born sums E-/E+ = sum W_ab (lambda_a -/+ mu_b)^2 with W = |U_ab|^2 nonnegative and doubly stochastic exactly for unitary U (no unitarity needed for the entry identity), and the rank-k clause E-/+ = 2k(1 -/+ p) with p = Re Tr(PUQU*)/k in [0,1]. A counterexample shows the converse of the double-stochasticity sentence fails: the constant (1+i)/2 matrix is nonunitary with all weights 1/2.",
-          "commit": "e1efbca2c2c761e80424605ba55fa93d050d62d8",
+          "commit": "2c0a83b24e62123248cc9d979006cdebc3f99da7",
           "snapshot_path": "RelationalAtlas/Extended7.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/e1efbca2c2c761e80424605ba55fa93d050d62d8/RelationalAtlas/Extended7.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/2c0a83b24e62123248cc9d979006cdebc3f99da7/RelationalAtlas/Extended7.lean"
         }
       ],
       "audit_notes": [
@@ -7787,9 +7787,9 @@
             "walkSign_mul_self"
           ],
           "scope": "The loop-kernel characterisation as a complex-linear equivalence: anti-parallel fields correspond exactly to matrices fixed by (-1)^length Ad(W_C) for every based closed walk, with uniqueness of the E+ = 0 extension; both cover identities E-_cover(S +/- T) = 2E-(S) + 2E+(T); the bipartite swap; E+ as the connection energy of -Ad(U) (not Ad(-U)); odd trivial holonomy forces X = 0.",
-          "commit": "e1efbca2c2c761e80424605ba55fa93d050d62d8",
+          "commit": "2c0a83b24e62123248cc9d979006cdebc3f99da7",
           "snapshot_path": "RelationalAtlas/Extended7.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/e1efbca2c2c761e80424605ba55fa93d050d62d8/RelationalAtlas/Extended7.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/2c0a83b24e62123248cc9d979006cdebc3f99da7/RelationalAtlas/Extended7.lean"
         }
       ],
       "audit_notes": [
@@ -7911,9 +7911,9 @@
             "two_lt_sqrt_five"
           ],
           "scope": "The two displayed minima as exact least elements over all normalised spinor fields: (N/2)(1 - cos(pi/N)) on odd N in the complex rank-one model with an explicit minimiser, and 0 on odd N >= 3 in the real model; plus the pentagon witness with all mirror overlaps zero, axial total sqrt 5, an exhaustive Boolean noncontextual bound of 2, and a strict gap.",
-          "commit": "e1efbca2c2c761e80424605ba55fa93d050d62d8",
+          "commit": "2c0a83b24e62123248cc9d979006cdebc3f99da7",
           "snapshot_path": "RelationalAtlas/Extended7.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/e1efbca2c2c761e80424605ba55fa93d050d62d8/RelationalAtlas/Extended7.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/2c0a83b24e62123248cc9d979006cdebc3f99da7/RelationalAtlas/Extended7.lean"
         }
       ],
       "audit_notes": [],
@@ -7972,9 +7972,9 @@
             "zero_endpoint_not_tanh"
           ],
           "scope": "The scalar clauses of a card previously mapped only to a companion repository: E-/+ = (d_i -/+ d_j)^2, the ratio as Gamma^2, Gamma = tanh(1/2 log(d_i/d_j)) with |Gamma| < 1 under positivity, E+ - E- = 4 d_i d_j, and the exponential-boost law; the pinned companion kernels are recompiled and correct.",
-          "commit": "e1efbca2c2c761e80424605ba55fa93d050d62d8",
+          "commit": "2c0a83b24e62123248cc9d979006cdebc3f99da7",
           "snapshot_path": "RelationalAtlas/Extended7.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/e1efbca2c2c761e80424605ba55fa93d050d62d8/RelationalAtlas/Extended7.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/2c0a83b24e62123248cc9d979006cdebc3f99da7/RelationalAtlas/Extended7.lean"
         }
       ],
       "audit_notes": [],
@@ -8101,9 +8101,9 @@
             "uncentered_plus_projector"
           ],
           "scope": "The operator-shift identities: the self-commutator is invariant under a real scalar and the squared book shifts by 4cA for H = D + A; per-edge and finite-sum Frobenius splits for both books; the minus book is uniformly invariant while the plus book gains 4r|E|c^2; uncentered balance iff rho = 0 and k/r-centered balance iff rho = k/r.",
-          "commit": "e1efbca2c2c761e80424605ba55fa93d050d62d8",
+          "commit": "2c0a83b24e62123248cc9d979006cdebc3f99da7",
           "snapshot_path": "RelationalAtlas/Extended7.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/e1efbca2c2c761e80424605ba55fa93d050d62d8/RelationalAtlas/Extended7.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/2c0a83b24e62123248cc9d979006cdebc3f99da7/RelationalAtlas/Extended7.lean"
         }
       ],
       "audit_notes": [
@@ -8183,9 +8183,9 @@
             "weight_pos_of_adj"
           ],
           "scope": "1/8 ||H^2 - H*^2||^2 = d^T Q d for H = diag(d) + A with loop-free skew-Hermitian A and weights ||A_ij||^2, Q = Deg + w positive semidefinite; the Rayleigh bound d^T Q d >= lambda_min ||d||^2; and the kernel question in both directions: a nonzero alternating field, equivalently a zero mode of the signless Laplacian, exists iff some component is bipartite, with the strict form lambda_min > 0 iff no component is bipartite.",
-          "commit": "e1efbca2c2c761e80424605ba55fa93d050d62d8",
+          "commit": "2c0a83b24e62123248cc9d979006cdebc3f99da7",
           "snapshot_path": "RelationalAtlas/Extended7.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/e1efbca2c2c761e80424605ba55fa93d050d62d8/RelationalAtlas/Extended7.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/2c0a83b24e62123248cc9d979006cdebc3f99da7/RelationalAtlas/Extended7.lean"
         }
       ],
       "audit_notes": [],
@@ -8246,9 +8246,9 @@
             "residue_le_pi"
           ],
           "scope": "The minimum over all integers w of 4N(1 - cos((d - 2 pi w)/N)) is attained (IsLeast), the parity cases are separated (odd: the two books' attainable sets union to the pi-lattice; even: they coincide), and the worst cases are IsGreatest: 4N(1 - cos(pi/N)) for one book, 4N(1 - cos(pi/(2N))) for odd two books, with exact checks at N = 1..5.",
-          "commit": "e1efbca2c2c761e80424605ba55fa93d050d62d8",
+          "commit": "2c0a83b24e62123248cc9d979006cdebc3f99da7",
           "snapshot_path": "RelationalAtlas/Extended7.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/e1efbca2c2c761e80424605ba55fa93d050d62d8/RelationalAtlas/Extended7.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/2c0a83b24e62123248cc9d979006cdebc3f99da7/RelationalAtlas/Extended7.lean"
         }
       ],
       "audit_notes": [],
@@ -8498,9 +8498,9 @@
             "two_lt_param"
           ],
           "scope": "The corrected criterion: HasMinimal c iff 2 <= |c|, hence HasMinimal(lambda/sqrt q) iff 2 sqrt q <= |lambda|, so the card's strict inequality is closed at the boundary. Interior exclusion by the invariant x^2 - cxy + y^2 and the Casoratian, exterior witnesses from c = r + r^{-1}, the critical case f_n = 1, d_n = n+1 with ratio 1/(n+1) -> 0, and the continued-fraction convergence, critical error 1/(n+1) and non-convergence statements.",
-          "commit": "e1efbca2c2c761e80424605ba55fa93d050d62d8",
+          "commit": "2c0a83b24e62123248cc9d979006cdebc3f99da7",
           "snapshot_path": "RelationalAtlas/Extended7.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/e1efbca2c2c761e80424605ba55fa93d050d62d8/RelationalAtlas/Extended7.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/2c0a83b24e62123248cc9d979006cdebc3f99da7/RelationalAtlas/Extended7.lean"
         }
       ],
       "audit_notes": [
@@ -8585,9 +8585,9 @@
             "zetaInverse_phase"
           ],
           "scope": "The finite content of the zeta pencil: det(tri), the characteristic cubic and both trace identities, e3 = d^3 - 3dt^2 + t^3 C3 with C3 = 2cos3phi, the factorisation 1 - C3u^3 + u^6 = (1 - z^3u^3)(1 - w^3u^3) for inverse phases, an explicit unitary Fourier diagonalisation of the circulant, and Tr Ad(U^3) = 2 + C3.",
-          "commit": "e1efbca2c2c761e80424605ba55fa93d050d62d8",
+          "commit": "2c0a83b24e62123248cc9d979006cdebc3f99da7",
           "snapshot_path": "RelationalAtlas/Extended7.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/e1efbca2c2c761e80424605ba55fa93d050d62d8/RelationalAtlas/Extended7.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/2c0a83b24e62123248cc9d979006cdebc3f99da7/RelationalAtlas/Extended7.lean"
         }
       ],
       "audit_notes": [],
@@ -8798,9 +8798,9 @@
             "witness_unequal"
           ],
           "scope": "The corrected shift statement Z(h,0,s) - hI = s * companion(h,s) for s != 0, with the refutation of the card's +hI reading at h = s = h1 = 1, h2 = 0; and unequal positive masses r = (2 sqrt 3 - sqrt 6)/6, t = (sqrt 3 + sqrt 6)/3 giving s = h = 1 and Q = 2/3.",
-          "commit": "e1efbca2c2c761e80424605ba55fa93d050d62d8",
+          "commit": "2c0a83b24e62123248cc9d979006cdebc3f99da7",
           "snapshot_path": "RelationalAtlas/Extended7.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/e1efbca2c2c761e80424605ba55fa93d050d62d8/RelationalAtlas/Extended7.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/2c0a83b24e62123248cc9d979006cdebc3f99da7/RelationalAtlas/Extended7.lean"
         }
       ],
       "audit_notes": [
@@ -8925,9 +8925,9 @@
             "velocity_eq_comm_lax"
           ],
           "scope": "Both derivative laws d||K||^2/dt = -32 E- and the connection companion for arbitrary finite complex matrices along a supplied flow, global antitonicity, all Lax power-trace invariants, dE+ = 0 iff K^2 normal via Fuglede, a finite and a conditional improper 32-budget, and conditional endpoint limits under unitary normal-form convergence.",
-          "commit": "e1efbca2c2c761e80424605ba55fa93d050d62d8",
+          "commit": "2c0a83b24e62123248cc9d979006cdebc3f99da7",
           "snapshot_path": "RelationalAtlas/Extended7.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/e1efbca2c2c761e80424605ba55fa93d050d62d8/RelationalAtlas/Extended7.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/2c0a83b24e62123248cc9d979006cdebc3f99da7/RelationalAtlas/Extended7.lean"
         }
       ],
       "audit_notes": [
@@ -9088,9 +9088,9 @@
             "submatrix_one_sub_extend"
           ],
           "scope": "Both Schur determinant factorisations for arbitrary finite real blocks including an empty interior, the exponential and additive offset laws, the protected reduction under det C_B = det(I - C_B), and the finding that protection is not automatic: in the 1x1 case it holds iff the diagonal entry is 1/2.",
-          "commit": "e1efbca2c2c761e80424605ba55fa93d050d62d8",
+          "commit": "2c0a83b24e62123248cc9d979006cdebc3f99da7",
           "snapshot_path": "RelationalAtlas/Extended7.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/e1efbca2c2c761e80424605ba55fa93d050d62d8/RelationalAtlas/Extended7.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/2c0a83b24e62123248cc9d979006cdebc3f99da7/RelationalAtlas/Extended7.lean"
         }
       ],
       "audit_notes": [
@@ -9148,9 +9148,9 @@
             "star_phaseTwist"
           ],
           "scope": "The symmetry kernel S^2 = I, S C S = I - C: det(nu I - C) = (-1)^|n| det((1 - nu)I - C), the eigenvector pairing nu <-> 1 - nu with nonzero partner, a forced nu = 1/2 mode for odd |n|, the phase twist action, and a counterexample to the universal 'odd blocks only' in the card-allowed dimer limit.",
-          "commit": "e1efbca2c2c761e80424605ba55fa93d050d62d8",
+          "commit": "2c0a83b24e62123248cc9d979006cdebc3f99da7",
           "snapshot_path": "RelationalAtlas/Extended7.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/e1efbca2c2c761e80424605ba55fa93d050d62d8/RelationalAtlas/Extended7.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/2c0a83b24e62123248cc9d979006cdebc3f99da7/RelationalAtlas/Extended7.lean"
         }
       ],
       "audit_notes": [
