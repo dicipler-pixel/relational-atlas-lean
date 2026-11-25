@@ -490,9 +490,9 @@
             "weak_closed_endpoint_reading_refuted"
           ],
           "scope": "The displayed winding (1/2π)∮d arg Φ under a periodic unit-modulus gauge change: for the constant family diag(1,-1) and for the non-constant chiral family [[0,z],[z*,0]] with z = e^{iθ} (gap 2, spectrum ±1 throughout), two closed nowhere-zero eigenline representatives differ by a closed gauge and have displayed integrals 0 and 1. Integrality for a fixed closed nowhere-zero loop is proved, and invariance under gauges of zero winding is proved (winding is additive over phase functions).",
-          "commit": "876854ef6cebf8359071a507042870dea89f48de",
+          "commit": "fee6e8e00eece7f1c12ef50602fe55ab6590f9ec",
           "snapshot_path": "RelationalAtlas/Extended11.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/876854ef6cebf8359071a507042870dea89f48de/RelationalAtlas/Extended11.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/fee6e8e00eece7f1c12ef50602fe55ab6590f9ec/RelationalAtlas/Extended11.lean"
         }
       ],
       "audit_notes": [
@@ -585,9 +585,9 @@
             "upper_shape_unique"
           ],
           "scope": "The figure-eight shape ζ = (1+√3 i)/2: ζ² − ζ + 1 = 0, it is the unique upper-half-plane root, ‖ζ‖ = 1 so the arg(1−z)log|z| correction vanishes, and the two-tetrahedron sum is 2·Im Li₂(ζ). D is defined with Im Li₂ supplied as a parameter, since Mathlib has no dilogarithm, so the kernel certifies the reduction and not the dilogarithm; Thurston–Zagier carries the volume identity and no numerical volume is asserted. Also: the Closed clause formalised — real enclosures (2 < x < 2.03, 3.66 < y < 3.67) exclude every nonzero integer relation ax+by = 0 with |a|,|b| ≤ 10, a relation with larger coefficients exists so the bound does not give independence, and rounding to three decimals manufactures an exact relation; and a second positive-imaginary solution of the figure-eight edge equation, with distinct shapes, showing that satisfying Check does not by itself determine the volume.",
-          "commit": "876854ef6cebf8359071a507042870dea89f48de",
+          "commit": "fee6e8e00eece7f1c12ef50602fe55ab6590f9ec",
           "snapshot_path": "RelationalAtlas/Extended11.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/876854ef6cebf8359071a507042870dea89f48de/RelationalAtlas/Extended11.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/fee6e8e00eece7f1c12ef50602fe55ab6590f9ec/RelationalAtlas/Extended11.lean"
         }
       ],
       "audit_notes": [],
@@ -1467,9 +1467,9 @@
             "weak_two_term_exact_reading_false"
           ],
           "scope": "The classical coefficients a₀ = Area/4π and a₁ = (1/4π)∫R/6 = χ/6, and the index the displayed power law (k−d)/2 assigns them: on the unit round sphere the exact spectrum gives Z(t) = 1/t + 1/3 + t/15 + 4t²/315 + …, so the coefficient 1/3 sits at t⁰, which the display calls a₂ while the Check calls it a₁. The Euclidean flat model and the Euler–Maclaurin re-derivation are both included.",
-          "commit": "876854ef6cebf8359071a507042870dea89f48de",
+          "commit": "fee6e8e00eece7f1c12ef50602fe55ab6590f9ec",
           "snapshot_path": "RelationalAtlas/Extended11.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/876854ef6cebf8359071a507042870dea89f48de/RelationalAtlas/Extended11.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/fee6e8e00eece7f1c12ef50602fe55ab6590f9ec/RelationalAtlas/Extended11.lean"
         }
       ],
       "audit_notes": [],
@@ -1847,9 +1847,9 @@
             "weak_transport_H₂"
           ],
           "scope": "The wall transport block A on span{diag(1,−1,0), diag(1,1,−2)}: A = [[λ₁, b],[0, 2t₃]] with λ₁ = 2t₁(1−w₁)+2t₂w₁ and b = 2(t₁−t₃−(t₁+t₂−2t₃)w₁). Proved: the joint condition is exactly λ₁ = 2t₃, defectiveness is exactly JC and b ≠ 0, the vanishing locus of b contains every scalar T, and at equal weights defectiveness is JC and t₁ ≠ t₂. Also proved: the lift is genuinely J⁻¹AJ off the wall for J = diag(1, σ₃), it equals (2t₃)·I at the wall under the joint condition (the display's B(0) = λI), and it is diagonal without it.",
-          "commit": "876854ef6cebf8359071a507042870dea89f48de",
+          "commit": "fee6e8e00eece7f1c12ef50602fe55ab6590f9ec",
           "snapshot_path": "RelationalAtlas/Extended11.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/876854ef6cebf8359071a507042870dea89f48de/RelationalAtlas/Extended11.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/fee6e8e00eece7f1c12ef50602fe55ab6590f9ec/RelationalAtlas/Extended11.lean"
         }
       ],
       "audit_notes": [
@@ -3562,9 +3562,9 @@
             "wall_tangent_not_in_kernel"
           ],
           "scope": "The diabolical and exceptional finite normal forms with gaps 2√(a²+b²) and 2√r, the geometric-sequence fit recovering exponents 1 and 1/2, and two counterexamples to the displayed metric dichotomy: F(x,y) = (x,y²) has a transverse wall kernel, nonconstant wall image and quadratic collapsed metric eigenvalue but the constant projector diag(0,1); F(x,y) = (y−x², xy−x³) collapses its whole locus to a point with a tangent kernel and has projector (1/(1+4x²))[[1,2x],[2x,4x²]], whose off-diagonal varies as 2x/(1+4x²).",
-          "commit": "876854ef6cebf8359071a507042870dea89f48de",
+          "commit": "fee6e8e00eece7f1c12ef50602fe55ab6590f9ec",
           "snapshot_path": "RelationalAtlas/Extended11.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/876854ef6cebf8359071a507042870dea89f48de/RelationalAtlas/Extended11.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/fee6e8e00eece7f1c12ef50602fe55ab6590f9ec/RelationalAtlas/Extended11.lean"
         }
       ],
       "audit_notes": [],
@@ -6979,9 +6979,9 @@
             "scalar_perturbed_denominator_ne_zero_on_circle"
           ],
           "scope": "The displayed Lipschitz bound for a circular contour in a general noncommutative normed ring, with the perturbed inverse constructed as a Neumann series and bounded by ρ/(1−ερ) rather than assumed, giving exactly ℓε(δρ)²/(2πδ(δ−ε(δρ))); and the second clause, the individual spectral idempotents of a Jordan pair with exact norm (1+η)/(2√η), unbounded at fixed outer margin, no Lipschitz constant on (0,1/16), while the pair projector is identically I.",
-          "commit": "876854ef6cebf8359071a507042870dea89f48de",
+          "commit": "fee6e8e00eece7f1c12ef50602fe55ab6590f9ec",
           "snapshot_path": "RelationalAtlas/Extended11.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/876854ef6cebf8359071a507042870dea89f48de/RelationalAtlas/Extended11.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/fee6e8e00eece7f1c12ef50602fe55ab6590f9ec/RelationalAtlas/Extended11.lean"
         }
       ],
       "audit_notes": [
@@ -8224,9 +8224,9 @@
             "zero_mode_pauli_current"
           ],
           "scope": "The Pauli-current identity Re[ψ†σ_k(σ·π)ψ] = Re ψ†π_kψ + ½[∇×(ψ†σψ)]_k for arbitrary spinor, arbitrary derivative data and real A, proved independently twice, with the three spin-path derivative lemmas; and the zero-mode cancellation in all three directions. The potential term drops out because Re[iψ†σ_lψ] = 0. The global source obstruction is not formalised; a Loss–Yau seed is checked symbolically and is not self-sourced.",
-          "commit": "876854ef6cebf8359071a507042870dea89f48de",
+          "commit": "fee6e8e00eece7f1c12ef50602fe55ab6590f9ec",
           "snapshot_path": "RelationalAtlas/Extended11.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/876854ef6cebf8359071a507042870dea89f48de/RelationalAtlas/Extended11.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/fee6e8e00eece7f1c12ef50602fe55ab6590f9ec/RelationalAtlas/Extended11.lean"
         }
       ],
       "audit_notes": [],
