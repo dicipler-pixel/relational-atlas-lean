@@ -14,7 +14,7 @@
   },
   "local_theorems": 2648,
   "external_source_snapshots": 41,
-  "archive_verified": false,
+  "archive_verified": true,
   "local_inventory": [
     {
       "path": "RelationalAtlas/Basic.lean",
