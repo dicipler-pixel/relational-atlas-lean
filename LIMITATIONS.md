@@ -2,11 +2,14 @@
 
 Lean proves exactly the statements written, under exactly the hypotheses written.
 
-* Only bridges graded THEOREM whose content is finite algebra are formalized. Bridges graded
-  MEASURED, DERIVED, CONJECTURE or READING are not.
-* B1 (`4 det g ≥ |Ω|²`) is proved in iqgt-grassmannian-lean, not here. B9 (winding), B11 (dilogarithm volumes), B27 (dissipation floor), B28
-  (mixed states), B29 (heat-kernel coefficients), B37, B42, B43, B44, B55,
-  B65, B67, B70, B72, B73, B78, B79, B81 and B84 are not formalized here.
+* Bridges graded THEOREM whose content is finite algebra were formalized first. Later batches also
+  formalized kernels for seven cards graded CONJECTURE (B4, B49, B53, B58, B62, B76, B125); each of
+  those carries a correction record saying which part of the claim survived. MEASURED and READING
+  cards have no kernel unless the ledger names a finite algebraic fragment.
+* B1 (`4 det g ≥ |Ω|²`) is proved in iqgt-grassmannian-lean, not here. Of the theorem-grade cards,
+  B9 (winding), B11 (dilogarithm volumes), B29 (heat-kernel coefficients), B36, B70, B140 and B164
+  are still unmapped here, as is the derived card B34; every other theorem-grade card has a local
+  kernel named in the ledger.
 * B6 restates the binary entropy's properties from Mathlib. The free-fermion construction
   `S = Σ H(ν_k)` is cited, not proved.
 * B48 is Mathlib's block-determinant theorem, restated. That the interface has this block form

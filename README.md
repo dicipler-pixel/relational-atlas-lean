@@ -3,8 +3,8 @@
 # The Operator-First Relational Atlas — Lean proofs
 
 [![Lean proof check](https://github.com/dicipler-pixel/relational-atlas-lean/actions/workflows/build.yml/badge.svg)](https://github.com/dicipler-pixel/relational-atlas-lean/actions/workflows/build.yml)
-![Lean](https://img.shields.io/badge/Lean-v4.34.1-blue)
-![Theorems](https://img.shields.io/badge/theorems-2345-2EA043)
+![Lean](https://img.shields.io/badge/Lean-v4.35.0-blue)
+![Theorems](https://img.shields.io/badge/theorems-2648-2EA043)
 ![sorry](https://img.shields.io/badge/sorry-0-2EA043)
 ![Code: MIT](https://img.shields.io/badge/code-MIT-lightgrey)
 ![Text: CC BY 4.0](https://img.shields.io/badge/text-CC%20BY%204.0-lightgrey)
@@ -23,11 +23,14 @@ has a [complete card-by-card Lean coverage ledger](atlas/coverage/README.md), wi
 [machine-readable claims, hypotheses and proof links](atlas/coverage/coverage.json).
 The source archive and continuous HTML were matched to the Zenodo checksums on 23 October 2026.
 
-The ledger maps kernels for 19 cards to this repository and 52 additional cards to sixteen
-companion repositories. The remaining 136 cards are not yet mapped within that audited scope.
-These are card counts, not theorem counts or full-card certifications. The local library remains
-37 declarations. Proved kernels, empirical witnesses, interpretations and remaining obligations
-are recorded separately. The historical 93-card files below remain preserved.
+The ledger maps kernels for 130 cards to this repository and 40 additional cards to sixteen
+companion repositories. The remaining 37 are 23 `measured`, 6 `reading`, 1 `derived` and 7 still
+graded `theorem` (B9, B11, B29, B36, B70, B140, B164) — the theorem-grade ones are the next proof
+targets, and the ledger gives its reason per card for every one of the 37.
+These are card counts, not theorem counts or full-card certifications. The local library is
+2648 theorem declarations across twelve modules. Proved kernels, empirical witnesses,
+interpretations and remaining obligations are recorded separately. The historical 93-card files
+below remain preserved.
 
 Run the ledger integrity check with `python3 scripts/verify_coverage.py --self-test`.
 This checks evidence and mappings; the separate Lean workflow checks the actual proofs.
@@ -173,13 +176,48 @@ B118, B126, B147, B150, B151, B157, B172, B176, B182. Batch eight also ran six r
 batch six, which found one error in this repository's own ledger wording (B185) rather than in the
 maths.
 
+A ninth batch, [`RelationalAtlas/Extended10.lean`](RelationalAtlas/Extended10.lean) (303 further
+declarations, the seven cards still unmapped), was a counterexample hunt rather than a proof batch:
+the Atlas grades these cards `conjecture`, so each was transcribed, given the sharpest reading that
+is still literal, and attacked. Nothing in the earlier modules was modified.
+
+- **B4 — refuted.** `½‖Π₁−Π₂‖²_F = Σ sin²θᵢ`, which the card calls a theorem, fails without an
+  equal-rank hypothesis: `Π₁ = diag(1,0,0)`, `Π₂ = diag(1,1,0)` in ℝ³ give `½` against `0` (or `1`
+  with padded `π/2` angles). The repair `½‖Π₁−Π₂‖²_F = Σ_{i≤min(p,q)} sin²θᵢ + |p−q|/2` is proved at
+  the level of traces (given `trace P = p`, `trace Q = q`, `trace(PQ) = Σ cos²θᵢ`), and the card's
+  identity is exactly the equal-rank case.
+- **B49 — refuted, conditionally.** With Yoon's two-bridge torsion formula as input, the torsion on
+  the regular figure-eight Riley curve is `∓R_u/2` while either reading of the one-variable Hessian
+  gives `R_u` or `R_uu`; regular witnesses at `m = 2` and `m = 3` fail for both readings and both
+  torsion signs, and at the branch point `m₀ = (1+i√3)/2, u = −2` the Hessian degenerates while the
+  torsion continuation is `0`, not a pole. The correctly normalised Neumann–Zagier theorem is not
+  addressed.
+- **B62 — refuted.** The unqualified "any real secondary parameter must clear 0.080 dex per galaxy"
+  fails: eight synthetic galaxies with one mass and one radius have proxy partial correlation
+  exactly `1`, while a separate structural effect of `0.0046 dex` per galaxy carries compactness
+  correlation exactly `23/50 = 0.46` and a nonzero recovered slope. The source's SPARC-specific
+  numbers are not replayed.
+- **B58 — overreach.** The log-det seam identity and its subadditivity hold (`A = B = [4]`,
+  coupling `3`, `μ = 9/16`, `det M = 7`); the inference to `C(A∪B) ⊇ C(A) ∪ C(B)` does not, for the
+  natural anti-monotone cone: `(1,1/5)` is in both part cones and not in the glued one.
+- **B76 — scope.** The count survives: exactly 21 critical points of the blow-up polynomial, all
+  nondegenerate, plus three edge points, against `(n−1)² = 16` at `n = 5`. The cited theorem says
+  *at least* 24, and at the paper's own `q_ε` the centre is nondegenerate.
+- **B53 — provenance and clarification.** The pinned HTML's bare `Δ` should be `Δ⁻¹` (the ledger has
+  it right); the pointwise reading is undefined at `ω = (1+i√3)/2`, a unit-modulus zero of `Δ_{3₁}`;
+  and the stronger reading "`Δ` determines `A`" is false — `7₄` and `9₂` share `Δ = 4t²−7t+4` but
+  have `A(L,1) = (L+1)⁵` and `(L+1)⁷`.
+- **B125 — survived.** `Tr₁₁ = 3R` and the second-order coefficients were confirmed three ways: the
+  form-space spectrum `R, R/4 (×4), R/6 (×6)`, the unit `S⁴` spectrum `36β + 102β²`, and a
+  Lorentzian non-conformally-flat product.
+
 Partial or guarded: B24's equality of the two `c₂` forms needs Hermitian `E`; B207 does not treat
 the extremal `Q = M`; B46's local HTML and the ledger describe different documents.  Each is
 recorded with the theorem that settles it.
 
 What each kernel covers and what it does not is tabulated per card in
 [atlas/coverage/CERTIFICATION.md](atlas/coverage/CERTIFICATION.md), generated from the ledger by
-`scripts/build_certification.py`: 80 cards have a kernel in this repository, 42 only in a companion
+`scripts/build_certification.py`: 130 cards have a kernel in this repository, 40 only in a companion
 repository, and every card keeps `full_card_certified: false`, which the validator requires.
 
 The full statement audit is in [atlas/coverage/LOCAL_KERNEL_AUDIT.md](atlas/coverage/LOCAL_KERNEL_AUDIT.md):

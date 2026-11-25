@@ -1,31 +1,35 @@
 # Audit of the local Lean kernels
 
 Jeromie Beasley's Operator-First Relational Atlas, local library only.
-Audit run of 23 November 2026 on the toolchain installed in the VM:
-**Lean 4.35.0 with Mathlib 4.35.0**. The repository pins `leanprover/lean4:v4.34.1`
-in `lean-toolchain` and `rev = "v4.34.1"` in `lakefile.toml`; the proofs were
-re-elaborated here on the newer toolchain, which is a stricter test in the sense
-that it compiles the same sources against a different Mathlib, and a weaker one
-in the sense that it is not the pinned CI environment.
+Audit run of 25 November 2026 on the toolchain installed in the VM:
+**Lean 4.35.0 with Mathlib 4.35.0**. The repository now pins the same toolchain
+(`leanprover/lean4:v4.35.0` in `lean-toolchain`, `rev = "v4.35.0"` in `lakefile.toml`), so the
+audit environment and the CI environment coincide; nothing in this library was ever elaborated on
+the previously pinned v4.34.1.
 
 ## What was run
 
 | Command | What it establishes |
 | :--- | :--- |
-| `python3 scripts/verify_local.py` | Elaborates the two library modules, every pinned external snapshot and every false control; audits `#print axioms` for all local theorems; rejects `sorry`/`admit`/`axiom`; requires each control to fail for a mathematical reason. |
+| `python3 scripts/verify_local.py` | Elaborates every library module, every pinned external snapshot and every false control; audits `#print axioms` for all local theorems; rejects `sorry`/`admit`/`axiom`; requires each control to fail for a mathematical reason. |
 | `python3 scripts/verify_coverage.py --self-test` | All 207 card records, the 41 pinned external snapshots and the metadata tamper controls. |
 | `python3 atlas/cards/calculus/verify_atlas_calculus.py` | The finite calculus companion: 40 deterministic cochains, exact rational identity; `all_passed: true`. |
 
 ## Result
 
-Final run of `python3 scripts/verify_local.py` (23 November 2026, Lean 4.35.0): three library
-modules, 41 pinned external snapshots, 7 false controls, **2345 theorem declarations audited**
-(37 in the ledger modules, 178 in `Extended.lean`, 229 in `Extended2.lean`, 262 in `Extended3.lean`, 314 in `Extended4.lean`, 188 in `Extended5.lean`, 19 in `Extended6.lean`, 579 in `Extended7.lean`, 295 in `Extended8.lean`, 254 in `Extended9.lean`).
+Final run of `python3 scripts/verify.py` and `python3 scripts/verify_local.py --core` (25 November
+2026, Lean 4.35.0): twelve library modules, 41 pinned external snapshots, 7 false controls,
+**2648 theorem declarations audited** (16 in `Basic.lean`, 21 in `AtlasFormalCore.lean`, 178 in
+`Extended.lean`, 229, 262, 314, 188, 19, 579, 295, 244 and 303 in `Extended10.lean`).
 
-* **37/37** ledger theorems elaborate with zero errors, and so do all 331 extension theorems
-  (`Extended.lean` 178, `Extended2.lean` 229; the latter adds B37, B44, B72, B78, B86, B89, B116,
-  B128, B131, B133, B142, B148, B155, B180, B186 and B202).
-* **37/37** axiom audits return a subset of `{propext, Classical.choice, Quot.sound}`;
+The count is of unique fully-qualified theorem and lemma names, which is what the three checkers
+agree on. It is neither the raw declaration count nor a short-name count: ten declarations in
+`Extended9.lean` and two in `Extended10.lean` are indented by one space in the contributing files,
+so the inventory walkers (which anchor `theorem` at column 0) do not see them, and `Extended7.lean`
+holds namespaces that share short names, so a short-name count under-counts it. The indented
+declarations are kernel-checked all the same and are registered in the ledger.
+
+* **2648/2648** axiom audits return a subset of `{propext, Classical.choice, Quot.sound}`;
   no `sorryAx`, no `Lean.ofReduceBool`, no project axiom.
 * **0** occurrences of `sorry`, `admit` or `axiom` in the compiled local sources.
 * **7/7** false controls are rejected, each with a mathematical failure
@@ -34,10 +38,11 @@ modules, 41 pinned external snapshots, 7 false controls, **2345 theorem declarat
   first. The first version of the harness did not do that and every control failed at the import
   instead — a green "rejected" that proved nothing. `scripts/verify_local.py` now builds
   `Basic`/`AtlasFormalCore` objects with `lean -o` before running the controls.
-* **0** of the 37 local statements is false as written. Two statements are weaker
+* **0** of the original 37 ledger statements is false as written. Two statements are weaker
   than their names or docstrings suggest (F1, F2 below), and four card claims that
-  the ledger lists as open are now closed by the additions listed under "New
-  kernels".
+  the ledger lists as open were closed by the additions listed under "New
+  kernels". Later batches found the false statements listed under "Refutations and
+  corrections" instead, each with the theorem that settles it.
 
 ## Findings
 
@@ -160,8 +165,12 @@ statement against that claim, not a judgement of the card's physics.
   That raises the checkable count from 34 to 37, leaving the four unpinned-sibling snapshots as the
   only ones that cannot be re-elaborated here. Every card mapped only to one of those four rests on
   a citation and a pinned hash, not on a fresh elaboration.
-* It does not certify the 136 cards the ledger lists as unmapped, nor the card
-  count "37 theorems" against anything but `scripts/config.json`.
+* It does not certify the 37 cards the ledger lists as unmapped, nor the local
+  theorem count against anything but `scripts/config.json` and the three checkers.
+* It cannot re-verify the published archive: the Zenodo zip is not in the repository, so the
+  regenerated [`validation.json`](validation.json) records `archive_verified: false` for this run.
+  The archive was matched to the Zenodo checksums on 23 October 2026, and `coverage.json` keeps
+  the archive SHA-256 as the record of that check.
 
 
 ## What each kernel covers, and what it does not
@@ -205,7 +214,7 @@ the pins were moved from v4.34.1 to v4.35.0 precisely because every proof here w
 
 Every card whose displayed claim, or whose ledger transcription, did not survive contact with Lean is listed here with the theorem that settles it. `kind` is `refuted` (false as written), `missing-hypothesis` (true only with a hypothesis the card does not state), `overreach` / `scope` (true but weaker than the words), `ledger-error` (the card is fine and the ledger is not), `sign`, `rounding`, `provenance` or `clarification`.
 
-Fifteen cards are false as literally written and now carry Lean counterexamples: **B15** (the raw log-det comparator is not subadditive), **B28** (the SLD tensor is `F/4 + C/8`, not `F/4 − iC/8`), **B67** (a closed loop need not lift), **B91** (the positivity criterion fails at `g11 = 0`), **B121** (the Jordan criterion drops `A12 ≠ 0`), **B132** (the dichotomy needs `F` symmetric), **B169** (no −0.99 correlation floor), **B185** (nonunitary does not imply non-stochastic), **B196** (minimality holds at `|c| = 2`), **B200** (the shift is `−hI`), **B205** (even blocks can carry half modes), plus the ledger's squared B44, B86, B155 and the rounded B202.
+Fifteen cards were false as literally written in batches one to eight and carry Lean counterexamples: **B15** (the raw log-det comparator is not subadditive), **B28** (the SLD tensor is `F/4 + C/8`, not `F/4 − iC/8`), **B67** (a closed loop need not lift), **B91** (the positivity criterion fails at `g11 = 0`), **B121** (the Jordan criterion drops `A12 ≠ 0`), **B132** (the dichotomy needs `F` symmetric), **B169** (no −0.99 correlation floor), **B185** (nonunitary does not imply non-stochastic), **B196** (minimality holds at `|c| = 2`), **B200** (the shift is `−hI`), **B205** (even blocks can carry half modes), plus the ledger's squared B44, B86, B155 and the rounded B202. Batch nine adds **B4** and **B62** unconditionally and **B49** conditionally on the cited torsion formula; B58, B76 and B53 carry `overreach`, `scope`, `provenance` and `clarification` records instead, and B125 survived the hunt without a correction.
 
 **B15 — refuted.** The global subadditivity S(a∪b) ≤ S(a)+S(b) is false for the raw log-det comparator S(A,B) = log det((A+B)/2) − ½log det A − ½log det B: S(1,4) = log(5/4) = 0.2231 exceeds S(1,2)+S(2,4) = log(9/8) = 0.1178, and the two steps have equal cost so the failure is not a subdivision artefact. The √S metric reading, which the archived HTML and the ledger spell differently, is not addressed.  
 Evidence: `AtlasB15.not_subadditive` in `RelationalAtlas/Extended3.lean`.
@@ -328,6 +337,32 @@ Evidence: `B201` in `RelationalAtlas/Extended7.lean`.
 Evidence: `B94` in `RelationalAtlas/Extended8.lean`.
 
 **B147 — scope.** The displayed D_l and both limits are proved, but the entropy-to-lattice identity the card derives D_l from (the S_l sum over sin^2 of h) is not formalised, so the kernel covers the series and its asymptotics, not its origin.  
+
+**B4 — refuted.** The displayed identity ½‖Π₁−Π₂‖²_F = Σ sin²θᵢ is stated with no equal-rank hypothesis and is false as written, although the card calls this side 'a theorem'. In ℝ³, Π₁ = diag(1,0,0) and Π₂ = diag(1,1,0) are orthogonal projectors with nested ranges: ‖Π₁−Π₂‖²_F = 1, so the left side is ½, while the principal-angle list is [0] and the sum is 0 — or 1 if the extra angle is padded as π/2, so neither customary convention repairs it. With p = rank Π₁ and q = rank Π₂ the correct identity is ½‖Π₁−Π₂‖²_F = Σ_{i≤min(p,q)} sin²θᵢ + |p−q|/2, which is exactly the card's identity when p = q; both the false display and the repair are proved at the witness. The refraction equation R₁sin²θ₁ = R₂sin²θ₂ is not addressed (the card defines neither R).  
+Evidence: `B4Counterexample.B4_display_false` in `RelationalAtlas/Extended10.lean`.
+
+**B49 — refuted (conditional on the cited torsion formula).** The display det Hess(potential) = adjoint torsion does not hold in the card's own Riley coordinates. Conditional on Yoon's two-bridge formula (arXiv:2009.12051, Thm 1.1/3.1) the meridian torsion on the regular figure-eight Riley curve is T = ∓R_u/2, while the one-variable Hessian is R_u under the charitable reading V_u = R and R_uu under the literal V = R; at m = 2, u = (5+√105)/8 the two readings give R_u = √105/4 and R_uu = 2, neither equal to T = ∓√105/8, and the same failure occurs at m = 3, u = (55+√5005)/18, a regular point with disc_u R = 5005/81 ≠ 0. A factor 2 and the chart normalisation are missing from the display, and no choice of torsion sign or of the two potential readings repairs it. The three-name locus also fails at the branch point m₀ = (1+i√3)/2, u = −2: there R = (u+2)² and R_u = 0, while A(−1,m₀) = A_l(−1,m₀) = 0 with A_m ≠ 0 makes the meridian torsion continuation 0, not a pole. The torsion formulas are external inputs; the correctly normalised Neumann–Zagier 1-loop theorem at a regular hyperbolic point is not refuted.  
+Evidence: `B49Counterexample.hessian_cannot_equal_torsion_on_regular_curve` and `B49.witness_meridian_torsion_zero` in `RelationalAtlas/Extended10.lean`.
+
+**B58 — overreach.** The log-determinant seam ledger survives exactly: for A = B = [4] and coupling K = 3, μ = K²/(det A det B) = 9/16 and det M = 7 = 16(1−μ), so O(M) = O(A) + O(B) + log(1−μ) ≤ O(A) + O(B) holds — it is the scalar Fischer inequality, and positive definiteness prevents a large-coupling attack. What does not follow is the cone inclusion: for the natural anti-monotone, scale-invariant cone C(o) = {(x,y) : x ≥ 0, |y|e^o ≤ x}, the direction w = (1,1/5) satisfies (1/5)·4 ≤ 1 but (1/5)·7 > 1, so w lies in both part cones and not in the glued one. Subadditivity relative to a sum gives neither O(M) ≤ O(A) nor O(M) ≤ O(B), which is what monotonicity would need. The card leaves C undefined, so this is a countermodel to the displayed inference, not to an unstated cone; the implication is repaired by additionally assuming both part obstructions nonpositive.  
+Evidence: `RelationalAtlas.B58.cone_inclusion_fails` in `RelationalAtlas/Extended10.lean`.
+
+**B62 — refuted.** The unqualified clause 'any real secondary parameter must clear 0.080 dex per galaxy' is false. Eight synthetic galaxies with one positive mass m and one positive radius R, exact proxies M/R and M/R² and linear mass control have proxy partial correlation exactly 1, while a separate RAR-residual structural effect has per-galaxy amplitude ±0.0046 dex < 0.080 at ε = 1/1000, compactness partial correlation exactly 23/50 = 0.46 and recovered slope 23/25 ≠ 0; scaling ε shrinks the per-galaxy effect without changing either correlation. So no positive universal dex floor follows from the card's Carry/Check. The source's 0.080 and 0.106 dex are stated as SPARC- and protocol-specific and are neither replayed nor falsified here.  
+Evidence: `B62Empirical.unconditional_floor_countermodel` in `RelationalAtlas/Extended10.lean`.
+
+**B62 — clarification.** The correlation half survives and is sharpened: with one common radius and positive exponents, residualising on the mass makes the two log-proxies exact scalar multiples, so their mass-controlled partial correlation is exactly ±1 — +1 when the exponent product is positive, −1 when it is negative, and undefined when the residual variance vanishes (a zero exponent or zero residual radius). The algebra produces no numerical noise floor, which is why the 0.080 dex figure needs its dataset and protocol.  
+Evidence: `B62.partialCorr_eq_one` in `RelationalAtlas/Extended10.lean`.
+
+**B76 — scope.** The displayed arithmetic 24 > (n−1)² = 16 at n = 5 is correct, and the blow-up polynomial has exactly 21 critical points, all nondegenerate (origin, two axial, six planar, twelve off-planar), with the exact rational charge q_ε = (3/4)ε³ − (5/32)ε⁵; no counterexample was found, and an independent 6000-start Newton search over the charges' convex hull reproduced the same 24 points with no further equilibrium (residuals ≤ 10⁻¹⁵, numerical evidence rather than a Lean theorem). Two corrections to the prose: the cited theorem (Arathoon–Ball–Kvalheim, arXiv:2607.27197, Theorem 1 and Lemma 2) states at least 24 for all sufficiently small ε and k ≥ 24 after generic perturbation, not an exact global count, so the card must not be read as 'exactly 21 + 3 = 24'; and at the paper's own q_ε the centre is nondegenerate, with Hessian eigenvalues (5ε²/16, 5ε²/16, −5ε²/8), so 'a degenerate critical point unfolds' describes the mechanism at ε = 0, not a property of the origin at the stated charge law. The 21 points sit at scale ε² in the blow-up.  
+Evidence: `B76.nonzero_radius_critical_branches` in `RelationalAtlas/Extended10.lean`.
+
+**B53 — provenance.** The pinned HTML displays J_N → Δ_K; the ledger and MMR display 1/Δ_K, and in the normalisation where the comparison is meaningful the inverse is the correct target: with s_n = J_n''(1) = −2(n²−1) for the trefoil the h² coefficient of J_n(exp(h/n)) is exactly s_n/(2n²) = −1 + 1/n² → −1, while Δ_{3₁}(e^h) = 1 + h² + O(h⁴) has h² coefficient +1 and its reciprocal has −1, so the large-colour limit matches 1/Δ_K and not the bare Δ_K printed in the pinned document. The bare Δ is a defect of that document, not of the claim the ledger states.  
+Evidence: `B53Domain.mmr_reciprocal_and_html_bare_polynomial_incompatible` in `RelationalAtlas/Extended10.lean`.
+
+**B53 — clarification.** Two limits on the card's reading, both certified. (i) Domain: Δ_{3₁}(z) = z²−z+1 vanishes at ω = (1+i√3)/2, which has |ω| = 1, so a pointwise statement J_N(z) → 1/Δ(z) is undefined at a unit-modulus zero, and the reciprocal series does not converge there; only the formal, power-series reading about z = 0 is well posed. That is a domain obstruction, not an MMR failure. (ii) Determination: 'two shadows of one object' asserts a common source, not a factorisation A = G(Δ); that stronger reading is false — 7₄ and 9₂ share Δ = 4t²−7t+4, while Hoste's two-bridge table gives A(L,1) = (L+1)⁵ and (L+1)⁷, so no G returns both, and the quotient (L+1)² is not a unit in the Laurent ring. The A-polynomial values are an external table input.  
+Evidence: `B53.no_A_function_of_Alexander` in `RelationalAtlas/Extended10.lean`.
+
+**B125 — survived, no correction.** Tr₁₁ = 3R was confirmed three ways — the constant-curvature form-space spectrum R (×1), R/4 (×4), R/6 (×6); the unit S⁴ spectrum 36β + 102β²; and a Lorentzian non-conformally-flat product dS²(k)×S²(l) — so the card keeps its coefficients and no entry is added to the ledger's corrections.
 Evidence: `B147` in `RelationalAtlas/Extended8.lean`.
 
 ## New kernels added by this audit: `RelationalAtlas/Extended.lean`

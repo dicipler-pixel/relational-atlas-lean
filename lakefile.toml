@@ -21,4 +21,5 @@ roots = [
   "RelationalAtlas.Extended7",
   "RelationalAtlas.Extended8",
   "RelationalAtlas.Extended9",
+  "RelationalAtlas.Extended10",
 ]
