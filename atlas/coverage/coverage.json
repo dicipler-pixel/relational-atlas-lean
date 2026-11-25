@@ -498,6 +498,43 @@
           "commit": "39a2c676c3a4481fe41e13456e4f2526dee10b9d",
           "snapshot_path": "RelationalAtlas/Extended3.lean",
           "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/39a2c676c3a4481fe41e13456e4f2526dee10b9d/RelationalAtlas/Extended3.lean"
+        },
+        {
+          "repository": "dicipler-pixel/relational-atlas-lean",
+          "path": "RelationalAtlas/Extended5.lean",
+          "declarations": [
+            "contDiff_logCosh",
+            "deriv_logCosh",
+            "deriv_spectralS_zero",
+            "diagonalLedger_div_affineDistance_tendsto_zero",
+            "diagonalLedger_eq_spectralS",
+            "hasDerivAt_deriv_logCosh_zero",
+            "hasDerivAt_diagonalLedger_zero",
+            "hasDerivAt_logCosh",
+            "hasDerivAt_logCosh_scaled",
+            "hasDerivAt_spectralS_zero",
+            "hasDerivAt_tanh_zero",
+            "iteratedDeriv_two_logCosh",
+            "logCosh_nonneg",
+            "not_diagonalLedger_div_affineDistance_tendsto_card_constant",
+            "not_hasDerivAt_diagonalLedger_card_constant",
+            "not_spectralS_div_affineDistance_tendsto_card_constant",
+            "scalarS_one_exp_two",
+            "spectralS_div_affineDistance_tendsto_zero",
+            "spectralS_nonneg",
+            "spectralS_zero",
+            "sqrt_diagonalLedger_div_affineDistance_tendsto",
+            "sqrt_eight",
+            "sqrt_spectralS_div_affineDistance_tendsto",
+            "taylor_logCosh",
+            "tendsto_logCosh_div_sq",
+            "tendsto_logCosh_scaled_div_sq",
+            "tendsto_spectralS_div_sq"
+          ],
+          "scope": "For a finite spectrum the raw diagonal log-det ledger equals sum log cosh(h_i t/2), and sqrt(S)/d_R tends to 1/(2 sqrt 2) when q > 0, while S/d_R tends to 0 and has no derivative with that constant at t = 0: the card's constant belongs to the square root (the v7 reading), not to S.",
+          "commit": "b154479e56a0482be22fd1614b4e484f237e200f",
+          "snapshot_path": "RelationalAtlas/Extended5.lean",
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/b154479e56a0482be22fd1614b4e484f237e200f/RelationalAtlas/Extended5.lean"
         }
       ],
       "audit_notes": [
@@ -854,6 +891,59 @@
           "commit": "116f9a1",
           "snapshot_path": "RelationalAtlas/Extended4.lean",
           "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/116f9a1/RelationalAtlas/Extended4.lean"
+        },
+        {
+          "repository": "dicipler-pixel/relational-atlas-lean",
+          "path": "RelationalAtlas/Extended5.lean",
+          "declarations": [
+            "b24_general_c2",
+            "b24_general_c2_fin",
+            "base_nonsing_inv",
+            "curve_det_eq_model",
+            "curve_eq_factor",
+            "deriv_unitDet",
+            "det_base",
+            "det_complexDiagonal_unitDet",
+            "det_one_add_scaled",
+            "det_submatrix_pair",
+            "det_unitary_conj",
+            "eventually_deriv_log_unitDet",
+            "eventually_log_curve",
+            "hasDerivAt_deriv_unitDet_zero",
+            "hasDerivAt_unitDet",
+            "hermitian_weighted_entry",
+            "invRoot_mul_invRoot",
+            "invRoot_mul_root",
+            "isHermitian_scaled",
+            "iteratedDeriv_two_log_curve_eigenvalues",
+            "iteratedDeriv_two_log_curve_eq_neg_trace",
+            "iteratedDeriv_two_log_curve_eq_neg_trace_fin",
+            "iteratedDeriv_two_log_unitDet",
+            "iteratedDeriv_two_log_unitDet_eq_neg_trace_sq",
+            "lowerPairs_eq_ite_sum",
+            "minor_swap",
+            "root_mul_invRoot",
+            "root_mul_root",
+            "scaled_one_add_eq_unitary_conj",
+            "scaled_sq_eq_unitary_conj",
+            "sum_minor_eq_trace",
+            "sum_minor_eq_two_mul_lower",
+            "sum_minors_two",
+            "sum_minors_two_eq_trace",
+            "trace_RERE_eq_eigenbasis_sum",
+            "trace_RERE_eq_eigenvalue_sq_sum",
+            "trace_RERE_eq_scaled_sq",
+            "trace_diagonalResolvent_mul",
+            "trace_unitary_conj",
+            "two_c2_forms_hermitian_general",
+            "two_mul_unitQuadratic_eval_zero",
+            "unitDet_eq_expansion",
+            "unitQuadratic_eval_zero"
+          ],
+          "scope": "In every finite dimension and for Hermitian E, half the second derivative of log det at 0 equals -half of the double sum |E_ij|^2/(a_i a_j) with a_i = lambda_i + eta > 0, and f''(0) = -Tr(RERE) with R the actual inverse.",
+          "commit": "b154479e56a0482be22fd1614b4e484f237e200f",
+          "snapshot_path": "RelationalAtlas/Extended5.lean",
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/b154479e56a0482be22fd1614b4e484f237e200f/RelationalAtlas/Extended5.lean"
         }
       ],
       "audit_notes": [
@@ -1725,7 +1815,7 @@
       "corrections": [
         {
           "kind": "provenance",
-          "finding": "The archived card HTML read for B46 (SHA b1e69c…) displays Ẇ = Π_TGr(Ẇ) + δ, while coverage.json pins 3626f1…, so the local 93-card edition and the Zenodo v7 card are different documents. The ledger's B46 claim text therefore does not describe the local file; the Lean kernel follows the ledger's formula.",
+          "finding": "Resolved in the ledger's favour: the coverage claim is an exact extraction from the official v7 card (archive SHA-256 cdc604b1..., member cards/html/B46.html SHA-256 3626f1bb...), whose display is the idempotency-defect formula the kernel proves. The local 93-card edition (b1e69c...) displays a different formula (W-dot = Pi_TGr(W-dot) + delta) and is the divergent document. All seven source-derived fields reproduce with build_coverage.py's own extraction algorithm.",
           "evidence": "RelationalAtlas/Extended4.lean::B46.b46_idempotency_defect"
         }
       ]
@@ -2220,6 +2310,24 @@
           "commit": "8fb0e1a",
           "snapshot_path": "RelationalAtlas/Extended.lean",
           "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/8fb0e1a/RelationalAtlas/Extended.lean"
+        },
+        {
+          "repository": "dicipler-pixel/relational-atlas-lean",
+          "path": "RelationalAtlas/Extended5.lean",
+          "declarations": [
+            "projected_saturation_iff_complexParallel",
+            "projected_saturation_of_complexParallel",
+            "saturation_defect",
+            "saturation_iff_complexCollinear",
+            "saturation_iff_complexParallel",
+            "saturation_iff_norm_inner",
+            "saturation_of_complexParallel",
+            "zero_first_tangent_counterexample"
+          ],
+          "scope": "For u = (1-P)x and v = (1-P)y, complex parallelism implies |Omega|^2 = 4 det g in every dimension and rank, and the equivalence holds under u != 0; u = 0, v = 1 saturates without parallelism, so nonvanishing is necessary for the converse.",
+          "commit": "b154479e56a0482be22fd1614b4e484f237e200f",
+          "snapshot_path": "RelationalAtlas/Extended5.lean",
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/b154479e56a0482be22fd1614b4e484f237e200f/RelationalAtlas/Extended5.lean"
         }
       ],
       "audit_notes": [],
@@ -2455,12 +2563,59 @@
       },
       "closed_when": "Closed whenOn isotropy strata (collinear configurations in three dimensions) the lift is obstructed and the connection is undefined.",
       "source_reference": "Operator-First Atlas v5 · Atlas v5 L1/L5; Four-Body Problem Theorem 1 · numerical lift",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "local_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/relational-atlas-lean",
+          "path": "RelationalAtlas/Extended5.lean",
+          "declarations": [
+            "admissible_B67_open_lift_claim_is_false",
+            "axialRotation_mem_specialOrthogonal",
+            "axialRotation_ne_one",
+            "axialRotation_stabilizes_collinear",
+            "collinear_nontrivial_stabilizer",
+            "collisionFree_smul",
+            "constantLift_shapeLoop",
+            "constant_planar_gap_eq_one",
+            "det_hyperplaneReflection",
+            "doubleOrthogonal_span_singleton",
+            "exists_nontrivial_specialOrthogonal_stabilizer_of_normal_pair",
+            "literal_B67_open_lift_claim_is_false",
+            "nonconstant_regular_collisionFree_closed_horizontal_lift",
+            "nontrivial_specialOrthogonal_stabilizer_iff",
+            "planarThreeBody_collisionFree",
+            "planarThreeBody_regular",
+            "planarThreeBody_stabilizer_eq_one",
+            "radialLoop_collisionFree",
+            "radialLoop_not_open",
+            "radialLoop_planar_gap_eq_one",
+            "radialLoop_planar_nonconstant",
+            "radialLoop_regular",
+            "radialLoop_shapeLoop",
+            "radialScale_hasDerivAt",
+            "radialScale_ne_zero",
+            "regular_smul",
+            "sameShape_refl",
+            "shapeLoop_iff_exists_gap",
+            "specialOrthogonal_eq_one_of_fixed_codim_le_one"
+          ],
+          "scope": "A nonidentity determinant-one isometry fixing the configuration span K exists exactly when finrank K + 2 <= finrank E; and a closed loop can fail to admit an open lift even with horizontality, collision-freeness and regularity throughout, so the card's unrestricted lift claim is false and the gap condition is the sharp replacement.",
+          "commit": "b154479e56a0482be22fd1614b4e484f237e200f",
+          "snapshot_path": "RelationalAtlas/Extended5.lean",
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/b154479e56a0482be22fd1614b4e484f237e200f/RelationalAtlas/Extended5.lean"
+        }
+      ],
       "audit_notes": [],
       "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
-      "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
+      "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger.",
+      "corrections": [
+        {
+          "kind": "refuted",
+          "finding": "A closed loop in shape space need not admit an open lift even with horizontality, collision-freeness and regularity throughout (explicit nonconstant radial witness), so the card's unrestricted 'closed loop => open lift' is false; the sharp replacement is the gap condition. The isotropy clause r <= d-2 is exact: a nonidentity determinant-one isometry fixing the span exists iff finrank K + 2 <= finrank E.",
+          "evidence": "RelationalAtlas/Extended5.lean::B67.admissible_B67_open_lift_claim_is_false"
+        }
+      ]
     },
     {
       "id": "B68",
@@ -2818,9 +2973,30 @@
       },
       "closed_when": "Closed whenKissing numbers are known exactly only in a few dimensions; the dimension-11 record is cited.",
       "source_reference": "Operator-First Atlas v5 · Atlas v5 L4/L6 (kissing records, cited) · explicit configurations",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "local_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/relational-atlas-lean",
+          "path": "RelationalAtlas/Extended5.lean",
+          "declarations": [
+            "antipodal_counterexample",
+            "antipodal_dot_le_half",
+            "antipodal_not_abs_dot_le_half",
+            "lineProjector_neg",
+            "real_antipodal_counterexample",
+            "sin_angle_sq",
+            "sin_sq_sixty_degrees",
+            "sin_sq_sixty_degrees_ge_iff",
+            "sin_sq_threshold_iff_abs_dot_le_half",
+            "sixty_degree_separation_iff_dot_le_half"
+          ],
+          "scope": "For unit vectors, angle >= pi/3 is equivalent to dot <= 1/2 while sin^2(angle) >= 3/4 is equivalent to |dot| <= 1/2, so the oriented kissing condition and the projector condition differ; antipodal vectors pass the first, fail the second and have identical line projectors. sin^2(60 deg) >= eps is equivalent to eps <= 3/4, not to eps = 3/4.",
+          "commit": "b154479e56a0482be22fd1614b4e484f237e200f",
+          "snapshot_path": "RelationalAtlas/Extended5.lean",
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/b154479e56a0482be22fd1614b4e484f237e200f/RelationalAtlas/Extended5.lean"
+        }
+      ],
       "audit_notes": [
         "The kissing-code condition is dot ≤ 1/2; the projector/line condition is |dot| ≤ 1/2. Antipodal vectors pass the first and have identical projectors. The hexagon and E8 root counts cannot be transferred unchanged to a projector census."
       ],
@@ -3433,9 +3609,28 @@
       },
       "closed_when": "Closed whenFor the full zeta-regularised eta of an unbounded operator the finite count is the leading piece; the regularisation is cited, not rebuilt here.",
       "source_reference": "Operator-First Atlas v5 · Atlas v5 L4/L5 (B93); Atiyah–Patodi–Singer, Agmon (cited) · argument principle, ray sweep",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "local_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/relational-atlas-lean",
+          "path": "RelationalAtlas/Extended5.lean",
+          "declarations": [
+            "antipodal_eta_jumps_without_forward_ray_sweep",
+            "antipodal_forward_ray_never_sweeps_eigenvalue",
+            "antipodal_middle_on_cut_line",
+            "eta_eq_of_line_gap",
+            "eta_eq_right_sub_left",
+            "sideSign_eq_of_segment_nonzero",
+            "side_segment",
+            "upward_cut_single_eta"
+          ],
+          "scope": "The count eta is the finite sum of the signs of the side function, equal to N_R - N_L; it is invariant along a segment provided no eigenvalue meets any full moving directed line, and a Lean witness shows forward-ray avoidance alone is insufficient.",
+          "commit": "b154479e56a0482be22fd1614b4e484f237e200f",
+          "snapshot_path": "RelationalAtlas/Extended5.lean",
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/b154479e56a0482be22fd1614b4e484f237e200f/RelationalAtlas/Extended5.lean"
+        }
+      ],
       "audit_notes": [],
       "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
       "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
@@ -4140,6 +4335,22 @@
           "commit": "39a2c676c3a4481fe41e13456e4f2526dee10b9d",
           "snapshot_path": "RelationalAtlas/Extended3.lean",
           "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/39a2c676c3a4481fe41e13456e4f2526dee10b9d/RelationalAtlas/Extended3.lean"
+        },
+        {
+          "repository": "dicipler-pixel/relational-atlas-lean",
+          "path": "RelationalAtlas/Extended5.lean",
+          "declarations": [
+            "entrywise_add_kernelBlock",
+            "entrywise_unique_of_exactly_one_zero",
+            "entrywise_unique_of_left_zero",
+            "entrywise_unique_of_not_both_zero",
+            "entrywise_unique_of_right_zero",
+            "eq_add_kernelBlock_of_entrywise"
+          ],
+          "scope": "The entrywise Sylvester equation has a solution exactly when the kernel-kernel block of V vanishes; off that block the solution is unique (including the case where exactly one of p_i, p_j vanishes) and the remaining freedom is exactly an arbitrary kernel block.",
+          "commit": "b154479e56a0482be22fd1614b4e484f237e200f",
+          "snapshot_path": "RelationalAtlas/Extended5.lean",
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/b154479e56a0482be22fd1614b4e484f237e200f/RelationalAtlas/Extended5.lean"
         }
       ],
       "audit_notes": [],
@@ -4408,6 +4619,25 @@
           "commit": "39a2c676c3a4481fe41e13456e4f2526dee10b9d",
           "snapshot_path": "RelationalAtlas/Extended3.lean",
           "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/39a2c676c3a4481fe41e13456e4f2526dee10b9d/RelationalAtlas/Extended3.lean"
+        },
+        {
+          "repository": "dicipler-pixel/relational-atlas-lean",
+          "path": "RelationalAtlas/Extended5.lean",
+          "declarations": [
+            "cardChristoffel_all_eight",
+            "cardChristoffel_all_eight_xx_y",
+            "cardChristoffel_eq_halfDerivative",
+            "cardChristoffel_swap_of_metricSymmetric",
+            "cardChristoffel_xy_x_of_metricSymmetric",
+            "cardChristoffel_yx_y_of_metricSymmetric",
+            "card_three_index_display",
+            "card_transverse_coefficient",
+            "card_transverse_coefficient_of_killingX"
+          ],
+          "scope": "All eight {x,y}^3 index cases of the card's literal symbol G_ij,k = partial_k g_ij, the exact conversion to the half-derivative convention, and the transverse coefficient -1/2 G_xx,y from a Killing condition; metric symmetry only where an index swap needs it, no inverse metric.",
+          "commit": "b154479e56a0482be22fd1614b4e484f237e200f",
+          "snapshot_path": "RelationalAtlas/Extended5.lean",
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/b154479e56a0482be22fd1614b4e484f237e200f/RelationalAtlas/Extended5.lean"
         }
       ],
       "audit_notes": [],
@@ -5508,6 +5738,24 @@
           "commit": "39a2c676c3a4481fe41e13456e4f2526dee10b9d",
           "snapshot_path": "RelationalAtlas/Extended3.lean",
           "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/39a2c676c3a4481fe41e13456e4f2526dee10b9d/RelationalAtlas/Extended3.lean"
+        },
+        {
+          "repository": "dicipler-pixel/relational-atlas-lean",
+          "path": "RelationalAtlas/Extended6.lean",
+          "declarations": [
+            "ne_zero_of_sq_boundary",
+            "norm_eq_radius_of_sq_boundary",
+            "not_mem_pseudoSpectrum_sq_boundary",
+            "resolvent_norm_eq_inv_iff",
+            "resolvent_threshold_eq",
+            "resolvent_threshold_strict_and_eq",
+            "sq_boundary_iff_norm_eq_radius",
+            "sq_boundary_iff_resolvent_norm_eq_inv"
+          ],
+          "scope": "The pseudospectral set of the Jordan block is exactly the open disk; on the boundary circle |w|^2 = eps|mu| + eps^2 the resolvent norm equals eps^{-1} exactly, so the boundary is not in the strict pseudospectrum, and the normal case mu = 0 reduces to |w| = eps.",
+          "commit": "b154479e56a0482be22fd1614b4e484f237e200f",
+          "snapshot_path": "RelationalAtlas/Extended6.lean",
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/b154479e56a0482be22fd1614b4e484f237e200f/RelationalAtlas/Extended6.lean"
         }
       ],
       "audit_notes": [],
@@ -5779,6 +6027,30 @@
           "commit": "116f9a1",
           "snapshot_path": "RelationalAtlas/Extended4.lean",
           "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/116f9a1/RelationalAtlas/Extended4.lean"
+        },
+        {
+          "repository": "dicipler-pixel/relational-atlas-lean",
+          "path": "RelationalAtlas/Extended5.lean",
+          "declarations": [
+            "charpoly_complement",
+            "charpoly_particleHole",
+            "charpoly_particleHole_of_transpose",
+            "energySpectrum_invariant",
+            "energySpectrum_invariant_of_occupationSpectrum_invariant",
+            "energySpectrum_invariant_of_transpose",
+            "modeEnergy_eq_log_div",
+            "occupationSpectrum_invariant",
+            "occupationSpectrum_invariant_of_charpoly",
+            "occupationSpectrum_invariant_of_transpose",
+            "roots_complement",
+            "sum_energySpectrum_eq_zero",
+            "sum_energySpectrum_eq_zero_of_transpose",
+            "sum_eq_zero_of_map_neg_eq"
+          ],
+          "scope": "From Hermitian C, unitary U and either Carry relation, the occupation spectrum is invariant under nu |-> 1 - nu and the entanglement-energy spectrum under eps |-> -eps, with multiplicities preserved, and the energies sum to zero.",
+          "commit": "b154479e56a0482be22fd1614b4e484f237e200f",
+          "snapshot_path": "RelationalAtlas/Extended5.lean",
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/b154479e56a0482be22fd1614b4e484f237e200f/RelationalAtlas/Extended5.lean"
         }
       ],
       "audit_notes": [],
@@ -5964,9 +6236,26 @@
       },
       "closed_when": "Closed whenWith unequal masses the poles are no longer protected and the degeneracy becomes a genuine cone, with half-integer index and eigenvector holonomy −1.",
       "source_reference": "Three-Body v3 · Theorem 5, Corollary 6, Remark 7 · index computed numerically",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "local_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/relational-atlas-lean",
+          "path": "RelationalAtlas/Extended5.lean",
+          "declarations": [
+            "meridianPoleLoop_model",
+            "meridianPoleLoop_sign_return",
+            "meridianPoleLoop_winding",
+            "north_index",
+            "pole_sum_eq_euler_characteristic",
+            "south_index"
+          ],
+          "scope": "The pole indices as an exact winding: the card's model loop is the unit circle, its winding is exactly 1 (lift t |-> 2 pi t), both poles have index 1 and their sum is 2 = chi(S^2), with the +1 return sign.",
+          "commit": "b154479e56a0482be22fd1614b4e484f237e200f",
+          "snapshot_path": "RelationalAtlas/Extended5.lean",
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/b154479e56a0482be22fd1614b4e484f237e200f/RelationalAtlas/Extended5.lean"
+        }
+      ],
       "audit_notes": [
         "B87 correctly distinguishes SO(2) from Z3 and explicitly constructs a linear term allowed by Z3. B156 still credits Z3 alone for forbidding that term. Use the actual continuous symmetry/action when explaining the equal-mass quadratic crossing. The line-field index calculation is a separate statement."
       ],
@@ -6050,6 +6339,17 @@
           "commit": "8fb0e1a",
           "snapshot_path": "RelationalAtlas/Extended.lean",
           "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/8fb0e1a/RelationalAtlas/Extended.lean"
+        },
+        {
+          "repository": "dicipler-pixel/relational-atlas-lean",
+          "path": "RelationalAtlas/Extended5.lean",
+          "declarations": [
+            "weak_value_bound_eq_iff_complex_parallel"
+          ],
+          "scope": "Equality in the weak-value bound holds exactly when A i is a complex multiple of f, proved in both directions, with c = 0 covering A i = 0.",
+          "commit": "b154479e56a0482be22fd1614b4e484f237e200f",
+          "snapshot_path": "RelationalAtlas/Extended5.lean",
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/b154479e56a0482be22fd1614b4e484f237e200f/RelationalAtlas/Extended5.lean"
         }
       ],
       "audit_notes": [],
@@ -6415,14 +6715,49 @@
       },
       "closed_when": "Closed whenThe fix is a different measurement, a two-energy interleaved ratio against controlled fluence, not a better fit.",
       "source_reference": "SCREEN-PROG-03 · SCREEN-PROG-03 §6.4 · Fisher information",
-      "coverage_status": "not_mapped_in_audited_scope",
+      "coverage_status": "local_kernel_mapped",
       "full_card_certified": false,
-      "proof_references": [],
+      "proof_references": [
+        {
+          "repository": "dicipler-pixel/relational-atlas-lean",
+          "path": "RelationalAtlas/Extended5.lean",
+          "declarations": [
+            "B169_no_precision_floor",
+            "B169_no_precision_floor_normalization_free",
+            "concentrated8_correlation",
+            "correlationOfFisher_two",
+            "fisher_two_inv",
+            "linearCorrelation_eq",
+            "linearFisher_inv",
+            "moment8_one",
+            "moment8_two",
+            "moment8_zero",
+            "moment_one_sq_le",
+            "normalCorrelation_uniform8",
+            "normalCovariance_uniform8",
+            "normalFisher_uniform8",
+            "response8_pos",
+            "uniform8_correlation",
+            "weight8_pos"
+          ],
+          "scope": "For the two-parameter linear family the correlation is -S1/sqrt(S0 S2) with S1^2 <= S0 S2; on the card's own grid it is -sqrt(7/10) at uniform weights and -1/5 at (133,1,...,1), and -4/sqrt(17) in the normalization-free model, so the correlation moves with the precision profile and no -0.99 floor exists.",
+          "commit": "b154479e56a0482be22fd1614b4e484f237e200f",
+          "snapshot_path": "RelationalAtlas/Extended5.lean",
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/b154479e56a0482be22fd1614b4e484f237e200f/RelationalAtlas/Extended5.lean"
+        }
+      ],
       "audit_notes": [
         "Near collinearity is not exact rank loss. The example Fisher correlation 0.999475 leaves eigenvalues 0.000525 and 1.999475 in a unit-diagonal model. More independent counts retain the condition ratio but reduce parameter errors. Exact invisibility belongs to a null space or an explicitly confounded model."
       ],
       "next_obligation": "Formalize the displayed claim under the card Carry/Check hypotheses or locate and audit an existing formalization; preserve the source grade until then.",
-      "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger."
+      "witness_status": "Published card witness only; no fresh numerical replay is claimed by this ledger.",
+      "corrections": [
+        {
+          "kind": "refuted",
+          "finding": "No -0.99 correlation floor: on the card's own grid the correlation is -sqrt(7/10) at uniform weights and -1/5 at (133,1,...,1), and -4/sqrt(17) in the normalization-free model, so it moves with the precision profile. The measured -0.999475 is not replayed: the nonlinear sensitivity data is absent, so that number stays unverified rather than refuted.",
+          "evidence": "RelationalAtlas/Extended5.lean::B169.B169_no_precision_floor"
+        }
+      ]
     },
     {
       "id": "B170",
@@ -6931,6 +7266,27 @@
           "commit": "116f9a1",
           "snapshot_path": "RelationalAtlas/Extended4.lean",
           "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/116f9a1/RelationalAtlas/Extended4.lean"
+        },
+        {
+          "repository": "dicipler-pixel/relational-atlas-lean",
+          "path": "RelationalAtlas/Extended6.lean",
+          "declarations": [
+            "b181_decimal_resolution",
+            "deriv_deriv_scaledFoldPotential_of_local",
+            "differentiableAt_squarePotentialSlope",
+            "iscoRadialFrequency_eq_zero",
+            "squareFold_second_deriv_eq_squareOmega_sq",
+            "squareHeight_quadratic_coefficient",
+            "squareHeight_second_deriv",
+            "squareOmega_ne_iscoRadialFrequency",
+            "squarePotentialSlope_zero",
+            "squarePotential_hasDerivAt_near",
+            "squarePotential_hasDerivAt_of_pos"
+          ],
+          "scope": "The missing join between the frequency identity and the transverse stiffness is supplied; the card's 1.912290 is a six-place rounding of sqrt(2(2 sqrt 2 - 1)); and under the earlier card's stated L^2 = 12 the ISCO radial frequency vanishes while the square frequency does not, so the two are provably different objects.",
+          "commit": "b154479e56a0482be22fd1614b4e484f237e200f",
+          "snapshot_path": "RelationalAtlas/Extended6.lean",
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/b154479e56a0482be22fd1614b4e484f237e200f/RelationalAtlas/Extended6.lean"
         }
       ],
       "audit_notes": [],
@@ -8098,6 +8454,26 @@
           "commit": "116f9a1",
           "snapshot_path": "RelationalAtlas/Extended4.lean",
           "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/116f9a1/RelationalAtlas/Extended4.lean"
+        },
+        {
+          "repository": "dicipler-pixel/relational-atlas-lean",
+          "path": "RelationalAtlas/Extended5.lean",
+          "declarations": [
+            "extremal_horizon_product",
+            "extremal_horizon_rapidities",
+            "extremal_horizon_rapidities_opposite",
+            "extremal_horizons_merge",
+            "extremal_radius_cosh_rapidity",
+            "extremal_radius_eq_exp_rapidity",
+            "tendsto_inner_rapidity_extremal_left",
+            "tendsto_outer_rapidity_extremal_left",
+            "tendsto_rMinus_extremal_left",
+            "tendsto_rPlus_extremal_left"
+          ],
+          "scope": "At the extremal value Q = M the horizons merge (r+- = M), the product is M^2, both rapidities vanish and remain opposite, and the round-trip identities hold at tau = 0; one-sided limits as Q -> M are proved for the radii and both rapidities.",
+          "commit": "b154479e56a0482be22fd1614b4e484f237e200f",
+          "snapshot_path": "RelationalAtlas/Extended5.lean",
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/b154479e56a0482be22fd1614b4e484f237e200f/RelationalAtlas/Extended5.lean"
         }
       ],
       "audit_notes": [

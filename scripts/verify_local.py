@@ -132,7 +132,10 @@ def main() -> int:
     built = []
     for m in MODULES:
         out = olean / (m['path'].replace('.lean', '.olean'))
-        proc = lean('-o', str(out), m['path'])
+        out.parent.mkdir(parents=True, exist_ok=True)
+        # The olean directory is on LEAN_PATH so a module can import an earlier one
+        # (Extended6 imports Extended3 and Extended4).
+        proc = lean('-o', str(out), m['path'], lean_path=str(olean))
         built.append((m['module'], proc.returncode))
         if proc.returncode != 0:
             problems.append(f'could not build objects for {m["module"]}')

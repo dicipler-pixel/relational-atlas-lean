@@ -4,7 +4,7 @@
 
 [![Lean proof check](https://github.com/dicipler-pixel/relational-atlas-lean/actions/workflows/build.yml/badge.svg)](https://github.com/dicipler-pixel/relational-atlas-lean/actions/workflows/build.yml)
 ![Lean](https://img.shields.io/badge/Lean-v4.34.1-blue)
-![Theorems](https://img.shields.io/badge/theorems-1020-2EA043)
+![Theorems](https://img.shields.io/badge/theorems-1227-2EA043)
 ![sorry](https://img.shields.io/badge/sorry-0-2EA043)
 ![Code: MIT](https://img.shields.io/badge/code-MIT-lightgrey)
 ![Text: CC BY 4.0](https://img.shields.io/badge/text-CC%20BY%204.0-lightgrey)
@@ -125,6 +125,18 @@ B198, B203, B207), includes three more refutations and the corrections they forc
   the per-level value `1/δ²` is supplied separately from the double sum's `2/δ²`.
 - **B198** — the auxiliary conjugation carries the wrong sign on `σ_y` (the book energies are
   unaffected).
+
+A fifth batch, [`RelationalAtlas/Extended5.lean`](RelationalAtlas/Extended5.lean) and
+[`RelationalAtlas/Extended6.lean`](RelationalAtlas/Extended6.lean) (188 + 19 declarations), closed
+the sixteen gaps that stood between the kernels and whole-card certification, and closed two of them
+by refutation: B67's unrestricted lift claim is false (a closed loop can fail to lift even when
+regular and collision-free, though the isotropy threshold `r ≤ d−2` is exact), and B169's −0.99
+correlation floor does not exist (the correlation moves with the precision profile, while the
+card's measured −0.999475 stays unverified rather than refuted). The rest are closures: B24 in every
+dimension, B145's boundary, B207's extremal hole, B156's pole indices as an exact winding, B158's
+equality case, B77's two thresholds, B93's invariance hypothesis, B60's converse, B15's 1/(2√2)
+constant shown to belong to √S, B152's spectral clauses, B112's one-zero case, B119's full symbol
+and B181's missing join.
 
 Partial or guarded: B24's equality of the two `c₂` forms needs Hermitian `E`; B207 does not treat
 the extremal `Q = M`; B46's local HTML and the ledger describe different documents.  Each is
