@@ -147,7 +147,10 @@ def main() -> int:
         started = time.time()
         timed_out = False
         try:
-            proc = lean(str(p), lean_path=str(olean) if t['kind'] == 'control' else None)
+            # Library modules may import an earlier one (Extended6 imports 3 and 4),
+            # and the false controls import the library, so every elaboration gets the
+            # olean directory on LEAN_PATH.
+            proc = lean(str(p), lean_path=str(olean))
             out = proc.stdout + proc.stderr
             code = proc.returncode
         except subprocess.TimeoutExpired:
