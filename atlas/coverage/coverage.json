@@ -210,9 +210,9 @@
             "unequalRank_trace_formula"
           ],
           "scope": "Mixed-rank counterexample to the displayed right-hand identity and the surviving equal-rank theorem. The card's ½‖Π₁−Π₂‖²_F = Σ sin²θᵢ is false at Π₁ = diag(1,0,0), Π₂ = diag(1,1,0) in ℝ³ (½ against 0, or 1 with padded π/2 angles). Proved: the trace-level repair ½‖P−Q‖²_F = Σ_{i≤p} sin²θᵢ + (q−p)/2 for orthogonal projectors with trace P = p, trace Q = q and trace(PQ) = Σ cos²θᵢ; the equal-rank Frobenius identity; the diagonal-angle computation at the witness; and the first refraction step. The principal-angle data are hypotheses here, not derived from the ranges. The refraction equation R₁sin²θ₁ = R₂sin²θ₂ is not addressed.",
-          "commit": "PENDING-EXTENDED10",
+          "commit": "eea8a8fc30932ca41bdd424ee1a7dfad4335ae32",
           "snapshot_path": "RelationalAtlas/Extended10.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/PENDING-EXTENDED10/RelationalAtlas/Extended10.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/eea8a8fc30932ca41bdd424ee1a7dfad4335ae32/RelationalAtlas/Extended10.lean"
         }
       ],
       "audit_notes": [
@@ -2164,9 +2164,9 @@
             "witness_torsion"
           ],
           "scope": "The literal display det Hess(potential) = adjoint torsion in Riley coordinates, with the torsion formulas of Yoon (arXiv:2009.12051) and Gang–Kim–Yoon (arXiv:1911.10718) as external inputs. On the regular figure-eight curve the torsion is ∓R_u/2 while the one-variable Hessian is R_u or R_uu, and regular witnesses at m = 2 and m = 3 fail for both readings and both torsion signs; at the branch point m₀ = (1+i√3)/2, u = −2 the Hessian degenerates while the meridian torsion continuation is 0, not a pole. The correctly normalised Neumann–Zagier 1-loop theorem is not addressed.",
-          "commit": "PENDING-EXTENDED10",
+          "commit": "eea8a8fc30932ca41bdd424ee1a7dfad4335ae32",
           "snapshot_path": "RelationalAtlas/Extended10.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/PENDING-EXTENDED10/RelationalAtlas/Extended10.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/eea8a8fc30932ca41bdd424ee1a7dfad4335ae32/RelationalAtlas/Extended10.lean"
         }
       ],
       "audit_notes": [],
@@ -2356,9 +2356,9 @@
             "witness_A_values_differ"
           ],
           "scope": "The sharp ledger reading (MMR leading coefficient Δ⁻¹, AJ recursion limit) for 3₁: the second colour q + q³ − q⁴, its Habiro form, the h² coefficient −1 + 1/n² → −1, the q = 1 recurrence A(L,M), the domain obstruction at ω = (1+i√3)/2, the HTML-versus-ledger normalisation comparison, and the finite determination counterexample 7₄/9₂ (equal Δ, A(L,1) = (L+1)⁵ against (L+1)⁷). Coloured Jones topology and the A-polynomial table are external inputs; MMR and AJ are not formalised here.",
-          "commit": "PENDING-EXTENDED10",
+          "commit": "eea8a8fc30932ca41bdd424ee1a7dfad4335ae32",
           "snapshot_path": "RelationalAtlas/Extended10.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/PENDING-EXTENDED10/RelationalAtlas/Extended10.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/eea8a8fc30932ca41bdd424ee1a7dfad4335ae32/RelationalAtlas/Extended10.lean"
         }
       ],
       "audit_notes": [],
@@ -2612,9 +2612,9 @@
             "witness_not_mem_glued"
           ],
           "scope": "The Schur/log-det seam ledger for positive definite blocks: det M = det A det B (1−μ), nonpositive interface term, subadditivity, and the anti-monotone scale-invariant cone C(o) = {(x,y) : x ≥ 0, |y|e^o ≤ x} with its scale invariance. The witness A = B = [4], coupling 3, μ = 9/16 shows the displayed cone inclusion fails although the log-det inequality holds. The card leaves C undefined; this is a countermodel to the displayed inference only.",
-          "commit": "PENDING-EXTENDED10",
+          "commit": "eea8a8fc30932ca41bdd424ee1a7dfad4335ae32",
           "snapshot_path": "RelationalAtlas/Extended10.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/PENDING-EXTENDED10/RelationalAtlas/Extended10.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/eea8a8fc30932ca41bdd424ee1a7dfad4335ae32/RelationalAtlas/Extended10.lean"
         }
       ],
       "audit_notes": [],
@@ -2845,9 +2845,9 @@
             "zero_radius_residual_proxyVar"
           ],
           "scope": "Two-power-law-proxy partial-correlation algebra under linear mass control, and an eight-galaxy countermodel to the unconditional 0.080 dex floor: exact proxy correlation ±1, a nonzero structural effect of 0.0046 dex per galaxy with compactness correlation 23/50 = 0.46 and recovered slope 23/25. The source's SPARC-specific 0.080 and 0.106 dex numbers are not replayed or falsified.",
-          "commit": "PENDING-EXTENDED10",
+          "commit": "eea8a8fc30932ca41bdd424ee1a7dfad4335ae32",
           "snapshot_path": "RelationalAtlas/Extended10.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/PENDING-EXTENDED10/RelationalAtlas/Extended10.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/eea8a8fc30932ca41bdd424ee1a7dfad4335ae32/RelationalAtlas/Extended10.lean"
         }
       ],
       "audit_notes": [],
@@ -3484,9 +3484,9 @@
             "zero_radius_branches"
           ],
           "scope": "The five-charge critical-point census: the exact rational charge q_ε = (3/4)ε³ − (5/32)ε⁵, the blow-up polynomial, its exact 21 nondegenerate critical points (origin, two axial, six planar, twelve off-planar) with nonvanishing Hessian determinants, the arithmetic 24 > (n−1)² = 16, and an independent 6000-start numerical search that found no further hull equilibrium. The cited theorem is 'at least 24', not an exact global count.",
-          "commit": "PENDING-EXTENDED10",
+          "commit": "eea8a8fc30932ca41bdd424ee1a7dfad4335ae32",
           "snapshot_path": "RelationalAtlas/Extended10.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/PENDING-EXTENDED10/RelationalAtlas/Extended10.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/eea8a8fc30932ca41bdd424ee1a7dfad4335ae32/RelationalAtlas/Extended10.lean"
         }
       ],
       "audit_notes": [],
@@ -5812,9 +5812,9 @@
             "trace_sq_product"
           ],
           "scope": "The trace-log expansion on the eleven-dimensional form space Λ⁰⊕Λ¹⊕Λ²: −Tr₁₁ log(I − βℝ) = 3βR + (β²/2)(R² + Ric² + Riem²) + O(β³). The constant-curvature spectrum R, R/4 (×4), R/6 (×6), the S⁴ spectrum 36β + 102β², and a Lorentzian non-conformally-flat product dS²(k)×S²(l) all reproduce the displayed coefficients; β = ℓ_P²/(48π) gives 1/(16πG). The covariant variation and the branch of the logarithm are inputs.",
-          "commit": "PENDING-EXTENDED10",
+          "commit": "eea8a8fc30932ca41bdd424ee1a7dfad4335ae32",
           "snapshot_path": "RelationalAtlas/Extended10.lean",
-          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/PENDING-EXTENDED10/RelationalAtlas/Extended10.lean"
+          "url": "https://github.com/dicipler-pixel/relational-atlas-lean/blob/eea8a8fc30932ca41bdd424ee1a7dfad4335ae32/RelationalAtlas/Extended10.lean"
         }
       ],
       "audit_notes": [
