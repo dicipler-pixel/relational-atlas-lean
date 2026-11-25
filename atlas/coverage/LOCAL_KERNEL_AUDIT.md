@@ -194,9 +194,9 @@ steps:
 
 | Step | Result |
 | :--- | :--- |
-| `lake build` (Lean 4.35.0, Mathlib 4.35.0) | **Build completed successfully (9059 jobs)**, all twelve modules including `Extended10` |
-| `lake env leanchecker` per module (independent kernel replay) | all twelve exit 0 |
-| `python3 scripts/verify.py` | **OK: 2648 theorems**, axioms `{propext, Classical.choice, Quot.sound}`, 7 false controls rejected |
+| `lake build` (Lean 4.35.0, Mathlib 4.35.0) | **Build completed successfully (9060 jobs)**, all thirteen modules including `Extended11` |
+| `lake env leanchecker` per module (independent kernel replay) | all thirteen exit 0 |
+| `python3 scripts/verify.py` | **OK: 3045 theorems**, axioms `{propext, Classical.choice, Quot.sound}`, 7 false controls rejected |
 
 Two defects were found by doing it rather than by reading it. The first was in `scripts/verify.py`
 (it required one namespace per file, counted only `theorem`, rejected the short spelling of the

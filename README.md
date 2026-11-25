@@ -280,9 +280,9 @@ Mathlib v4.35.0, independent replay in Lean's kernel checker, an axiom audit (on
 
 `scripts/ci_local.sh` reproduces the same three steps without GitHub, by copying the installed
 Mathlib to a writable directory and pointing a scratch copy of the project at it. The last local
-run (25 November 2026, after the ninth batch): `lake build` completed **9059 jobs**, `leanchecker`
-replayed all twelve modules including `Extended10`, and `verify.py` reported **2648 theorems** with
-the seven controls rejected.
+run (25 November 2026, after the tenth batch): `lake build` completed **9060 jobs**, `leanchecker`
+replayed all thirteen modules including `Extended11`, and `verify.py` reported **3045 theorems**
+with the seven controls rejected.
 
 ## The paper
 
