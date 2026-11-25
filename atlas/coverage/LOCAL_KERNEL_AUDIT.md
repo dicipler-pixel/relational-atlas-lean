@@ -175,6 +175,32 @@ The 42 cards mapped only to a companion repository are listed separately: their 
 in the pinned snapshot, but they were not audited statement-by-statement here, and four of those
 snapshots cannot be re-elaborated at all.
 
+## The CI pipeline, run for real
+
+The workflow was unexercised until 25 November 2026. It has now been executed end to end in
+this VM by `scripts/ci_local.sh`, which copies the installed Mathlib to a writable directory
+(Lake must write hash files beside the objects, which a root-owned installation forbids),
+points a scratch copy of the project at it as a path dependency, and runs the workflow's three
+steps:
+
+| Step | Result |
+| :--- | :--- |
+| `lake build` (Lean 4.35.0, Mathlib 4.35.0) | **Build completed successfully (9056 jobs)**, all nine modules |
+| `lake env leanchecker` per module (independent kernel replay) | all nine exit 0, 6–9 s each |
+| `python3 scripts/verify.py` | **OK: 1806 theorems**, axioms `{propext, Classical.choice, Quot.sound}`, 7 false controls rejected |
+
+Two defects were found by doing it rather than by reading it. The first was in `scripts/verify.py`
+(it required one namespace per file, counted only `theorem`, rejected the short spelling of the
+choice axiom and mis-parsed wrapped axiom lists — fixed). The second was in `lakefile.toml`:
+`RelationalAtlas.Extended7` was registered in `config.json` and in the ledger but missing from the
+Lake roots, so `lake build` would have silently skipped it and the audit would then have failed on
+its import. Both are fixed and the run above is after the fix.
+
+What this run does **not** establish: it used the Mathlib shipped with the VM image rather than a
+fresh clone plus `lake exe cache get`, so the workflow's own download steps remain unverified, and
+the pins were moved from v4.34.1 to v4.35.0 precisely because every proof here was elaborated on
+4.35.0 and nothing on 4.34.1.
+
 ## Refutations and corrections
 
 Every card whose displayed claim, or whose ledger transcription, did not survive contact with Lean is listed here with the theorem that settles it. `kind` is `refuted` (false as written), `missing-hypothesis` (true only with a hypothesis the card does not state), `overreach` / `scope` (true but weaker than the words), `ledger-error` (the card is fine and the ledger is not), `sign`, `rounding`, `provenance` or `clarification`.

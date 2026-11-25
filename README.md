@@ -186,9 +186,14 @@ and tells the three things called "Atlas" apart. The 37 theorems here are the 16
 
 ## How it is checked
 
-Every push runs [the proof check](.github/workflows/build.yml): build against Lean v4.34.1 and
-Mathlib v4.34.1, independent replay in Lean's kernel checker, an axiom audit (only `propext`,
+Every push runs [the proof check](.github/workflows/build.yml): build against Lean v4.35.0 and
+Mathlib v4.35.0, independent replay in Lean's kernel checker, an axiom audit (only `propext`,
 `Classical.choice`, `Quot.sound`), and seven deliberately false statements that must fail.
+
+`scripts/ci_local.sh` reproduces the same three steps without GitHub, by copying the installed
+Mathlib to a writable directory and pointing a scratch copy of the project at it. The last local
+run: `lake build` completed 9056 jobs, `leanchecker` replayed all nine modules, and `verify.py`
+reported **1806 theorems** with the seven controls rejected.
 
 ## The paper
 
